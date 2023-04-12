@@ -19,7 +19,7 @@ export const Footer = () => {
         {id:4, name:"CSR", link:"/"},
     ]
     const contact=[
-        {id:1 , logo:<ImLocation/> , name:"Location", link:"/"},
+        {id:1 , logo:<ImLocation/> , name:"Baneshwor, Kathmandu", link:"/"},
         {id:2, logo:<FiPhoneCall/> , name:"+977-9800022222", link:"/"},
         {id:3, logo:<AiOutlineMail/> , name:"info@ktmbees.com", link:"/"},
     ]
