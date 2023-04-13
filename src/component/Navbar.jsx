@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <nav className='flex justify-between items-center  mx-[1rem]'>
       <section className='logo'>
-        <img src="../assests/logo/bees.png" alt="Bees" className='w-44'/>
+        <img src="../assests/logo/bees.png" alt="Bees" className='w-32'/>
       </section>
       <section className='hamburger__logo'>
         <GiHamburgerMenu size={20}/>
