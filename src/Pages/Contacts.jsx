@@ -2,6 +2,8 @@ import React from 'react'
 import { Text,TextInput,Textarea ,Checkbox} from '@mantine/core'
 import captcha from "../assets/images/Captcha.png";
 import { Controller, useForm } from "react-hook-form";
+import Navbar from '../component/Navbar';
+import { Footer } from '../component/Footer';
 
 const Contacts = () => {
 
@@ -19,6 +21,9 @@ const Contacts = () => {
   }
 
   return (
+    // <Navbar/>
+    <>
+    <Navbar/>
     <div className='bg-[#2D3B52]   flex items-center justify-center  flex-col'>
       <section className='my-8'>
         <Text className="text-[#ffff] text-center text-[32px] space-y-7 font-[Helvetica] "  fw={700}>Contact</Text>
@@ -146,6 +151,8 @@ const Contacts = () => {
         </form>
       </section>
     </div>
+    <Footer/>
+    </>
   )
 }
 
