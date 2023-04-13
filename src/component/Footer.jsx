@@ -64,12 +64,10 @@ export const Footer = () => {
         <section className='w-[60%] m-auto mb-5 flex justify-between items-center'>
             <img src = '../assests/logo/bees.png' alt = 'BeeLogo' className='w-36'/>
             <div className='footer-right flex items-center'>
-                <label className='mx-2 text-gray-300'>Copyright © All Rights Reserved</label>
+                <label className='mx-2 text-[gray]'>Copyright © All Rights Reserved</label>
                 <img src='../assests/logo/github.png' alt='github' className='mx-2'/>
                 <img src='../assests/logo/linkedin.png' alt='github' className='mx-2'/>
-        
-                
-
+    
             </div>
         </section>
     </div>
