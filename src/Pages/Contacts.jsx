@@ -24,13 +24,13 @@ const Contacts = () => {
     // <Navbar/>
     <>
     <Navbar/>
-    <div className='bg-[#2D3B52]   flex items-center justify-center  flex-col'>
+    <div className='bg-dark_blue   flex items-center justify-center  flex-col'>
       <section className='my-8'>
-        <Text className="text-[#ffff] text-center text-[32px] space-y-7 font-[Helvetica] "  fw={700}>Contact</Text>
-        <Text className="text-[#ffff] text-center text-[18px] space-y-7 font-[Helvetica]" fw={400}>Have a question? Write to us</Text>
+        <Text className="text-white text-center text-4xl  font-sans "  fw={700}>Contact</Text>
+        <Text className="text-white text-center text-1xl  font-sans" fw={400}>Have a question? Write to us</Text>
       </section>
-      <section className='w-[60%]  rounded-[16px] mb-[3rem] bg-white' >
-        <form onSubmit={handleSubmit(onSubmit)} autoComplete='off' className='px-[1rem] py-[3rem] focus:none border-0 '>
+      <section className='w-[60%]  rounded-2xl mb-10 bg-white' >
+        <form onSubmit={handleSubmit(onSubmit)} autoComplete='off' className='px-4 py-[3rem] focus:none border-0 '>
           <div className='flex mb-[1rem]'>
             <div className='w-[50%]'>
               <Controller
@@ -126,7 +126,7 @@ const Contacts = () => {
         />
 
 
-        <div className='bg-[#F2F2F2] w-[452px] h-[107px] mx-3 mb-[0rem]  border border-[#D9DBE9] flex justify-around items-center'>
+        <div className='bg-[#F2F2F2] w-[18rem] h-[6rem] mx-3 mb-[0rem]  border border-gray_2 flex justify-around items-center'>
         <Controller
           name='checkbox'
           rules={{
@@ -140,11 +140,11 @@ const Contacts = () => {
           />}
         
         />
-        <img className='w-[85px] h-[85px]'  src={captcha} alt="ReCaptcha" />
+        <img className='w-[5rem] '  src={captcha} alt="ReCaptcha" />
         </div>
         <p className='text-red-500 px-3 font-[600] mb-[1rem] '>{errors.checkbox?.message}</p>
 
-        <button type='submit' className='bg-[#F0B62F] w-[200px] h-[64px] mx-3 rounded-[40px] tracking-[.06rem] font-[Poppins] text-white text-[20px] font-semibold'>
+        <button type='submit' className='bg-[#F0B62F] w-[12rem] h-[4rem] mx-3 rounded-[40px] tracking-[.06rem] font-[Poppins] text-white text-[20px] font-semibold'>
           Send
         </button>
 
