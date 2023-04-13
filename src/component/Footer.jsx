@@ -60,8 +60,8 @@ export const Footer = () => {
 }
             </article>
         </section>
-        <hr className='w-[60%] m-auto mb-2 border-[1px] border-[gray]'/>
-        <section className='w-[60%] m-auto flex justify-between items-center'>
+        <hr className='w-[60%] m-auto mb-5 border-[1px] border-[gray]'/>
+        <section className='w-[60%] m-auto mb-5 flex justify-between items-center'>
             <img src = '../assests/logo/bees.png' alt = 'BeeLogo' className='w-36'/>
             <div className='footer-right flex items-center'>
                 <label className='mx-2 text-gray-300'>Copyright © All Rights Reserved</label>
