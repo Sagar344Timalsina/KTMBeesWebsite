@@ -10,8 +10,10 @@ module.exports = {
       'gray': '#64748B',
       'black': '#000000',
       'dark_gray': '#475569',
-      'dark_blue':'#2D3B52',
-      'gray_2':'#D9DBE9',
+      'dark_blue': '#2D3B52',
+      'blue2': '#1E293B',
+      'gray_2': '#D9DBE9',
+      'button_gray': '#0F172A'
     },
     fontFamily: {
       'sans': ['Helvetica']
