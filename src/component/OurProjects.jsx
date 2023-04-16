@@ -16,7 +16,7 @@ const OurProjects = () => {
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>    
         </section>
         <section className='w-[70%] m-auto'>
-         <Tabs  color='yellow' >
+         <Tabs defaultValue="ecommerce" color='yellow' >
       <Tabs.List className='justify-between font-bold mb-4'>
         <Tabs.Tab value="ecommerce" label="E-commerce" className='focus:text-yellow'>E-commerce</Tabs.Tab>
         <Tabs.Tab value="informative" className='focus:text-yellow'> Informative</Tabs.Tab>
