@@ -17,7 +17,7 @@ const Services = () => {
         { id: 6, name: "Agency Partner Program", describe: 'Explore the avenue of improvement on the digital frontire', image: Pen },
     ]
     return (
-        <section className='bg-light_gray'>
+        <section className='bg-light_gray py-3'>
             {/* service */}
             <div className='p-12 bg-light_gray w-[40rem] mx-auto'>
                 <Text className='h-9 font-sans font-bold text-3xl leading-9 tracking-wider text-dark text-center'>Services</Text>
@@ -25,7 +25,7 @@ const Services = () => {
             </div >
 
             {/* Grid */}
-            < div className='w-[60%] mx-auto pb-20' >
+            < div className='w-[60%] mx-auto' >
                 <Grid className='mt-6 bg-light_gray flex justify-between items-center gap-1 mb-20'>
                     {services.map((service) => (
                         <Grid.Col span={3} className='flex flex-col items-start p-5 gap-10 isolate  h-[17.5rem] mb-6' key={service.id}>

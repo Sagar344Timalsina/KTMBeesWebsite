@@ -6,17 +6,20 @@ import Companies from '../component/Companies'
 import Header from '../component/Header'
 import Navbar from '../component/Navbar'
 import { Footer } from '../component/Footer'
+import OurProjects from '../component/OurProjects'
 
 const HomePage = () => {
   return (
     <main>
       <Navbar />
       <Header />
-      <Companies />
-      <Services />
+      <OurProjects />
       <PartnerUs />
+      <Services />
       <OurProcess />
+      <Companies />
       <Footer />
+
     </main>
   )
 }

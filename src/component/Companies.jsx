@@ -7,7 +7,7 @@ import Collaborate from "../assets/images/Collaborate.png"
 import QMED from "../assets/images/QMED.png"
 import ABF from "../assets/images/ABF.png"
 import Dami from "../assets/images/Dami.png"
-import AWS from "../assets/images/AWS.png"
+import AWS2 from "../assets/images/AWS2.png"
 import BitSquare from "../assets/images/BitSquare.png"
 import CityTour from "../assets/images/CityTour.png"
 
@@ -22,7 +22,7 @@ const Companies = () => {
     ]
     const partners = [
         { id: 1, image: Dami },
-        { id: 2, image: AWS },
+        { id: 2, image: AWS2 },
         { id: 3, image: BitSquare },
         { id: 4, image: CityTour },
     ]
@@ -30,20 +30,20 @@ const Companies = () => {
         <div className='bg-light_gray'>
             <div>
                 <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Companies that trusted us</Text>
-                <Grid className='flex items-start justify-center gap-12 order-1 mx-56 mt-6 pb-12'>
+                <Grid className='flex items-start justify-between gap-16 order-1 mx-56 mt-6 pb-12'>
                     {companyImages.map((data) => (
-                        <Grid.Col span={3} key={data.id}>
-                            <img src={data.image} alt='Company'></img>
+                        <Grid.Col span={3} key={data.id} className='flex justify-center'>
+                            <img src={data.image} alt='Company' ></img>
                         </Grid.Col>
                     ))}
                 </Grid>
             </div>
             <div>
                 <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Startup Partners</Text>
-                <Grid className='flex items-center justify-between gap-6 order-1 mx-56 pb-12'>
+                <Grid className='flex items-center justify-between mx-56 pb-12'>
                     {partners.map((data) => (
                         <Grid.Col md={2} key={data.id}>
-                            <img src={data.image} alt='Partners'></img>
+                            <img src={data.image} alt='Partners' className='flex justify-center'></img>
                         </Grid.Col>
                     ))}
                 </Grid>
