@@ -5,7 +5,7 @@ import {Text} from '@mantine/core';
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between items-center  mx-[1rem]'>
+    <nav className='flex justify-between items-center  mx-[1rem] bg-[transparent]'>
       <section className='logo'>
         <img src="../assests/logo/bees.png" alt="Bees" className='w-44'/>
       </section>
