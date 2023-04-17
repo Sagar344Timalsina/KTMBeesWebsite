@@ -43,7 +43,6 @@ const OurProjects = () => {
                     <Button color='dark' className='z-10 bg-black rounded-full h-16 w-48 text-base'>Go to site</Button>
                     <button className='bg-[transparent] font-sans 
               font-[600]
-              font-[Poppins]
               text-xl
               text-[#475569]
               tracking-[0.75px]'
