@@ -7,7 +7,6 @@ import { FaAws } from 'react-icons/fa';
 import { FaFigma } from 'react-icons/fa';
 import TopPatch from '../assets/images/topo.png';
 import BottomPatch from '../assets/images/bottom.png';
-import AWS from '../assets/images/AWS.png'
 
 const OurProjects = () => {
   return (
@@ -36,7 +35,7 @@ const OurProjects = () => {
                   <span className='title text-2xl font-bold mb-10 text-left'>B2B E-commerce website dealing in Kitchen appliances</span>
                   <span className='button flex justify-between  w-96 mb-10'>
                     <Button variant='filled' color='light-gray' rightIcon={<FaVuejs />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Vue.js </Button>
-                    <Button variant='filled' color='light-gray' rightIcon={<FaAws />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Aws <img src={AWS}></img></Button>
+                    <Button variant='filled' color='light-gray' rightIcon={<FaAws />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Aws </Button>
                     <Button variant='filled' color='light-gray' rightIcon={<FaFigma />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Figma</Button>
                   </span>
                   <div className='site__button flex justify-between items-center'>
