@@ -7,6 +7,7 @@ import Header from '../component/Header'
 import Navbar from '../component/Navbar'
 import { Footer } from '../component/Footer'
 import OurProjects from '../component/OurProjects'
+import ReadyCreate from '../component/ReadyCreate'
 
 const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = () => {
       <Services />
       <OurProcess />
       <Companies />
+      <ReadyCreate />
       <Footer />
 
     </main>

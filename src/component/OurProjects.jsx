@@ -40,7 +40,7 @@ const OurProjects = () => {
                   </span>
                   <div className='site__button flex justify-between items-center'>
                     <Button color='dark' className='z-10 bg-black rounded-full h-16 w-48 text-base'>Go to site</Button>
-                    <button className='bg-[transparent] font-sans 
+                    <button className='bg-[transparent] 
               font-[600]
               text-xl
               text-[#475569]
