@@ -42,111 +42,53 @@
   }
 }
 
-.container__polygon {
-  width: 170px;
-  height: 250px;
+.container {
+  width: 16rem;
+  height: 16rem;
   position: relative;
-  top: 2rem;
-  left: 1rem;
+  /* background-color: #b8a1a1; */
 }
 
-.container__polygon--bottom {
-  width: 250px;
-  height: 250px;
-  position: relative;
-  top: 10rem;
-  left: 3.5rem;
-}
-
-.container__polygon--bottom::after,
-.container__polygon--bottom::before,
-.container__polygon::after,
-.container__polygon::before {
-  position: absolute;
+.container::after,
+.container::before {
   content: "";
+  position: absolute;
 }
 
-.container__polygon::after {
+.container::after {
+  width: 15rem;
+  height: 15rem;
+  display: block;
+  left: .5rem;
+  top: .5rem;
+  background-color: white;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
 
-  width: 250px;
-  height: 250px;
+.container::before {
+  width: 16rem;
+  height: 16rem;
   display: block;
   background-color: rgb(87, 82, 82);
-  position: absolute;
-  bottom: 4px;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
-.container__polygon::before {
-
-  width: 236px;
-  height: 236px;
-  display: block;
-  background-color: white;
-  z-index: 1;
-  top: 3px;
-  left: 7px;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
-
-.container__polygon--bottom::after {
-
-  width: 250px;
-  height: 250px;
-  display: block;
-  background-color: rgb(87, 82, 82);
-  position: absolute;
-  bottom: 4px;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
-
-.container__polygon--bottom::before {
-
-  width: 236px;
-  height: 236px;
-  display: block;
-  background-color: white;
-  z-index: 1;
-  top: 3px;
-  left: 7px;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
-
-.polygon__text,
-.polygon__text--bottom {
-  margin: auto;
+.container__text1 {
+  font-size: 2rem;
   text-align: center;
+  top: 25%;
+  color: #1E293B;
+  z-index: 100;
   position: relative;
-  z-index: 10000;
-  top: 24%;
-
 }
 
-.polygon__text {
-  left: 25%;
-}
-
-.polygon__text--bottom {
-  left: 0%;
-}
-
-
-
-.polygon__text2,
-.polygon__text2--bottom {
-  margin: auto;
+.container__text2 {
   text-align: center;
+  font-size: 1.2rem;
+  color: #475569;
   max-width: 75%;
-  position: relative;
-  z-index: 10000;
+  margin: auto;
   top: 35%;
-
-}
-
-.polygon__text2 {
-  left: 25%;
-}
-
-.polygon__text2--bottom {
-  left: 0%;
+  z-index: 100;
+  position: relative;
 }
