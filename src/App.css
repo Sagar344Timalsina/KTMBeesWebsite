@@ -92,3 +92,9 @@
   z-index: 100;
   position: relative;
 }
+
+.service__images {
+  background-image: url('../src/assets/images/Beegon.png');
+  transform: rotate(360deg);
+  background-repeat: no-repeat;
+}
