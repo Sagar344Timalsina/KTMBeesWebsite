@@ -3,8 +3,8 @@ import React from 'react';
 import Bees from '../assets/images/hero.png';
 
 const Header = () => (
-    <div className='flex  items-center h-[99vh] bg-contain bg-no-repeat' style={{backgroundImage:`url(${Bees})`}}>
-        <section className='content ml-52'>
+    <div className='flex  items-center h-[95vh]  bg-contain bg-no-repeat' style={{backgroundImage:`url(${Bees})`}}>
+        <section className='content ml-52 mb-16'>
             <span className='title'>
                 <h1 className='text-[4rem] font-bold '>Experience what's next</h1>
                 <h6 className='mb-10 text-[1.5rem] text-[#475569]'>It’s all about customer Experience</h6>
