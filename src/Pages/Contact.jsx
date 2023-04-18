@@ -43,7 +43,8 @@ const Contacts = () => {
                     placeholder="Full Name"
                     label="Name"
                     radius="md"
-                    size="md"
+                    size="lg"
+                    variant='filled'
                   />}
                 />
                 <p className='text-[red] px-3 font-[600] '>{errors.name?.message}</p>
@@ -63,7 +64,8 @@ const Contacts = () => {
                     placeholder="Email"
                     label="Email"
                     radius="md"
-                    size="md"
+                    size="lg"
+                    variant='filled'
                   />}
                 />
                 <p className='text-[red] px-3 font-[600] '>{errors.email?.message}</p>
@@ -88,7 +90,8 @@ const Contacts = () => {
                     placeholder="Mobile Number"
                     label="Contact"
                     radius="md"
-                    size="md"
+                    size="lg"
+                    variant='filled'
                   />}
                 />
                 <p className='text-[red] px-3 font-[600] '>{errors.contact?.message}</p>
@@ -105,7 +108,8 @@ const Contacts = () => {
                     placeholder="Your Company"
                     label="Comany Name"
                     radius="md"
-                    size="md"
+                    size="lg"
+                    variant='filled'
                   />}
                 />
                 <p className='text-[red] px-3 font-[600] '>{errors.company?.message}</p>
@@ -119,7 +123,8 @@ const Contacts = () => {
                 placeholder="Tell us about your product, current challenges and objectives."
                 label="Message"
                 minRows={6}
-                size="md"
+                size="lg"
+                variant='filled'
                 radius="md"
               />}
 
@@ -135,7 +140,8 @@ const Contacts = () => {
                 control={control}
                 render={({ field }) => <Checkbox control={control} {...field} fw={700} className="w-[60%]"
                   label="I'm not a robot "
-                  size="md"
+                  size="lg"
+                  variant='filled'
                   border=""
                 />}
 
