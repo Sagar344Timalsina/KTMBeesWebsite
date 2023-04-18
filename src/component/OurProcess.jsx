@@ -12,7 +12,7 @@ const OurProcess = () => {
             <p className='container__text1'>Discover</p>
             <p className='container__text2'>Insight into the problem</p>
           </div>
-          <div className="container top-36 left-[1rem] ">
+          <div className="container top-32 left-[1rem] ">
             <p className='container__text1'>Define</p>
             <p className='container__text2'>The area to focus upon</p>
           </div>
@@ -20,7 +20,7 @@ const OurProcess = () => {
             <p className='container__text1'>Develop</p>
             <p className='container__text2'>Potential Solution</p>
           </div>
-          <div className="container top-36 -left-[3rem]">
+          <div className="container top-32 -left-[3rem]">
             <p className='container__text1'>Deliver</p>
             <p className='container__text2'>Solution that work</p>
           </div>
