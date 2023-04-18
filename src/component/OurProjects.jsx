@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Button, Tabs } from '@mantine/core';
 import DamiLogo from '../assets/images/dami pasal-logo 1.png';
 import laptop from '../assets/images/laptop.png';
-import { FaVuejs } from 'react-icons/fa';
-import { FaAws } from 'react-icons/fa';
-import { FaFigma } from 'react-icons/fa';
+import figma from '../assets/images/figma.png';
+import vue from '../assets/images/vue.png';
+import aws from '../assets/images/awsLogo.png';
 import TopPatch from '../assets/images/topo.png';
 import BottomPatch from '../assets/images/bottom.png';
 
@@ -41,9 +41,9 @@ const OurProjects = () => {
                 <article className='reuseable flex flex-col '>
                   <span className='title text-2xl font-bold mb-10 text-left'>B2B E-commerce website dealing in Kitchen appliances</span>
                   <span className='button flex justify-between  w-96 mb-10'>
-                    <Button variant='filled' color='light-gray' rightIcon={<FaVuejs />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Vue.js </Button>
-                    <Button variant='filled' color='light-gray' rightIcon={<FaAws />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Aws </Button>
-                    <Button variant='filled' color='light-gray' rightIcon={<FaFigma />} className='bg-[#cbd5e1] text-[#475569] rounded-3xl'>Figma</Button>
+                    <Button variant='filled' color='light-gray' rightIcon={<img src={vue} alt='Logo' />} className='bg-[#cbd5e1] font-normal text-[#475569] w-[7.2rem] rounded-3xl'>Vue.js </Button>
+                    <Button variant='filled' color='light-gray' rightIcon={<img src={aws} alt='Logo' className='w-8' />} className='bg-[#cbd5e1] font-normal text-[#475569] w-[7.2rem] rounded-3xl'>Aws </Button>
+                    <Button variant='filled' color='light-gray' rightIcon={<img src={figma} alt='Logo' />} className='bg-[#cbd5e1] text-[#475569] font-normal w-[7.2rem] rounded-3xl'>Figma</Button>
                   </span>
                   <div className='site__button flex justify-between items-center'>
                     <Button color='dark' className='z-10 bg-black rounded-full h-16 w-48 text-base'>Go to site</Button>
