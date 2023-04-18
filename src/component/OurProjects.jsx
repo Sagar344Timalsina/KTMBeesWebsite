@@ -35,7 +35,7 @@ const OurProjects = () => {
 
           <Tabs.Panel value="ecommerce" pt="xs" >
             <div className='flex relative bg-orange justify-between z-10 overflow-hidden' >
-              <section className='content ml-10 mt-10 w-[38%]'>
+              <section className='content relative ml-10 mt-10 w-[38%]'>
                 <img src={DamiLogo} alt="Dami logo" className='mb-4' />
                 <hr className='border-white border-2 w-20 mb-10' />
                 <article className='reuseable flex flex-col '>
@@ -57,11 +57,11 @@ const OurProjects = () => {
                     </button>
                   </div>
                 </article>
+                <img src={BottomPatch} alt='bottom' className='absolute -left-10 -bottom-5' />
               </section>
-              <section className='image'>
-                <img src={TopPatch} alt='botto' className='absolute left-[50rem]' />
-                <img src={BottomPatch} alt='toppo' className='absolute left-[0] bottom-[-2.2rem]' />
-                <img src={laptop} alt="Laptop logo" className='relative right-20 top-9' />
+              <section className='image relative'>
+                <img src={TopPatch} alt='top' className='absolute right-0' />
+                <img src={laptop} alt="Laptop logo" className='relative left-0 bottom-0' />
               </section>
             </div>
           </Tabs.Panel>
