@@ -16,14 +16,21 @@ const OurProjects = () => {
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>
       </section>
       <section className='w-[70%] m-auto'>
-        <Tabs defaultValue="ecommerce" color='yellow' >
+        <Tabs defaultValue="ecommerce" color='yellow' styles={(theme) => ({
+            tab: {
+
+              '&[data-active]': {
+                color: '#F0B62F',
+              }
+            },
+          })} >
           <Tabs.List className='justify-between font-bold mb-4'>
-            <Tabs.Tab value="ecommerce" label="E-commerce" className='focus:text-yellow'>E-commerce</Tabs.Tab>
-            <Tabs.Tab value="informative" className='focus:text-yellow'> Informative</Tabs.Tab>
-            <Tabs.Tab value="pharmaceutical" className='focus:text-yellow'> Pharmaceutical</Tabs.Tab>
-            <Tabs.Tab value="aviation" className='focus:text-yellow'> Aviation</Tabs.Tab>
-            <Tabs.Tab value="tourism" className='focus:text-yellow'> Toursim</Tabs.Tab>
-            <Tabs.Tab value="mobile" className='focus:text-yellow'> Mobile</Tabs.Tab>
+            <Tabs.Tab value="ecommerce" className='text-xl'>E-commerce</Tabs.Tab>
+            <Tabs.Tab value="informative" className='text-xl '> Informative</Tabs.Tab>
+            <Tabs.Tab value="pharmaceutical" className='text-xl '> Pharmaceutical</Tabs.Tab>
+            <Tabs.Tab value="aviation" className='text-xl '> Aviation</Tabs.Tab>
+            <Tabs.Tab value="tourism" className='text-xl '> Toursim</Tabs.Tab>
+            <Tabs.Tab value="mobile" className='text-xl '> Mobile</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="ecommerce" pt="xs" >
