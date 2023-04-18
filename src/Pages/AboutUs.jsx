@@ -17,14 +17,17 @@ const AboutUs = () => {
   ]
   return (
     <>
-      <Navbar />
-      <div className='bg-light_gray'>
-        <Flex className=' flex-col h-40 bg-white justify-center items-center px-1 py-1.8rem gap-[0.5rem]'>
-          <Text className='text-gray font-sans font-bold tracking-wide text-[1.5rem] leading-7 w-[12.625rem] h-[1.75rem] order-0'>About Company</Text>
+    <main className='bg-light_gray'>
+      <section>
+      <Navbar />  
+      <div className='flex flex-col h-40  mt-10 mx-auto bg-white justify-center items-center px-1 py-1.8rem gap-[0.5rem]'>
+          <Text className='text-gray font-sans font-bold tracking-wide text-[1.5rem] leading-7 w-[12.625rem] h-[1.75rem] order-0 '>About Company</Text>
           <Text className='w-[30.75rem] h-[2.3rem] font-bold text-[2rem] leading-9 text-center tracking-wide text-black font-sans order-1'>Technology that works for you</Text>
           <Text className='w-[11rem] h-[1.3rem] font-sans font-normal text-lg leading-5 text-center tracking-wide text-dark_gray order-2 '>Don't just dream, do</Text>
-        </Flex>
-        <Tabs defaultValue="Our Story" className='mx-auto h-[26.7rem]'>
+      </div>
+      </section>
+      <section>
+      <Tabs defaultValue="Our Story" className='mx-auto h-[26.7rem]'>
           <Tabs.List className='mt-[3.2rem] justify-center w-[40%] mx-auto font-bold ' >
             {tabValues.map((tabValue) => (
               <Tabs.Tab key={tabValue.id} value={tabValue.name} color="yellow" className='focus:text-yellow p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '>{tabValue.name}</Tabs.Tab>
@@ -39,10 +42,10 @@ const AboutUs = () => {
               </Text>
             </Tabs.Panel>
           )
-
           )}
         </Tabs>
-      </div>
+      </section>
+    </main>
       <Footer />
     </>
 
