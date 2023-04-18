@@ -1,9 +1,9 @@
 import { Button } from '@mantine/core';
 import React from 'react';
-import Bees from '../assets/images/hero.png';
+import Bees from '../assets/images/bees.png';
 
 const Header = () => (
-    <div className='flex  items-center h-[99vh] bg-contain bg-no-repeat' style={{backgroundImage:`url(${Bees})`}}>
+    <div className='flex  items-center h-[99vh] bg-contain bg-no-repeat ' style={{backgroundImage:`url(${Bees})`}}>
         <section className='content ml-52'>
             <span className='title'>
                 <h1 className='text-[4rem] font-bold '>Experience what's next</h1>
