@@ -4,6 +4,7 @@ import Contact from './Pages/Contact';
 import AboutUs from './Pages/AboutUs';
 import Home from './Pages/HomePage';
 import { MantineProvider } from '@mantine/core';
+import AdminSidebar from './component/Admin/AdminSidebar';
 function App() {
   return (
 
@@ -18,6 +19,8 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
+
+          <Route path='/admin/sidebar' element={<AdminSidebar />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
