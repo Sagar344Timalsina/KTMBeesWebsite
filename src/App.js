@@ -4,6 +4,7 @@ import Contact from './Pages/Contact';
 import AboutUs from './Pages/AboutUs';
 import Home from './Pages/HomePage';
 import { MantineProvider } from '@mantine/core';
+import Login from './Pages/Login';
 function App() {
   return (
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>
