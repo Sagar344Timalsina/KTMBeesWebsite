@@ -5,7 +5,7 @@ import GetInTouch from "../component/Buttons/GetInTouch"
 const ReadyCreate = () => {
   return (
     <main className='bg-yellow h-48 flex  items-center relative overflow-hidden'>
-      <img className='absolute w-[36rem] -left-48 -top-36' src={Bee} alt="Bee-Image" />
+      <img className='absolute w-[36rem] -left-48 -top-36' src={Bee} alt="BeeImage" />
       <section className=' w-full  flex justify-center  '>
         <h1 className='text-5xl font-sans font-bold tracking-tight w-1/2 text-button_gray  z-10'>Ready to create & collaborate</h1>
       </section>
