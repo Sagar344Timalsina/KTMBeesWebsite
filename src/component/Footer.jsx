@@ -25,9 +25,9 @@ export const Footer = () => {
     ]
     return (
     <div className='footer flex bg-[#111111] flex-col'>
-        <section className='text-[white] w-[60%] mt-[2rem] mb-[1rem] m-auto flex justify-between'>
+        <section className='text-[white] w-[60%] mt-[2rem] mb-4 m-auto flex justify-between'>
             <article className=' quick-link flex flex-col'>
-                <div className='mb-[1rem] text-[1.5rem]'>Quick Links</div>
+                <div className='mb-4 text-2xl'>Quick Links</div>
                 {
                     quickLinks.map((data)=>(
                         <Link to={data.link} className="links mb-2 text-[1.125rem]" key={data.id} >
@@ -37,7 +37,7 @@ export const Footer = () => {
                 }
             </article>
             <article className='about flex flex-col'>
-                <div className='mb-[1rem] text-[1.5rem]'>About us</div>
+                <div className='mb-4 text-2xl'>About us</div>
                 {
                     about.map((data)=>(
                         <Link to={data.link} className="links mb-2 text-[1.125rem]" key={data.id} >
@@ -47,12 +47,12 @@ export const Footer = () => {
                 }
                 </article>
             <article className='contact flex flex-col'>
-                <div className='mb-[1rem] text-[1.5rem]'>Contact</div>
+                <div className='mb-4 text-2xl'>Contact</div>
                 {
                     contact.map((data)=>(
                        <div key={data.id}>
                             <Link  className='flex items-center mb-2 text-[1.125rem]' to={data.link}> 
-                            <span className='mr-[1rem]'>{data.logo}</span> 
+                            <span className='mr-4'>{data.logo}</span> 
                             <h6>{data.name}</h6>
                             </Link>
                        </div>

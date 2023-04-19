@@ -9,10 +9,11 @@ import TopPatch from '../assets/images/topo.png';
 import BottomPatch from '../assets/images/bottom.png';
 
 const OurProjects = () => {
+  const button={}
   return (
-    <div className='bg-light_gray flex flex-col text-center py-[50px]' style={{ overflow: "hidden" }}>
+    <div className='bg-light_gray flex flex-col text-center py-12' style={{ overflow: "hidden" }}>
       <section className='title  mt-2 mb-8 w-[45%] m-auto '>
-        <h1 className='text-3xl font-sans font-[700] mb-2'> Our Projects</h1>
+        <h1 className='text-3xl font-sans font-bold mb-2'> Our Projects</h1>
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>
       </section>
       <section className='w-[70%] m-auto'>
@@ -48,10 +49,10 @@ const OurProjects = () => {
                   <div className='site__button flex justify-between items-center'>
                     <Button color='dark' className='z-10 bg-black rounded-full h-16 w-48 text-base'>Go to site</Button>
                     <button className='bg-[transparent] 
-              font-[600]
+              font-semibold
               text-xl
               text-[#475569]
-              tracking-[0.75px]'
+              tracking-wide'
                     >
                       Read Case Study
                     </button>
