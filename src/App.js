@@ -8,6 +8,7 @@ import AdminSidebar from './component/Admin/AdminSidebar';
 import AdminLandingPage from './component/Admin/AdminLandingPage';
 import AdminOurProjects from './component/Admin/AdminOurProjects';
 import AdminAbout from './component/Admin/About'
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>
