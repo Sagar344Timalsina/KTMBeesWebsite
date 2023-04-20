@@ -9,6 +9,7 @@ import AdminLandingPage from './component/Admin/AdminLandingPage';
 import AdminOurProjects from './component/Admin/AdminOurProjects';
 import AdminAbout from './component/Admin/About'
 import Login from './Pages/Login';
+import AdminPartner from './component/Admin/AdminPartner';
 
 function App() {
   return (
@@ -28,8 +29,8 @@ function App() {
           <Route path='/admin' element={<AdminSidebar />} >
             <Route path='' element={<AdminLandingPage />} />
             <Route path='ourProjects' element={<AdminOurProjects />} />
-            <Route path='/admin/about' element={<AdminAbout />} />
-
+            <Route path='about' element={<AdminAbout />} />
+            <Route path='partner' element={<AdminPartner />} />
           </Route>
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />

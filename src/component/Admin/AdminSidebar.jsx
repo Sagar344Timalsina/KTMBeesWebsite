@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import {auth} from '../../config/firebase';
+import { auth } from '../../config/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -15,23 +15,23 @@ import {
 
 
 const AdminSidebar = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
 
-      const logOut= async ()=>{
-        try {
-            await signOut(auth);
-            navigate('/');
-        } catch (error) {
-            console.log(error);
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
     }
   }
 
   const navBar = [
     { id: 1, to: "/admin/", text: "Landing Page" },
     { id: 2, to: "/admin/ourProjects", text: "Our Projects" },
-    { id: 3, to: "/admin/ourProjects", text: "Partner With Us" },
+    { id: 3, to: "/admin/partner", text: "Partner With Us" },
     { id: 4, to: "/admin/ourProjects", text: "Services" },
     { id: 5, to: "/admin/ourProjects", text: "Our Process" },
     { id: 6, to: "/admin/ourProjects", text: "Companies That Trusted" },
