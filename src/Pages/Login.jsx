@@ -40,20 +40,11 @@ const Login = () => {
     }
 
 
-    // logout function
-  //   const logout= async ()=>{
-  //       try {
-  //           await signOut(auth);
-
-  //       } catch (error) {
-  //           console.log(error);
-  //   }
-  // }
 
   return (
     <div className='bg-light_gray flex items-center justify-center h-[100vh] '>
         <div className='flex-col bg-white h-2/3 w-96'>
-            <div className='text-center'>Welcome</div>
+            <div className='text-center font-medium text-4xl font-sans mb-3 mt-4'>Welcome</div>
             <section className='images  flex items-baseline'>
             <img src={Bees} alt='Bees logo' className='w-16 m-auto relative left-16'/>
             <img src={Bees} alt='Bees logo' className='w-16 m-auto relative left-6 rotate-45'/>

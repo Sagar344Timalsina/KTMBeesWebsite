@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
+import {auth} from '../../config/firebase';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import {
   AppShell,
   Navbar,
@@ -12,8 +15,18 @@ import {
 
 
 const AdminSidebar = () => {
+  const navigate=useNavigate();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+
+      const logOut= async ()=>{
+        try {
+            await signOut(auth);
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+    }
+  }
 
   const navBar = [
     { id: 1, to: "/admin/", text: "Landing Page" },
@@ -63,7 +76,7 @@ const AdminSidebar = () => {
             }
           </Navbar.Section>
           <Navbar.Section>
-            <Text className='text-xl font-sans flex items-center justify-center transition-all text-white  bg-gray h-12 hover:bg-yellow hover:cursor-pointer hover:scale-105 rounded-lg'>Logout</Text>
+            <Text className='text-xl font-sans flex items-center justify-center transition-all text-white  bg-gray h-12 hover:bg-yellow hover:cursor-pointer hover:scale-105 rounded-lg' onClick={logOut}>Logout</Text>
           </Navbar.Section>
         </Navbar>
       }
