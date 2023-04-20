@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link,Outlet } from 'react-router-dom';
 import {   AppShell,
     Navbar,
     Header,
@@ -8,9 +9,20 @@ import {   AppShell,
     useMantineTheme
      } from '@mantine/core';
 
+
 const AdminSidebar = () => {
     const theme = useMantineTheme();
     const [opened, setOpened] = useState(false);
+
+    const navBar=[
+        {id:1,to:"/admin/",text:"Landing Page"},
+        {id:2,to:"/admin/ourProjects",text:"Our Projects"},
+        {id:3,to:"/admin/ourProjects",text:"Partner With Us"},
+        {id:4,to:"/admin/ourProjects",text:"Services"},
+        {id:5,to:"/admin/ourProjects",text:"Our Process"},
+        {id:6,to:"/admin/ourProjects",text:"Companies That Trusted"},
+        {id:7,to:"/admin/ourProjects",text:"Startup Partners"},
+    ]
   return (
     <AppShell
         styles={{
@@ -41,23 +53,20 @@ const AdminSidebar = () => {
   navbar={
     <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
      
-      <Navbar.Section grow mt="sm" className='text-xl  '>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Landing Page</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Our Projects</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Partner With Us</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Services</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Our Process</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Companies That Trusted</Text>
-        <Text className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>Startup Partners</Text>
+      <Navbar.Section grow mt="sm" className='text-xl flex flex-col  '>
+        {
+            navBar.map((nav)=>(
+                <Text key={nav.id} component={Link} variant='link' to={nav.to} className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>{nav.text}</Text>
+            ))
+        }
       </Navbar.Section>
       <Navbar.Section>
-        <Text className='text-3xl font-sans flex items-center justify-center transition-all text-white  bg-gray h-12 hover:bg-yellow hover:cursor-pointer hover:scale-105 rounded-lg'>Logout</Text>
+        <Text className='text-xl font-sans flex items-center justify-center transition-all text-white  bg-gray h-12 hover:bg-yellow hover:cursor-pointer hover:scale-105 rounded-lg'>Logout</Text>
       </Navbar.Section>
     </Navbar>
   }
- 
 >
-  <Text>Resize app to see responsive navbar in action</Text>
+ <Outlet/>
 </AppShell>
 
 

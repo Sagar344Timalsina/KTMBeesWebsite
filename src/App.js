@@ -5,6 +5,8 @@ import AboutUs from './Pages/AboutUs';
 import Home from './Pages/HomePage';
 import { MantineProvider } from '@mantine/core';
 import AdminSidebar from './component/Admin/AdminSidebar';
+import AdminLandingPage from './component/Admin/AdminLandingPage';
+import AdminOurProjects from './component/Admin/AdminOurProjects';
 function App() {
   return (
 
@@ -20,7 +22,10 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path='/admin/sidebar' element={<AdminSidebar />} />
+          <Route path='/admin' element={<AdminSidebar />} >
+            <Route path='' element={<AdminLandingPage />} />
+            <Route path='ourProjects' element={<AdminOurProjects />} />
+          </Route>
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
