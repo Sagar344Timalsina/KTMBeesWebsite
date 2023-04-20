@@ -1,18 +1,54 @@
-import React from 'react'
+import React from 'react';
+import {signInWithEmailAndPassword,signOut} from 'firebase/auth';
+import  {auth} from '../config/firebase';
 import Bees from '../assets/images/Bee.png';
 import { Controller ,useForm } from 'react-hook-form';
 import { Button, PasswordInput, TextInput } from '@mantine/core';
+import { async } from '@firebase/util';
+import { redirect } from 'react-router';
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+    const navigate = useNavigate();
     const {handleSubmit , control , formState: {errors} }=useForm({
         defaultValues:{
-            email:"",
-            password:"",
+            email:"admin@gmail.com",
+            password:"admin@bees",
         }
     });
 
-    const onSubmit = (data) => {
-      console.log(data);
+    const onSubmit = async (data) => {
+      // console.log(data);
+      const email=data.email;
+      const password=data.password;
+      // <Navigate to="/abc" replace={true} />\
+      
+      console.log(email, password);
+      if(auth?.currentUser){
+        navigate('/admin');
+        console.log(auth?.currentUser);
+      }else{
+        await signInWithEmailAndPassword(auth, email, password)
+        .then((creditinal) =>{
+          if(creditinal){
+            console.log(creditinal);
+            navigate('/admin');
+          }
+        }).catch((err)=> console.log(err));
+      }
+
     }
+
+
+    // logout function
+  //   const logout= async ()=>{
+  //       try {
+  //           await signOut(auth);
+
+  //       } catch (error) {
+  //           console.log(error);
+  //   }
+  // }
 
   return (
     <div className='bg-light_gray flex items-center justify-center h-[100vh] '>
@@ -70,6 +106,7 @@ const Login = () => {
                 <button type="submit" className='mt-10 m-auto w-[100%] h-10 rounded-xl hover:bg-dark_gray bg-black'>Login</button>
             </div>
             </form>
+                {/* <button onClick={logout} className='mt-10 m-auto w-[100%] h-10 rounded-xl hover:bg-dark_gray bg-black'>Sign out</button> */}
         </div>
     </div>
   )
