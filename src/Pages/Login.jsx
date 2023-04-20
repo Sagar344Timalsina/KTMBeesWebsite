@@ -1,11 +1,10 @@
 import React from 'react';
-import {signInWithEmailAndPassword,signOut} from 'firebase/auth';
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import  {auth} from '../config/firebase';
 import Bees from '../assets/images/Bee.png';
 import { Controller ,useForm } from 'react-hook-form';
-import { Button, PasswordInput, TextInput } from '@mantine/core';
-import { async } from '@firebase/util';
-import { redirect } from 'react-router';
+import { PasswordInput, TextInput } from '@mantine/core';
+
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
