@@ -15,7 +15,7 @@ const OurProjects = () => {
         <h1 className='text-3xl font-sans font-[700] mb-2'> Our Projects</h1>
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>
       </section>
-      <section className='w-[70%] m-auto'>
+      <section className='w-fit  m-auto'>
         <Tabs defaultValue="ecommerce" color='yellow' styles={(theme) => ({
           tab: {
 
@@ -24,13 +24,13 @@ const OurProjects = () => {
             }
           },
         })} >
-          <Tabs.List className='justify-between font-bold mb-4'>
-            <Tabs.Tab value="ecommerce" className='text-xl'>E-commerce</Tabs.Tab>
-            <Tabs.Tab value="informative" className='text-xl '> Informative</Tabs.Tab>
-            <Tabs.Tab value="pharmaceutical" className='text-xl '> Pharmaceutical</Tabs.Tab>
-            <Tabs.Tab value="aviation" className='text-xl '> Aviation</Tabs.Tab>
-            <Tabs.Tab value="tourism" className='text-xl '> Toursim</Tabs.Tab>
-            <Tabs.Tab value="mobile" className='text-xl '> Mobile</Tabs.Tab>
+          <Tabs.List className='mt-[3.2rem] justify-between w-fit mx-auto font-bold'>
+            <Tabs.Tab value="ecommerce" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem]'>E-commerce</Tabs.Tab>
+            <Tabs.Tab value="informative" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '> Informative</Tabs.Tab>
+            <Tabs.Tab value="pharmaceutical" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '> Pharmaceutical</Tabs.Tab>
+            <Tabs.Tab value="aviation" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '> Aviation</Tabs.Tab>
+            <Tabs.Tab value="tourism" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '> Toursim</Tabs.Tab>
+            <Tabs.Tab value="mobile" className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '> Mobile</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="ecommerce" pt="xs" >
