@@ -7,8 +7,11 @@ import { MantineProvider } from '@mantine/core';
 import AdminSidebar from './component/Admin/AdminSidebar';
 import AdminLandingPage from './component/Admin/AdminLandingPage';
 import AdminOurProjects from './component/Admin/AdminOurProjects';
-import AdminAbout from './component/Admin/About'
+import AdminAbout from './component/Admin/About';
+import Hero from './component/Admin/AdminHero';
 import Login from './Pages/Login';
+import Companies from './component/Admin/AdminCompanies';
+import Startup from './component/Admin/AdminStartupPartner';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
             <Route path='' element={<AdminLandingPage />} />
             <Route path='ourProjects' element={<AdminOurProjects />} />
             <Route path='/admin/about' element={<AdminAbout />} />
+            <Route path='/admin/hero' element={<Hero/>} />
+            <Route path='/admin/companies' element={<Companies/>} />
+            <Route path='/admin/startup' element={<Startup/>} />
 
           </Route>
           <Route path='/contact' element={<Contact />} />

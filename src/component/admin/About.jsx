@@ -31,7 +31,7 @@ const About = () => {
                                 render={({ field }) => <TextInput control={control} {...field} placeholder='Title' size='lg' />}
                             >
                             </Controller>
-                            <p className='text-[red] px-3 font-[600] '>{errors.title?.message}</p>
+                            <p className='text-[red] px-3 font-semibold '>{errors.title?.message}</p>
                         </div>
                         <div className='mb-5'>
                             <Controller
@@ -44,7 +44,7 @@ const About = () => {
                             >
                             </Controller>
                         </div>
-                        <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
+                        <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                     </div>
                 </form>
