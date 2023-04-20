@@ -13,7 +13,7 @@ const AboutUs = () => {
   const tabValues = [
     { id: 1, name: "Our Story" },
     { id: 2, name: "Team" },
-    { id: 3, name: "Mission & Vision" },
+    { id: 3, name: "Mission & Vision" }
   ]
   return (
     <>
@@ -35,7 +35,7 @@ const AboutUs = () => {
               }
             },
           })}>
-            <Tabs.List className='mt-[3.2rem] justify-center w-[40%] mx-auto font-bold ' >
+            <Tabs.List className='mt-[3.2rem] justify-center w-fit mx-auto font-bold ' >
               {tabValues.map((tabValue) => (
                 <Tabs.Tab key={tabValue.id} value={tabValue.name} color="yellow" className=' p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '>{tabValue.name}</Tabs.Tab>
 
