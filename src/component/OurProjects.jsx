@@ -10,7 +10,7 @@ import BottomPatch from '../assets/images/bottom.png';
 
 const OurProjects = () => {
   const TabName=[
-    {id:1,title:"E-commerce",value:"ecommerce"},
+    {id:1,title:"E-commerce",value:"Ecommerce"},
     {id:2,title:"Informative",value:"Informative"},
     {id:3,title:"Pharmaceutical",value:"Pharmaceutical"},
     {id:4,title:"Aviation",value:"Aviation"},
@@ -24,9 +24,8 @@ const OurProjects = () => {
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>
       </section>
       <section className='w-fit  m-auto'>
-        <Tabs defaultValue="ecommerce" color='yellow' styles={(theme) => ({
+        <Tabs defaultValue="Ecommerce" color='yellow' styles={(theme) => ({
           tab: {
-
             '&[data-active]': {
               color: '#F0B62F',
             }
@@ -41,7 +40,7 @@ const OurProjects = () => {
             }
           </Tabs.List>
 
-          <Tabs.Panel value="ecommerce" pt="xs" >
+          <Tabs.Panel value="Ecommerce" pt="xs" >
             <div className='flex relative bg-orange justify-between z-10 overflow-hidden' >
               <section className='content relative ml-10 mt-10 w-[38%]'>
                 <img src={DamiLogo} alt="Dami" className='mb-4' />

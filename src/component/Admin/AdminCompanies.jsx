@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Text, Image, SimpleGrid,TextInput,Button} from '@mantine/core';
+import { Text, Image, SimpleGrid,Button} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 
