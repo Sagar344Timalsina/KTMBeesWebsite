@@ -46,7 +46,7 @@ const About = () => {
                         </div>
                         <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
-                    </div>
+                   </div>
                 </form>
             </section>
         </ main >
