@@ -1,6 +1,7 @@
 import { TextInput, Button, Textarea } from '@mantine/core'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import { createAbout } from '../utils/Create'
 
 const About = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -10,8 +11,9 @@ const About = () => {
         }
     })
     const onSubmit = (data) => {
-        console.log("New data added", data);
+        createAbout(data);
     }
+
     const onError = () => {
         console.log("Error has occured", errors);
     }
