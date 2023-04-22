@@ -1,7 +1,7 @@
-import { TextInput, Button, Textarea, Group, Text } from '@mantine/core'
+import { TextInput, Button, Textarea, Group, Text, Image, SimpleGrid } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 
 const AdminPartner = () => {
@@ -13,6 +13,19 @@ const AdminPartner = () => {
             description: ""
         }
     })
+
+    const [files, setFiles] = useState([]);
+    // const [preview, setPreview] = useState();
+    console.log(files);
+    const previewImage = files.map((file, index) => {
+        const objectURL = URL.createObjectURL(file);
+
+        return (
+            <Image src={objectURL} caption="Hello" key={index} imageProps={{ onLoad: () => URL.revokeObjectURL(objectURL) }}
+            />
+        )
+    })
+
     const onSubmit = (data) => {
         console.log("New data added", data);
     }
@@ -63,17 +76,29 @@ const AdminPartner = () => {
                         <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
                         <div>
                             <Dropzone
-                                onDrop={(files) => console.log('accepted files', files)}
-                                oonReject={(files) => console.log('rejected files', files)}
+                                onDrop={setFiles}
+                                // onDrop={(field) => { setFile(field) }}
+
+                                onReject={(field) => console.log('rejected files', field)}
                                 maxSize={3 * 1024 ** 2}
                                 accept={IMAGE_MIME_TYPE}
-
                             >
-                                <Group position='center' styles={{ minRows: 30 }}>
+                                <Text size="xl" inline>Drag or click here to upload images</Text>
+
+                                {/* <Group position='center' styles={{ minRows: 30 }}>
                                     <MdAddPhotoAlternate size="3rem" />
                                     <Text size="xl" inline>Drag or click here to upload images</Text>
-                                </Group>
+
+
+                                </Group> */}
                             </Dropzone>
+                            <SimpleGrid
+                                cols={4}
+                                breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
+                                mt={previewImage.length > 0 ? 'xl' : 0}
+                            >
+                                { }
+                            </SimpleGrid>
                         </div>
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl mt-5'>CREATE</Button>
                     </div>
