@@ -1,11 +1,12 @@
 import React,{useState} from 'react';
 import { Text, Image, SimpleGrid,Button} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
-import { Dropzone, IMAGE_MIME_TYPE,FileWithPath } from '@mantine/dropzone';
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
-
+    
     console.log(files);
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
@@ -45,8 +46,7 @@ const AdminStartupPartner = () => {
                             { required: "Image reqired" }
                         }
                         render={({ field }) =><>
-                        <div {...field}>
-                            <Dropzone  accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
+                            <Dropzone  {...field} accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
                                 <Text align="center">Drop images here</Text>
                             </Dropzone>
 
@@ -58,13 +58,12 @@ const AdminStartupPartner = () => {
                                 {previews}
                                 {files.length>0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
                             </SimpleGrid>
-                            </div>
                         </>
                 }
                     > 
                      </Controller> 
                  </div> 
-                <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
+                <p className='text-[red] px-3 font-semibold '>{errors.image?.message}</p>
                 <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
         </form>
     </section>
