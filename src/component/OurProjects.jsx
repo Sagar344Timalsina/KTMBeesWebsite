@@ -9,31 +9,38 @@ import TopPatch from '../assets/images/topo.png';
 import BottomPatch from '../assets/images/bottom.png';
 
 const OurProjects = () => {
+  const TabName=[
+    {id:1,title:"E-commerce",value:"Ecommerce"},
+    {id:2,title:"Informative",value:"Informative"},
+    {id:3,title:"Pharmaceutical",value:"Pharmaceutical"},
+    {id:4,title:"Aviation",value:"Aviation"},
+    {id:5,title:"Toursim",value:"Toursim"},
+    {id:6,title:"Mobile",value:"Mobile"},
+  ]
   return (
     <div className='bg-light_gray flex flex-col text-center py-[50px]' style={{ overflow: "hidden" }}>
       <section className='title  mt-2 mb-8 w-[45%] m-auto '>
         <h1 className='text-3xl font-sans font-[700] mb-2'> Our Projects</h1>
         <h6 className='text-[#475569]'>Global clients rely on our team of committed developers to deliver high-quality, sector-specific web and mobile solutions.</h6>
       </section>
-      <section className='w-[70%] m-auto'>
-        <Tabs defaultValue="ecommerce" color='yellow' styles={(theme) => ({
+      <section className='w-fit  m-auto'>
+        <Tabs defaultValue="Ecommerce" color='yellow' styles={(theme) => ({
           tab: {
-
             '&[data-active]': {
               color: '#F0B62F',
             }
           },
         })} >
-          <Tabs.List className='justify-between font-bold mb-4'>
-            <Tabs.Tab value="ecommerce" className='text-xl'>E-commerce</Tabs.Tab>
-            <Tabs.Tab value="informative" className='text-xl '> Informative</Tabs.Tab>
-            <Tabs.Tab value="pharmaceutical" className='text-xl '> Pharmaceutical</Tabs.Tab>
-            <Tabs.Tab value="aviation" className='text-xl '> Aviation</Tabs.Tab>
-            <Tabs.Tab value="tourism" className='text-xl '> Toursim</Tabs.Tab>
-            <Tabs.Tab value="mobile" className='text-xl '> Mobile</Tabs.Tab>
+          <Tabs.List className='mt-[3.2rem] justify-between w-fit mx-auto font-bold'>
+            {
+              TabName.map((tab) => (
+                <Tabs.Tab key={tab.id} value={tab.value} className='p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem]'>{tab.title}</Tabs.Tab>
+              )
+              )
+            }
           </Tabs.List>
 
-          <Tabs.Panel value="ecommerce" pt="xs" >
+          <Tabs.Panel value="Ecommerce" pt="xs" >
             <div className='flex relative bg-orange justify-between z-10 overflow-hidden' >
               <section className='content relative ml-10 mt-10 w-[38%]'>
                 <img src={DamiLogo} alt="Dami" className='mb-4' />
@@ -66,20 +73,20 @@ const OurProjects = () => {
             </div>
           </Tabs.Panel>
 
-          <Tabs.Panel value="informative" pt="xs bg-orange">
+          <Tabs.Panel value="Informative" pt="xs bg-orange">
             This is Infomative Tab
           </Tabs.Panel>
 
-          <Tabs.Panel value="pharmaceutical" pt="xs">
+          <Tabs.Panel value="Pharmaceutical" pt="xs">
             Pharmaceutical tab content
           </Tabs.Panel>
-          <Tabs.Panel value="aviation" pt="xs">
+          <Tabs.Panel value="Aviation" pt="xs">
             Aviation tab content
           </Tabs.Panel>
-          <Tabs.Panel value="tourism" pt="xs">
+          <Tabs.Panel value="Toursim" pt="xs">
             Tourism tab content
           </Tabs.Panel>
-          <Tabs.Panel value="mobile" pt="xs">
+          <Tabs.Panel value="Mobile" pt="xs">
             Mobile tab content
           </Tabs.Panel>
         </Tabs>
