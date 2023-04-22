@@ -32,7 +32,7 @@ const AdminSidebar = () => {
     { id: 1, to: "/admin/", text: "Landing Page" },
     { id: 2, to: "/admin/ourProjects", text: "Our Projects" },
     { id: 3, to: "/admin/ourProjects", text: "Partner With Us" },
-    { id: 4, to: "/admin/ourProjects", text: "Services" },
+    { id: 4, to: "/admin/services", text: "Services" },
     { id: 5, to: "/admin/ourProjects", text: "Our Process" },
     { id: 6, to: "/admin/ourProjects", text: "Companies That Trusted" },
     { id: 7, to: "/admin/ourProjects", text: "Startup Partners" },
