@@ -1,6 +1,7 @@
 import { TextInput, Button, Textarea } from '@mantine/core'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import { createAbout } from '../utils/Create'
 
 const About = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -10,8 +11,9 @@ const About = () => {
         }
     })
     const onSubmit = (data) => {
-        console.log("New data added", data);
+        createAbout(data);
     }
+
     const onError = () => {
         console.log("Error has occured", errors);
     }
@@ -31,7 +33,7 @@ const About = () => {
                                 render={({ field }) => <TextInput control={control} {...field} placeholder='Title' size='lg' />}
                             >
                             </Controller>
-                            <p className='text-[red] px-3 font-[600] '>{errors.title?.message}</p>
+                            <p className='text-[red] px-3 font-semibold '>{errors.title?.message}</p>
                         </div>
                         <div className='mb-5'>
                             <Controller
@@ -44,12 +46,12 @@ const About = () => {
                             >
                             </Controller>
                         </div>
-                        <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
+                        <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
-                   </div>
+                    </div>
                 </form>
             </section>
-        </ main >
+        </main >
     )
 }
 

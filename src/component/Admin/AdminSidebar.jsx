@@ -29,13 +29,13 @@ const AdminSidebar = () => {
   }
 
   const navBar = [
-    { id: 1, to: "/admin/", text: "Landing Page" },
+    { id: 1, to: "/admin/hero", text: "Landing Page" },
     { id: 2, to: "/admin/ourProjects", text: "Our Projects" },
     { id: 3, to: "/admin/partner", text: "Partner With Us" },
     { id: 4, to: "/admin/ourProjects", text: "Services" },
     { id: 5, to: "/admin/ourProjects", text: "Our Process" },
-    { id: 6, to: "/admin/ourProjects", text: "Companies That Trusted" },
-    { id: 7, to: "/admin/ourProjects", text: "Startup Partners" },
+    { id: 6, to: "/admin/companies", text: "Companies That Trusted" },
+    { id: 7, to: "/admin/startup", text: "Startup Partners" },
     { id: 8, to: "/admin/about", text: "About Page" },
   ]
   return (
