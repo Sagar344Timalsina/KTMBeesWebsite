@@ -1,33 +1,35 @@
-import { TextInput, Button, Textarea, Group, Text, Image, SimpleGrid } from '@mantine/core'
+import { TextInput, Button, Textarea, Text, Image, SimpleGrid } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import { createPartner } from '../utils/Create'
 
 const AdminPartner = () => {
+    const [files, setFiles] = useState([]);
     const { handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
-            image: "",
             heading: "",
-            subHeading: "",
-            description: ""
+            subheading: "",
+            description: "",
+            image: ""
         }
     })
 
-    const [files, setFiles] = useState([]);
-    // const [preview, setPreview] = useState();
-    console.log(files);
-    const previewImage = files.map((file, index) => {
-        const objectURL = URL.createObjectURL(file);
-
+    const previews = files.map((file, index) => {
+        const imageURL = URL.createObjectURL(file);
         return (
-            <Image src={objectURL} caption="Hello" key={index} imageProps={{ onLoad: () => URL.revokeObjectURL(objectURL) }}
+            <Image src={imageURL} caption={files[0].path} key={index} imageProps={{ onLoad: () => URL.revokeObjectURL(imageURL) }}
             />
         )
     })
 
-    const onSubmit = (data) => {
-        console.log("New data added", data);
+    const onSubmit = async (data) => {
+        createPartner(data, files[0]);
+
+    }
+    const removeImage = () => {
+        setFiles([]);
     }
     const onError = () => {
         console.log("Error has occured", errors);
@@ -52,7 +54,7 @@ const AdminPartner = () => {
                         </div>
                         <div className='mb-5'>
                             <Controller
-                                name='subHeading'
+                                name='subheading'
                                 control={control}
                                 rules={
                                     { required: "Fill up the subHeading" }
@@ -61,7 +63,7 @@ const AdminPartner = () => {
                             >
                             </Controller>
                         </div>
-                        <p className='text-[red] px-3 font-[600] '>{errors.subHeading?.message}</p>
+                        <p className='text-[red] px-3 font-[600] '>{errors.subheading?.message}</p>
                         <div className='mb-5'>
                             <Controller
                                 name='description'
@@ -75,30 +77,37 @@ const AdminPartner = () => {
                         </div>
                         <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
                         <div>
-                            <Dropzone
-                                onDrop={setFiles}
-                                // onDrop={(field) => { setFile(field) }}
+                            <Controller
+                                name='image'
+                                control={control}
+                                rules={{ required: true }}
+                                render={({ field }) =>
+                                    <>
+                                        <Dropzone
+                                            {...field}
+                                            onDrop={setFiles}
+                                            onReject={(field) => console.log('rejected files', field)}
+                                            accept={IMAGE_MIME_TYPE}
+                                        >
+                                            <div className='flex justify-center items-center'>
+                                                <MdAddPhotoAlternate size="3rem" />
+                                                <Text size="xl" inline>Drag or click here to upload images</Text>
+                                            </div>
+                                        </Dropzone>
 
-                                onReject={(field) => console.log('rejected files', field)}
-                                maxSize={3 * 1024 ** 2}
-                                accept={IMAGE_MIME_TYPE}
+                                        <SimpleGrid
+                                            cols={4}
+                                            breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
+                                            mt={previews.length > 0 ? 'xl' : 0}
+                                        >
+                                            {previews}
+                                            {files.length > 0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
+                                        </SimpleGrid>
+                                    </>}
                             >
-                                <Text size="xl" inline>Drag or click here to upload images</Text>
 
-                                {/* <Group position='center' styles={{ minRows: 30 }}>
-                                    <MdAddPhotoAlternate size="3rem" />
-                                    <Text size="xl" inline>Drag or click here to upload images</Text>
+                            </Controller>
 
-
-                                </Group> */}
-                            </Dropzone>
-                            <SimpleGrid
-                                cols={4}
-                                breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
-                                mt={previewImage.length > 0 ? 'xl' : 0}
-                            >
-                                { }
-                            </SimpleGrid>
                         </div>
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl mt-5'>CREATE</Button>
                     </div>
@@ -107,5 +116,6 @@ const AdminPartner = () => {
         </ main >
     )
 }
+
 
 export default AdminPartner
