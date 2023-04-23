@@ -35,6 +35,7 @@ const AdminStartupPartner = () => {
         uploadBytes(imageRef , files[0]).then(()=>{
             alert('Image uploaded'); 
         })
+        setFiles([]);
     }
 
     const removeImage=()=>{
