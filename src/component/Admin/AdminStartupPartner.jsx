@@ -2,7 +2,9 @@ import React,{useState} from 'react';
 import { Text, Image, SimpleGrid,Button} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-
+import {storage} from '../../config/firebase';
+import { ref ,uploadBytes } from 'firebase/storage';
+import {v4} from 'uuid';
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
@@ -15,7 +17,7 @@ const AdminStartupPartner = () => {
             caption={files[0].name}
             key={index}
             src={imageUrl}
-            imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
+            imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl)  }}
           />
         );
       });
@@ -28,11 +30,17 @@ const AdminStartupPartner = () => {
     
     const onsubmit=(data)=>{
         console.log(data);
+        if(data.image===[]) return null;
+        const imageRef = ref(storage, `images/${files[0].name + v4()}`);
+        uploadBytes(imageRef , files[0]).then(()=>{
+            alert('Image uploaded'); 
+        })
     }
 
     const removeImage=()=>{
         setFiles([]);
     }
+
   return (
         <main className='flex items-center justify-center flex-col' >
     <section className='text-4xl my-2 font-sans font-bold'>Startup Partner</section>
