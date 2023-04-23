@@ -19,3 +19,19 @@ export const createHeroSection = async (files,data) =>{
             console.error(e);
         }
     } 
+    
+    export const createCompanies = async (files) =>{
+        const startupCollection= collection(db , "companies");
+        if(files===[]) return null;
+        const imageRef = await ref(storage, `images/${files[0].name + v4()}`);
+        try{
+            const uploadImage= await uploadBytesResumable(imageRef , files[0]);
+            const imageUrl = await getDownloadURL(uploadImage.ref);
+            console.log(imageUrl);
+            await addDoc(startupCollection , {image : imageUrl});
+            alert("Added successfully to database");
+        }
+        catch(e){
+            console.error(e);
+        }
+    } 
