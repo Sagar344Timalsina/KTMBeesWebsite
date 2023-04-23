@@ -5,11 +5,12 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import {storage} from '../../config/firebase';
 import { ref ,uploadBytes } from 'firebase/storage';
 import {v4} from 'uuid';
+import { createStartup } from '../utils/Create';
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
     
-    console.log(files);
+    // console.log(files);
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
         return (
@@ -29,12 +30,8 @@ const AdminStartupPartner = () => {
     })
     
     const onsubmit=(data)=>{
-        console.log(data);
-        if(data.image===[]) return null;
-        const imageRef = ref(storage, `images/${files[0].name + v4()}`);
-        uploadBytes(imageRef , files[0]).then(()=>{
-            alert('Image uploaded'); 
-        })
+
+        createStartup(files);
         setFiles([]);
     }
 
