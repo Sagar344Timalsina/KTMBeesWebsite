@@ -3,7 +3,7 @@ import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { createAbout } from '../utils/Create.jsx'
 
-const About = () => {
+const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
             title: "",
@@ -55,4 +55,4 @@ const About = () => {
     )
 }
 
-export default About
+export default AdminAbout
