@@ -6,6 +6,7 @@ import { createHeroSection } from '../utils/Create';
 import { displayHeroSection } from '../utils/Display';
 import {FaEdit} from 'react-icons/fa'; 
 import {MdOutlineDeleteOutline} from 'react-icons/md'; 
+import { deleteHeroSection } from '../utils/Delete';
 const Hero = () => {
     const [files, setFiles] = useState([]);
     const [display,setDisplay] = useState([]);
@@ -128,7 +129,7 @@ const Hero = () => {
                                 <td>{data.subheading}</td>
                                 <td><img src={data.image} alt="Abc" className='w-24'/></td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button onClick={()=> deleteHeroSection(data.id)} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}
