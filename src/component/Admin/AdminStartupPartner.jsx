@@ -1,11 +1,14 @@
 import React,{useState} from 'react';
 import { Text, Image, SimpleGrid,Button} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
-import { Dropzone, IMAGE_MIME_TYPE,FileWithPath } from '@mantine/dropzone';
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import {storage} from '../../config/firebase';
+import { ref ,uploadBytes } from 'firebase/storage';
+import {v4} from 'uuid';
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
-
+    
     console.log(files);
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
@@ -14,7 +17,7 @@ const AdminStartupPartner = () => {
             caption={files[0].name}
             key={index}
             src={imageUrl}
-            imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
+            imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl)  }}
           />
         );
       });
@@ -27,11 +30,18 @@ const AdminStartupPartner = () => {
     
     const onsubmit=(data)=>{
         console.log(data);
+        if(data.image===[]) return null;
+        const imageRef = ref(storage, `images/${files[0].name + v4()}`);
+        uploadBytes(imageRef , files[0]).then(()=>{
+            alert('Image uploaded'); 
+        })
+        setFiles([]);
     }
 
     const removeImage=()=>{
         setFiles([]);
     }
+
   return (
         <main className='flex items-center justify-center flex-col' >
     <section className='text-4xl my-2 font-sans font-bold'>Startup Partner</section>
@@ -45,8 +55,7 @@ const AdminStartupPartner = () => {
                             { required: "Image reqired" }
                         }
                         render={({ field }) =><>
-                        <div {...field}>
-                            <Dropzone  accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
+                            <Dropzone  {...field} accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
                                 <Text align="center">Drop images here</Text>
                             </Dropzone>
 
@@ -58,13 +67,12 @@ const AdminStartupPartner = () => {
                                 {previews}
                                 {files.length>0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
                             </SimpleGrid>
-                            </div>
                         </>
                 }
                     > 
                      </Controller> 
                  </div> 
-                <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
+                <p className='text-[red] px-3 font-semibold '>{errors.image?.message}</p>
                 <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
         </form>
     </section>
