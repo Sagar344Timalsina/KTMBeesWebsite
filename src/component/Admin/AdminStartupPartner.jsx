@@ -1,16 +1,28 @@
-import React,{useState} from 'react';
-import { Text, Image, SimpleGrid,Button} from '@mantine/core';
+import React,{useState,useEffect} from 'react';
+import DisplayData from '../../utils/DisplayData';
+import { Text, Image, SimpleGrid,Button,Table} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import {storage} from '../../config/firebase';
-import { ref ,uploadBytes } from 'firebase/storage';
-import {v4} from 'uuid';
+
 import { createStartup } from '../utils/Create';
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
-    
+    const [tableData,setTableData]=useState([]);
     // console.log(files);
+
+
+    async function fetchDatas(){
+        const fetchData= await DisplayData("startup");
+        console.log(fetchData);
+        setTableData(fetchData);
+        console.log("Tablke",tableData);
+    
+    }
+    useEffect( () => {
+    fetchDatas();
+    }, [])
+
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
         return (
@@ -72,6 +84,42 @@ const AdminStartupPartner = () => {
                 <p className='text-[red] px-3 font-semibold '>{errors.image?.message}</p>
                 <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
         </form>
+    </section>
+    <section>
+        <div className='flex flex-col justify-center'>
+            <div className='mt-12'>
+            <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
+                        <thead>
+                           <tr>
+                            <td>Photo</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                            </tr> 
+                        </thead>        
+                          <tbody>
+                        {
+                            
+                            tableData.map((ele)=>(
+                                <tr key={ele.id}>
+                                    <td>
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.imageurl} alt="Image name" />
+                                    </td>
+                                    
+                                    <td>
+                                        <button>Edit</button>
+                                    </td>
+                                    <td>
+                                    <button>Delete</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                            
+                            
+                            </tbody>      
+                        </Table>
+            </div>
+        </div>
     </section>
 </ main >
 

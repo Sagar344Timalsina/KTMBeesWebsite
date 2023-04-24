@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextInput, Button, Image, SimpleGrid, Text } from '@mantine/core'
+import { TextInput, Button, Image, SimpleGrid, Text ,Table} from '@mantine/core'
 import {
     useForm, Controller
 } from 'react-hook-form'
@@ -9,11 +9,12 @@ import firebaseImageUpload from '../../utils/firebaseImageUpload';
 
 import createServices from '../../utils/createServices';
 import deleteServicesImage from '../../utils/deleteServicesImage';
+import { useEffect } from 'react';
+import DisplayData from '../../utils/DisplayData';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
-
-
+    const [tableData,setTableData]=useState([]);
 
     const handleImageDelete = () => {
         deleteServicesImage(imgUrl);
@@ -35,7 +36,21 @@ const AdminServices = () => {
     const onSubmit = (data) => {
         console.log("New data added", data);
         createServices(data, imgUrl);
+        alert("Data inserted")
+        fetchDatas();
     }
+async function fetchDatas(){
+    const fetchData= await DisplayData("services");
+    console.log(fetchData);
+    setTableData(fetchData);
+    console.log("Tablke",tableData);
+
+}
+useEffect( () => {
+fetchDatas();
+}, [])
+
+
 
     return (
         <main className='flex items-center justify-center flex-col' >
@@ -117,6 +132,49 @@ const AdminServices = () => {
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                     </div>
                 </form>
+            </section>
+            <section>
+                <div className='flex flex-col justify-center'>
+                    <div className='mt-12'>
+                    <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
+                        <thead>
+                           <tr>
+                            <td>Photo</td>
+                            <td>Heading</td>
+                            <td>Text</td>
+                            <td>Edit</td>
+                            <td>Delete</td>
+                            </tr> 
+                        </thead>        
+                          <tbody>
+                        {
+                            
+                            tableData.map((ele)=>(
+                                <tr key={ele.id}>
+                                    <td>
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
+                                    </td>
+                                    <td>
+                                        {ele.heading}
+                                    </td>
+                                    <td>
+                                        {ele.subheading}
+                                    </td>
+                                    <td>
+                                        <button>Edit</button>
+                                    </td>
+                                    <td>
+                                    <button>Delete</button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                            
+                            
+                            </tbody>      
+                        </Table>
+                    </div>
+                </div>
             </section>
         </main>
     )
