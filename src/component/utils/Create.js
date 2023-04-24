@@ -8,9 +8,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 export const createAbout = async (data) => {
     console.log("Sending from another file", data);
     const { title, description } = data;
-    // database to store about info
     const aboutCollection = collection(db, "about");
-    // adding document to the database collection
     await addDoc(aboutCollection, { title, description });
     console.log("Added data successfully");
 }
