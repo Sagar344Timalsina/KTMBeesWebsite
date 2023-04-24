@@ -6,6 +6,7 @@ import { createCompanies } from '../utils/Create';
 import { displayComapnies } from '../utils/Display';
 import {FaEdit} from 'react-icons/fa'; 
 import {MdOutlineDeleteOutline} from 'react-icons/md'; 
+import { deleteComapnies } from '../utils/Delete';
 
 const AdminCompanies = () => {
     const [files, setFiles] = useState([]);
@@ -92,8 +93,8 @@ const AdminCompanies = () => {
                         <tbody key={data.id}>
                             <tr>
                                 <td><img src={data.image} alt="Abc" className='w-24'/></td>
-                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button  className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td><Button onClick={()=> deleteComapnies(data.id)} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}
