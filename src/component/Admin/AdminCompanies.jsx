@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { Text, Image, SimpleGrid,Button} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { createCompanies } from '../utils/Create';
 
 const AdminCompanies = () => {
     const [files, setFiles] = useState([]);
@@ -26,7 +27,7 @@ const AdminCompanies = () => {
         }
     })
     const onSubmit = ()=>{
-        
+        createCompanies(files);
     }
   return (
     <main className='flex items-center justify-center flex-col' >
@@ -42,7 +43,7 @@ const AdminCompanies = () => {
                         }
                         render={({ field }) =><>
                         <div>
-                            <Dropzone accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
+                            <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
                                 <Text align="center">Drop images here</Text>
                             </Dropzone>
 
