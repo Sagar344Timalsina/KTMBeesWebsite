@@ -12,6 +12,7 @@ import Hero from './component/Admin/AdminHero';
 import Login from './Pages/Login';
 import Companies from './component/Admin/AdminCompanies';
 import Startup from './component/Admin/AdminStartupPartner';
+import AdminServices from './component/Admin/AdminServices';
 
 function App() {
   return (
@@ -31,10 +32,11 @@ function App() {
           <Route path='/admin' element={<AdminSidebar />} >
             <Route path='' element={<AdminLandingPage />} />
             <Route path='ourProjects' element={<AdminOurProjects />} />
-            <Route path='/admin/about' element={<AdminAbout />} />
-            <Route path='/admin/hero' element={<Hero />} />
-            <Route path='/admin/companies' element={<Companies />} />
-            <Route path='/admin/startup' element={<Startup />} />
+            <Route path='about' element={<AdminAbout />} />
+            <Route path='hero' element={<Hero />} />
+            <Route path='companies' element={<Companies />} />
+            <Route path='startup' element={<Startup />} />
+            <Route path='services' element={<AdminServices />} />
 
           </Route>
           <Route path='/contact' element={<Contact />} />
