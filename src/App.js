@@ -7,9 +7,10 @@ import { MantineProvider } from '@mantine/core';
 import AdminSidebar from './component/Admin/AdminSidebar';
 import AdminLandingPage from './component/Admin/AdminLandingPage';
 import AdminOurProjects from './component/Admin/AdminOurProjects';
-import AdminAbout from './component/Admin/About';
+import AdminAbout from './component/Admin/AdminAbout';
 import Hero from './component/Admin/AdminHero';
 import Login from './Pages/Login';
+import AdminPartner from './component/Admin/AdminPartner';
 import Companies from './component/Admin/AdminCompanies';
 import Startup from './component/Admin/AdminStartupPartner';
 import AdminServices from './component/Admin/AdminServices';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/admin' element={<AdminSidebar />} >
             <Route path='' element={<AdminLandingPage />} />
             <Route path='ourProjects' element={<AdminOurProjects />} />
+            <Route path='partner' element={<AdminPartner />} />
             <Route path='about' element={<AdminAbout />} />
             <Route path='hero' element={<Hero />} />
             <Route path='companies' element={<Companies />} />

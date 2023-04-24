@@ -51,7 +51,7 @@ const About = () => {
                     </div>
                 </form>
             </section>
-        </ main >
+        </main >
     )
 }
 
