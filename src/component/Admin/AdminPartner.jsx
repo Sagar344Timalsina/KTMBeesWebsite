@@ -1,9 +1,13 @@
-import { TextInput, Button, Textarea, Text, Image, SimpleGrid } from '@mantine/core'
+import { TextInput, Button, Textarea, Text, Image, SimpleGrid, Table } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { createPartner } from '../utils/Create'
+import { FaEdit } from 'react-icons/fa';
+import { MdOutlineDeleteOutline } from 'react-icons/md'
+import { collection, getDocs } from '@firebase/firestore'
+import { db } from '../../config/firebase'
 
 const AdminPartner = () => {
     const [files, setFiles] = useState([]);
@@ -31,6 +35,24 @@ const AdminPartner = () => {
     const removeImage = () => {
         setFiles([]);
     }
+
+    const [display, setDisplay] = useState([]);
+    const displayAbout = async () => {
+        const aboutCollection = collection(db, "partner");
+        try {
+            const aboutData = await getDocs(aboutCollection);
+            const filterdData = aboutData.docs.map((doc) => ({
+                ...doc.data(), id: doc.id
+            }));
+            setDisplay(filterdData);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        displayAbout();
+    }, []);
     const onError = () => {
         console.log("Error has occured", errors);
     }
@@ -112,6 +134,32 @@ const AdminPartner = () => {
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl mt-5'>CREATE</Button>
                     </div>
                 </form>
+            </section>
+            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                    <thead>
+                        <tr >
+                            <th>Heading</th>
+                            <th>Sub-heading</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    {display && display.map((data) => (
+                        <tbody key={data.id}>
+                            <tr>
+                                <td>{data.heading}</td>
+                                <td>{data.subheading}</td>
+                                <td>{data.description}</td>
+                                <td><img src={data.image} alt="Partners"></img></td>
+                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                            </tr>
+                        </tbody>
+                    ))}
+                </Table>
             </section>
         </ main >
     )

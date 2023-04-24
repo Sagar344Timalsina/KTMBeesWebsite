@@ -1,7 +1,11 @@
-import { TextInput, Button, Textarea } from '@mantine/core'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { TextInput, Textarea, Button, Table } from '@mantine/core'
 import { useForm, Controller } from 'react-hook-form'
 import { createAbout } from '../utils/Create'
+import { FaEdit } from 'react-icons/fa';
+import { MdOutlineDeleteOutline } from 'react-icons/md'
+import { collection, getDocs } from '@firebase/firestore'
+import { db } from '../../config/firebase'
 
 const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -13,6 +17,23 @@ const AdminAbout = () => {
     const onSubmit = (data) => {
         createAbout(data);
     }
+
+    const [display, setDisplay] = useState([]);
+    const displayAbout = async () => {
+        const aboutCollection = collection(db, "about");
+        try {
+            const aboutData = await getDocs(aboutCollection);
+            const filterdData = aboutData.docs.map((doc) => ({
+                ...doc.data(), id: doc.id
+            }));
+            setDisplay(filterdData);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        displayAbout();
+    }, []);
 
     const onError = () => {
         console.log("Error has occured", errors);
@@ -50,6 +71,28 @@ const AdminAbout = () => {
                         <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                     </div>
                 </form>
+            </section>
+            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                    <thead>
+                        <tr >
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    {display && display.map((data) => (
+                        <tbody key={data.id}>
+                            <tr>
+                                <td>{data.title}</td>
+                                <td>{data.description}</td>
+                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                            </tr>
+                        </tbody>
+                    ))}
+                </Table>
             </section>
         </main >
     )

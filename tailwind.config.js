@@ -16,6 +16,7 @@ module.exports = {
       'gray_2': '#D9DBE9',
       'button_gray': '#0F172A',
       'orange': '#FFC34C',
+      'red': '#ff0000'
     },
     fontFamily: {
       sans: ['Helvetica']

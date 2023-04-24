@@ -1,48 +1,45 @@
-import {storage,db} from '../../config/firebase';
-import {v4} from 'uuid';
-import {collection, addDoc} from 'firebase/firestore';
-import { uploadBytesResumable , ref, getDownloadURL  } from 'firebase/storage';
+import { storage, db } from '../../config/firebase';
+import { v4 } from 'uuid';
+import { collection, addDoc } from 'firebase/firestore';
+import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
 
-export const createHeroSection = async (files,data) =>{
-        const startupCollection= collection(db , "herosection");
-        const {heading,subheading}=data;
-        if(files===[]) return null;
-        const imageRef = await ref(storage, `images/${files[0].name + v4()}`);
-        try{
-            const uploadImage= await uploadBytesResumable(imageRef , files[0]);
-            const imageUrl = await getDownloadURL(uploadImage.ref);
-            console.log(imageUrl);
-        await addDoc(startupCollection , {heading , subheading , image : imageUrl});
+export const createHeroSection = async (files, data) => {
+    const startupCollection = collection(db, "herosection");
+    const { heading, subheading } = data;
+    if (files === []) return null;
+    const imageRef = ref(storage, `images/${files[0].name + v4()}`);
+    try {
+        const uploadImage = await uploadBytesResumable(imageRef, files[0]);
+        const imageUrl = await getDownloadURL(uploadImage.ref);
+        console.log(imageUrl);
+        await addDoc(startupCollection, { heading, subheading, image: imageUrl });
         alert("Added successfully to database");
     }
-    catch(e){
+    catch (e) {
         console.error(e);
     }
-} 
+}
 
-export const createStartup = async (files) =>{
-        const startupCollection= collection(db , "startup");
-       
-if(files===[]) return null;
-const imageRef = await ref(storage, `images/${files[0].name + v4()}`);
-try{
-    const uploadImage= await uploadBytesResumable(imageRef , files[0]);
-    const imageUrl = await getDownloadURL(uploadImage.ref);
-    console.log(imageUrl);
-            await addDoc(startupCollection , {imageurl : imageUrl});
-            alert("Added successfully to database");
-        }
-        catch(e){
-            console.error(e);
-        }
-} 
+export const createStartup = async (files) => {
+    const startupCollection = collection(db, "startup");
+    if (files === []) return null;
+    const imageRef = ref(storage, `images/${files[0].name + v4()}`);
+    try {
+        const uploadImage = await uploadBytesResumable(imageRef, files[0]);
+        const imageUrl = await getDownloadURL(uploadImage.ref);
+        console.log(imageUrl);
+        await addDoc(startupCollection, { imageurl: imageUrl });
+        alert("Added successfully to database");
+    }
+    catch (e) {
+        console.error(e);
+    }
+}
 
 export const createAbout = async (data) => {
     console.log("Sending from another file", data);
     const { title, description } = data;
-    // database to store about info
     const aboutCollection = collection(db, "about");
-    // adding document to the database collection
     await addDoc(aboutCollection, { title, description });
     console.log("Added data successfully");
 }
