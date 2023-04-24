@@ -19,7 +19,7 @@ export const createPartner = async (data, files) => {
     const { heading, subheading, description, image } = data;
     console.log("New data added", data);
     if (!image) return null;
-    const imageRef = ref(storage, `images/${image.name + v4()}`);
+    const imageRef = ref(storage, `images/${files.name + v4()}`);
     try {
         const uploadImage = await uploadBytesResumable(imageRef, files);
         const downloadURL = await getDownloadURL(uploadImage.ref);
