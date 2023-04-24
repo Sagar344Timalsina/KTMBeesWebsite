@@ -1,11 +1,14 @@
-import React,{useState} from 'react';
-import { Text, Image, SimpleGrid,TextInput,Button} from '@mantine/core';
+import React,{useState , useEffect} from 'react';
+import { Text, Image, SimpleGrid,TextInput,Button ,Table} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { createHeroSection } from '../utils/Create';
+import { displayHeroSection } from '../utils/Display';
+import {FaEdit} from 'react-icons/fa'; 
+import {MdOutlineDeleteOutline} from 'react-icons/md'; 
 const Hero = () => {
     const [files, setFiles] = useState([]);
-    
+    const [display,setDisplay] = useState([]);
     const previews = files.map((file, index) => {
         const imageUrl = URL.createObjectURL(file);
         
@@ -25,9 +28,20 @@ const Hero = () => {
             bgImage:"",
         }
     })
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log("hello");
-        createHeroSection(files,data);
+        await createHeroSection(files,data);
+        setFiles([]);
+    }
+    useEffect(() => {
+        const display=displayHeroSection();
+        display.then((data)=>{
+            setDisplay(data);
+        }).catch((err)=>console.error(err))
+    }, [display]);
+
+    const removeImage = () => {
+        setFiles([]);
     }
   return (
     <main className='flex items-center justify-center flex-col' >
@@ -83,6 +97,7 @@ const Hero = () => {
                                 mt={previews.length > 0 ? 'xl' : 0}
                             >
                                 {previews}
+                                {files.length > 0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
                             </SimpleGrid>
                             </div>
                         </>
@@ -95,6 +110,30 @@ const Hero = () => {
             </div>
         </form>
     </section>
+    <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                    <thead>
+                        <tr >
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    {display && display.map((data) => (
+                        <tbody key={data.id}>
+                            <tr>
+                                <td>{data.heading}</td>
+                                <td>{data.subheading}</td>
+                                <td><img src={data.image} alt="Abc" className='w-24'/></td>
+                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                            </tr>
+                        </tbody>
+                    ))}
+                </Table>
+            </section>
 </ main >
   )
 }
