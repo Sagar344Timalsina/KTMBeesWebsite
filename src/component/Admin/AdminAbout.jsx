@@ -1,7 +1,7 @@
 import { TextInput, Button, Textarea } from '@mantine/core'
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { createAbout } from '../utils/Create.jsx'
+import { createAbout } from '../utils/Create'
 
 const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({

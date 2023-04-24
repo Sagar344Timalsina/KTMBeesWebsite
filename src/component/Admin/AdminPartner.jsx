@@ -3,7 +3,7 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { createPartner } from '../utils/Create.jsx'
+import { createPartner } from '../utils/Create'
 
 const AdminPartner = () => {
     const [files, setFiles] = useState([]);
