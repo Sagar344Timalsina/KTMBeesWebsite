@@ -11,7 +11,6 @@ import createServices from '../../utils/createServices';
 import deleteServicesImage from '../../utils/deleteServicesImage';
 
 const AdminServices = () => {
-
     const [imgUrl, setImgUrl] = useState();
 
 
@@ -45,28 +44,30 @@ const AdminServices = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className='p-8 border-0 '>
                     <div className='flex flex-col justify-center'>
                         <div className='mb-5'>
-                            <Controller
+                            {/* <Controller
                                 name='bgImage'
                                 control={control}
-                                rules={{ required: "Please insert image" }}
-                                render={({ field }) =>
-                                    //    <div control={control} >
-                                    //    {/* <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async(setFilessss) => {
-                                    //             const url =await firebaseImageUpload(setFilessss[0])
-                                    //             setImgUrl(url);
-                                    //         }}>
-                                    //             <Text align="center">Drop images here</Text>
-                                    //         </Dropzone> */}
+                                rules={{ required: "Please enter the image" }}
+                                render={({ field }) => 
+                                    //  <div >
+                                    //     <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={setImgUrl }>
+                                    //         <Text align="center">Drop images here</Text>
+                                    //     </Dropzone>
 
-                                    //         {/* <SimpleGrid
-                                    //             cols={4}
-                                    //             breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                    //            className='pt-6'
-                                    //         >
-                                    //             {imgUrl&& imgUrl!==null?<img src={imgUrl} alt='Image'/>:null}
-                                    //             {imgUrl&& imgUrl!==null?<button className='w-16 h-9 rounded-lg  bg-dark_gray text-white'  onClick={handleImageDelete}>delete</button>:null}
-                                    //         </SimpleGrid> */}
-                                    //    </div>
+                                    //     <SimpleGrid
+                                    //         cols={4}
+                                    //         breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
+                                    //         className='pt-6'
+                                    //     >
+                                    //         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
+                                    //         {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
+                                    //     </SimpleGrid>
+                                    // </div>
+                                    
+
+                                }
+                            >
+                            </Controller> */}
                                     <div>
                                         <Dropzone accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
@@ -84,11 +85,7 @@ const AdminServices = () => {
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                         </SimpleGrid>
                                     </div>
-
-                                }
-                            >
-                            </Controller>
-                            {/* <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p>   */}
+                            {/* <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p> */}
 
 
                         </div>

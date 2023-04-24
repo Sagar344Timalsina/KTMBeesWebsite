@@ -6,7 +6,7 @@ const createServices = async (data, url) => {
     const servicesCollection = collection(db, "services");
     const { headingtitle, text } = data;
     console.log(headingtitle, text, url);
-    await addDoc(servicesCollection, { heading: headingtitle, imahe: url, subheading: text });
+    await addDoc(servicesCollection, { heading: headingtitle, image: url, subheading: text });
 }
 
 export default createServices

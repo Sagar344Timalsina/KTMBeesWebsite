@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
-import {auth} from '../../config/firebase';
+import { auth } from '../../config/firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -15,16 +15,16 @@ import {
 
 
 const AdminSidebar = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
 
-      const logOut= async ()=>{
-        try {
-            await signOut(auth);
-            navigate('/');
-        } catch (error) {
-            console.log(error);
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -33,10 +33,9 @@ const AdminSidebar = () => {
     { id: 2, to: "/admin/ourProjects", text: "Our Projects" },
     { id: 3, to: "/admin/ourProjects", text: "Partner With Us" },
     { id: 4, to: "/admin/services", text: "Services" },
-    { id: 5, to: "/admin/ourProjects", text: "Our Process" },
-    { id: 6, to: "/admin/ourProjects", text: "Companies That Trusted" },
-    { id: 7, to: "/admin/ourProjects", text: "Startup Partners" },
-    { id: 8, to: "/admin/about", text: "About Page" },
+    { id: 5, to: "/admin/ourProjects", text: "Companies That Trusted" },
+    { id: 6, to: "/admin/ourProjects", text: "Startup Partners" },
+    { id: 7, to: "/admin/about", text: "About Page" },
   ]
   return (
     <AppShell
