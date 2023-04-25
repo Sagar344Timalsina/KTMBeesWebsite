@@ -5,13 +5,21 @@ import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 
 import { createStartup } from '../utils/Create';
+import { deleteFirebase } from '../../utils/deleteServicesImage';
 
 const AdminStartupPartner = () => {
     const [files, setFiles] = useState([]);
     const [tableData,setTableData]=useState([]);
     // console.log(files);
 
+//Event handling of delete button
+const handleDeleteButton=(id,image)=>{
+    deleteFirebase(id,"startup",image);
+    fetchDatas();
+    console.log("URL id",id,image);
+}
 
+//fetching data from DisplayData.js
     async function fetchDatas(){
         const fetchData= await DisplayData("startup");
         console.log(fetchData);
@@ -109,7 +117,7 @@ const AdminStartupPartner = () => {
                                         <button>Edit</button>
                                     </td>
                                     <td>
-                                    <button>Delete</button>
+                                    <button  className='bg-yellow w-32 h-12 rounded-xl' onClick={()=>handleDeleteButton(ele.id,ele.image)}>Delete</button>
                                     </td>
                                 </tr>
                             ))

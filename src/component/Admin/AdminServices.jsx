@@ -1,28 +1,26 @@
 import React, { useState } from 'react'
-import { TextInput, Button, Image, SimpleGrid, Text ,Table} from '@mantine/core'
-import {
-    useForm, Controller
-} from 'react-hook-form'
+import { TextInput, Button, SimpleGrid, Text ,Table} from '@mantine/core'
+import { useForm, Controller} from 'react-hook-form'
+import { notifications } from '@mantine/notifications';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 
 import createServices from '../../utils/createServices';
-import deleteServicesImage from '../../utils/deleteServicesImage';
+import deleteServicesImage,{deleteFirebase} from '../../utils/deleteServicesImage';
 import { useEffect } from 'react';
 import DisplayData from '../../utils/DisplayData';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
     const [tableData,setTableData]=useState([]);
-
+   
     const handleImageDelete = () => {
         deleteServicesImage(imgUrl);
         setImgUrl(null);
     }
 
 
-    const { handleSubmit, formState: { errors }, control } = useForm({
+    const { handleSubmit, formState: { errors }, control,reset,setValue } = useForm({
         defaultValues: {
             bgImage: "",
             text: "",
@@ -36,15 +34,35 @@ const AdminServices = () => {
     const onSubmit = (data) => {
         console.log("New data added", data);
         createServices(data, imgUrl);
-        alert("Data inserted")
+        notifications.show({
+            title: 'Create',
+            message: 'New Data has been inserted',
+            color: 'white',
+            style: { backgroundColor: '#85FF7A' },
+          })
+        // alert("Data inserted");
+        reset();
         fetchDatas();
+        setImgUrl(null);
     }
+    //Fetching data from Displaydata.js Page
 async function fetchDatas(){
+    try {
     const fetchData= await DisplayData("services");
     console.log(fetchData);
     setTableData(fetchData);
     console.log("Tablke",tableData);
+    } catch (error) {
+        
+    }
 
+}
+
+//Event handling of delete button
+const handleDeleteButton=(id,image)=>{
+    deleteFirebase(id,"services",image);
+    fetchDatas();
+    console.log("URL id",id,image);
 }
 useEffect( () => {
 fetchDatas();
@@ -59,31 +77,35 @@ fetchDatas();
                 <form onSubmit={handleSubmit(onSubmit)} className='p-8 border-0 '>
                     <div className='flex flex-col justify-center'>
                         <div className='mb-5'>
-                            {/* <Controller
+                            <Controller
                                 name='bgImage'
                                 control={control}
                                 rules={{ required: "Please enter the image" }}
                                 render={({ field }) => 
-                                    //  <div >
-                                    //     <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={setImgUrl }>
-                                    //         <Text align="center">Drop images here</Text>
-                                    //     </Dropzone>
+                                     <div >
+                                        <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
+                                            const url = await firebaseImageUpload(setFilessss[0])
+                                            setImgUrl(url);
+                                            setValue("bgImage",url);
+                                        }}>
+                                            <Text align="center">Drop images here</Text>
+                                        </Dropzone>
 
-                                    //     <SimpleGrid
-                                    //         cols={4}
-                                    //         breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                    //         className='pt-6'
-                                    //     >
-                                    //         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
-                                    //         {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
-                                    //     </SimpleGrid>
-                                    // </div>
+                                        <SimpleGrid
+                                            cols={4}
+                                            breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
+                                            className='pt-6'
+                                        >
+                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
+                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
+                                        </SimpleGrid>
+                                    </div>
                                     
 
                                 }
                             >
-                            </Controller> */}
-                                    <div>
+                            </Controller>
+                                    {/* <div>
                                         <Dropzone accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
@@ -99,8 +121,8 @@ fetchDatas();
                                             {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                         </SimpleGrid>
-                                    </div>
-                            {/* <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p> */}
+                                    </div> */}
+                            <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p>
 
 
                         </div>
@@ -161,10 +183,10 @@ fetchDatas();
                                         {ele.subheading}
                                     </td>
                                     <td>
-                                        <button>Edit</button>
+                                        <button >Edit</button>
                                     </td>
                                     <td>
-                                    <button>Delete</button>
+                                    <button className='bg-yellow w-32 h-12 rounded-xl' onClick={()=>handleDeleteButton(ele.id,ele.image)}>Delete</button>
                                     </td>
                                 </tr>
                             ))
