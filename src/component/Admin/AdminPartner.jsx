@@ -6,11 +6,11 @@ import { useForm, Controller } from 'react-hook-form'
 import { createPartner } from '../utils/Create'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { collection, getDocs } from '@firebase/firestore'
-import { db } from '../../config/firebase'
+import { DisplayAbout } from '../utils/Display'
 
 const AdminPartner = () => {
     const [files, setFiles] = useState([]);
+
     const { handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
             heading: "",
@@ -37,22 +37,10 @@ const AdminPartner = () => {
     }
 
     const [display, setDisplay] = useState([]);
-    const displayAbout = async () => {
-        const aboutCollection = collection(db, "partner");
-        try {
-            const aboutData = await getDocs(aboutCollection);
-            const filterdData = aboutData.docs.map((doc) => ({
-                ...doc.data(), id: doc.id
-            }));
-            setDisplay(filterdData);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     useEffect(() => {
-        displayAbout();
+        DisplayAbout("partner").then((data) => setDisplay(data)).catch((error) => console.error(error));
     }, []);
+
     const onError = () => {
         console.log("Error has occured", errors);
     }
@@ -153,7 +141,7 @@ const AdminPartner = () => {
                                 <td>{data.heading}</td>
                                 <td>{data.subheading}</td>
                                 <td>{data.description}</td>
-                                <td><img src={data.image} alt="Partners"></img></td>
+                                <td><img src={data.image} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
                                 <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>

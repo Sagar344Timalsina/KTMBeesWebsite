@@ -6,6 +6,7 @@ import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { collection, getDocs } from '@firebase/firestore'
 import { db } from '../../config/firebase'
+import { DisplayAbout } from '../utils/Display'
 
 const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -17,22 +18,9 @@ const AdminAbout = () => {
     const onSubmit = (data) => {
         createAbout(data);
     }
-
     const [display, setDisplay] = useState([]);
-    const displayAbout = async () => {
-        const aboutCollection = collection(db, "about");
-        try {
-            const aboutData = await getDocs(aboutCollection);
-            const filterdData = aboutData.docs.map((doc) => ({
-                ...doc.data(), id: doc.id
-            }));
-            setDisplay(filterdData);
-        } catch (error) {
-            console.error(error);
-        }
-    }
     useEffect(() => {
-        displayAbout();
+        DisplayAbout("about").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
     }, []);
 
     const onError = () => {
