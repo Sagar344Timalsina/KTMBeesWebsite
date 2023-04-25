@@ -1,7 +1,9 @@
 import { storage, db } from '../../config/firebase';
-import { v4 } from 'uuid';
 import { collection, addDoc } from 'firebase/firestore';
+import { v4 } from 'uuid';
 import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
+import { Display } from './Display';
+import { useEffect } from 'react';
 
 export const createHeroSection = async (files, data) => {
     const startupCollection = collection(db, "herosection");
@@ -43,35 +45,30 @@ export const createAbout = async (data) => {
     await addDoc(aboutCollection, { title, description });
     console.log("Added data successfully");
 }
-export const createPartner = async (data, files) => {
+
+export const CreatePartner = async (data, imageURL) => {
     const partnerCollection = collection(db, "partner");
-    const { heading, subheading, description, image } = data;
-    console.log("New data added", data);
-    if (!image) return null;
-    const imageRef = ref(storage, `images/${files.name + v4()}`);
-    try {
-        const uploadImage = await uploadBytesResumable(imageRef, files);
-        const downloadURL = await getDownloadURL(uploadImage.ref);
-        await addDoc(partnerCollection, { heading, subheading, description, image: downloadURL });
-        alert("Published");
-    } catch (error) {
-        console.error(error);
-    }
+    const { heading, subheading, description } = data;
+    await addDoc(partnerCollection, { heading, subheading, description, imageURL });
+    alert("Published");
+    useEffect(() => {
+        Display("partner");
+    }, []);
 }
-    
-    
-    export const createCompanies = async (files) =>{
-        const startupCollection= collection(db , "companies");
-        if(files===[]) return null;
-        const imageRef = await ref(storage, `images/${files[0].name + v4()}`);
-        try{
-            const uploadImage= await uploadBytesResumable(imageRef , files[0]);
-            const imageUrl = await getDownloadURL(uploadImage.ref);
-            console.log(imageUrl);
-            await addDoc(startupCollection , {image : imageUrl});
-            alert("Added successfully to database");
-        }
-        catch(e){
-            console.error(e);
-        }
-    } 
+
+
+export const createCompanies = async (files) => {
+    const startupCollection = collection(db, "companies");
+    if (files === []) return null;
+    const imageRef = await ref(storage, `images/${files[0].name + v4()}`);
+    try {
+        const uploadImage = await uploadBytesResumable(imageRef, files[0]);
+        const imageUrl = await getDownloadURL(uploadImage.ref);
+        console.log(imageUrl);
+        await addDoc(startupCollection, { image: imageUrl });
+        alert("Added successfully to database");
+    }
+    catch (e) {
+        console.error(e);
+    }
+} 

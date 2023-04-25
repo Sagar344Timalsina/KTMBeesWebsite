@@ -3,13 +3,16 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { createPartner } from '../utils/Create'
+import { CreatePartner } from '../utils/Create'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { DisplayAbout } from '../utils/Display'
+import { Display } from '../utils/Display'
+import firebaseImageUpload from '../utils/firebaseImageUpload'
+import { Delete } from '../utils/Delete'
+
 
 const AdminPartner = () => {
-    const [files, setFiles] = useState([]);
+    const [imageUrl, setImageUrl] = useState([]);
 
     const { handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
@@ -20,25 +23,20 @@ const AdminPartner = () => {
         }
     })
 
-    const previews = files.map((file, index) => {
-        const imageURL = URL.createObjectURL(file);
-        return (
-            <Image src={imageURL} caption={files[0].path} key={index} imageProps={{ onLoad: () => URL.revokeObjectURL(imageURL) }}
-            />
-        )
-    })
-
     const onSubmit = async (data) => {
-        createPartner(data, files[0]);
+        CreatePartner(data, imageUrl);
 
     }
     const removeImage = () => {
-        setFiles([]);
+        setImageUrl([]);
+    }
+    const deleteRecord = (id, imageDelete) => {
+        Delete(id, "partner", imageDelete);
     }
 
     const [display, setDisplay] = useState([]);
     useEffect(() => {
-        DisplayAbout("partner").then((data) => setDisplay(data)).catch((error) => console.error(error));
+        Display("partner").then((data) => setDisplay(data)).catch((error) => console.error(error));
     }, []);
 
     const onError = () => {
@@ -95,7 +93,10 @@ const AdminPartner = () => {
                                     <>
                                         <Dropzone
                                             {...field}
-                                            onDrop={setFiles}
+                                            onDrop={async (setImage) => {
+                                                const url = await firebaseImageUpload(setImage[0]);
+                                                setImageUrl(url);
+                                            }}
                                             onReject={(field) => console.log('rejected files', field)}
                                             accept={IMAGE_MIME_TYPE}
                                         >
@@ -107,11 +108,11 @@ const AdminPartner = () => {
 
                                         <SimpleGrid
                                             cols={4}
-                                            breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
-                                            mt={previews.length > 0 ? 'xl' : 0}
+                                            breakpoints={[{ maxWidth: 'xl', cols: 2 }]}
+                                            className='flex flex-col'
                                         >
-                                            {previews}
-                                            {files.length > 0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
+                                            {imageUrl && imageUrl !== null ? <img src={imageUrl}></img> : null}
+                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}
                             >
@@ -138,12 +139,12 @@ const AdminPartner = () => {
                     {display && display.map((data) => (
                         <tbody key={data.id}>
                             <tr>
-                                <td>{data.heading}</td>
-                                <td>{data.subheading}</td>
-                                <td>{data.description}</td>
-                                <td><img src={data.image} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
-                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-44'>{data.heading}</td>
+                                <td className='w-44'>{data.subheading}</td>
+                                <td className='w-96'>{data.description}</td>
+                                <td className='w-56'><img src={data.imageURL} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
+                                <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}
