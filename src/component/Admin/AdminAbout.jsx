@@ -4,9 +4,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { createAbout } from '../utils/Create'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { collection, getDocs } from '@firebase/firestore'
-import { db } from '../../config/firebase'
 import { Display } from '../utils/Display'
+import { Delete } from '../utils/Delete';
 
 const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -23,6 +22,9 @@ const AdminAbout = () => {
         Display("about").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
     }, []);
 
+    const deleteRecord = (id, imageDelete) => {
+        Delete(id, "about", imageDelete);
+    }
     const onError = () => {
         console.log("Error has occured", errors);
     }
@@ -76,7 +78,7 @@ const AdminAbout = () => {
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}

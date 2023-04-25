@@ -5,9 +5,11 @@ import { Display } from './Display';
 import { deleteObject, getStorage, ref } from 'firebase/storage';
 
 export const Delete = async (id, tableName, image) => {
-    const storage = getStorage();
-    const desertRef = ref(storage, image);
-    await deleteObject(desertRef);
+    if (image != null) {
+        const storage = getStorage();
+        const desertRef = ref(storage, image);
+        await deleteObject(desertRef);
+    }
     const dataDocs = doc(db, tableName, id);
     try {
         await deleteDoc(dataDocs);
