@@ -3,10 +3,10 @@ import { Text, Image, SimpleGrid,TextInput,Button ,Table} from '@mantine/core';
 import {useForm,Controller} from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { createHeroSection } from '../utils/Create';
-import { displayHeroSection } from '../utils/Display';
+import { displayRecord } from '../utils/Display';
 import {FaEdit} from 'react-icons/fa'; 
 import {MdOutlineDeleteOutline} from 'react-icons/md'; 
-import { deleteHeroSection } from '../utils/Delete';
+import {deleteRecord} from '../utils/Delete';
 const Hero = () => {
     const [files, setFiles] = useState([]);
     const [display,setDisplay] = useState([]);
@@ -30,12 +30,11 @@ const Hero = () => {
         }
     })
     const onSubmit = async (data) => {
-        console.log("hello");
-        await createHeroSection(files,data);
+        await createHeroSection(files,"herosection",data);
         setFiles([]);
     }
     useEffect(() => {
-        const display=displayHeroSection();
+        const display=displayRecord("herosection");
         display.then((data)=>{
             setDisplay(data);
         }).catch((err)=>console.error(err))
@@ -127,9 +126,9 @@ const Hero = () => {
                             <tr>
                                 <td>{data.heading}</td>
                                 <td>{data.subheading}</td>
-                                <td><img src={data.image} alt="Abc" className='w-24'/></td>
+                                <td><img src={data.image} alt="Abc" className='w-44'/></td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button onClick={()=> deleteHeroSection(data.id)} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button onClick={()=> deleteRecord(data.id,"herosection",data.image)} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}
