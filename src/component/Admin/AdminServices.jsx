@@ -99,23 +99,7 @@ const AdminServices = () => {
                                 }
                             >
                             </Controller>
-                            {/* <div>
-                                        <Dropzone accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
-                                            const url = await firebaseImageUpload(setFilessss[0])
-                                            setImgUrl(url);
-                                        }}>
-                                            <Text align="center">Drop images here</Text>
-                                        </Dropzone>
 
-                                        <SimpleGrid
-                                            cols={4}
-                                            breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                            className='pt-6'
-                                        >
-                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
-                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
-                                        </SimpleGrid>
-                                    </div> */}
                             <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p>
 
 
@@ -149,17 +133,17 @@ const AdminServices = () => {
                     </div>
                 </form>
             </section>
-            <section>
+            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
-                    <div className='mt-12'>
-                        <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
+                    <div >
+                        <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
                             <thead>
                                 <tr>
-                                    <td>Photo</td>
-                                    <td>Heading</td>
-                                    <td>Text</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
+                                    <th>Photo</th>
+                                    <th>Heading</th>
+                                    <th>Text</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -168,7 +152,7 @@ const AdminServices = () => {
                                     tableData.map((ele) => (
                                         <tr key={ele.id}>
                                             <td>
-                                                <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
+                                                <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
                                             </td>
                                             <td>
                                                 {ele.heading}
