@@ -20,7 +20,6 @@ const AdminServices = () => {
         setImgUrl(null);
     }
 
-
     const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
             bgImage: "",
@@ -30,9 +29,8 @@ const AdminServices = () => {
     });
 
     const onSubmit = (data) => {
-        console.log("New data added", data);
         createServices(data, imgUrl, "services");
-        // alert("Data inserted");
+        alert("Data inserted");
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -41,26 +39,21 @@ const AdminServices = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("services");
-            console.log(fetchData);
             setTableData(fetchData);
-            console.log("Tablke", tableData);
         } catch (error) {
-
+            console.error(error);
         }
-
     }
 
     //Event handling of delete button
     const handleDeleteButton = (id, image) => {
         deleteFirebase(id, "services", image);
         fetchDatas();
-        console.log("URL id", id, image);
+        reset();
     }
     useEffect(() => {
         fetchDatas();
     }, [])
-
-
 
     return (
         <main className='flex items-center justify-center flex-col' >
@@ -89,7 +82,7 @@ const AdminServices = () => {
                                             className='pt-6'
                                         >
                                             {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
-                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
+                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
                                         </SimpleGrid>
                                     </div>
 

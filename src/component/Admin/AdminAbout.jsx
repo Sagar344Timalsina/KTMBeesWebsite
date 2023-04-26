@@ -17,15 +17,22 @@ const AdminAbout = () => {
     const onSubmit = (data) => {
         createAbout(data);
         reset();
+        fetchDatas();
+    }
+
+    const [display, setDisplay] = useState([]);
+    const fetchDatas = () => {
+        Display("about").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
 
     }
-    const [display, setDisplay] = useState([]);
     useEffect(() => {
-        Display("about").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
+        fetchDatas();
     }, []);
 
-    const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "about", imageDelete);
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "about", image);
+        fetchDatas();
+
     }
     const onError = () => {
         console.log("Error has occured", errors);
@@ -80,7 +87,7 @@ const AdminAbout = () => {
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>

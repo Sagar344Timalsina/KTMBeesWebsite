@@ -17,7 +17,9 @@ export const deleteFirebase = async (id, collection, imgUrl) => {
   try {
     const docRef = doc(db, collection, id);
     await deleteDoc(docRef);
-    deleteStorageImage(imgUrl);
+    if (imgUrl !== null) {
+      deleteStorageImage(imgUrl);
+    }
     notifications.show({
       title: 'Data Deleted',
       autoClose: true,

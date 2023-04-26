@@ -14,7 +14,7 @@ import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 const AdminPartner = () => {
     const [imageUrl, setImageUrl] = useState(null);
 
-    const { handleSubmit, formState: { errors }, control } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset } = useForm({
         defaultValues: {
             heading: "",
             subheading: "",
@@ -25,21 +25,35 @@ const AdminPartner = () => {
 
     const onSubmit = async (data) => {
         CreatePartner(data, imageUrl);
+        reset();
+        setImageUrl(null);
+        fetchData();
 
     }
     const removeImage = (imageUrl) => {
         setImageUrl(null);
         deleteStorageImage(imageUrl);
-
     }
-    const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "partner", imageDelete);
-        deleteStorageImage(imageDelete);
+    const handleImageDelete = () => {
+        deleteStorageImage(imageUrl);
+        setImageUrl(null);
+    }
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "partner", image);
+        deleteStorageImage(image);
+        fetchData();
+    }
+
+    const fetchData = () => {
+        const display = Display("partner");
+        display.then((data) => {
+            setDisplay(data);
+        }).catch((err) => console.error(err))
     }
 
     const [display, setDisplay] = useState([]);
     useEffect(() => {
-        Display("partner").then((data) => setDisplay(data)).catch((error) => console.error(error));
+        fetchData();
     }, []);
 
     const onError = () => {
@@ -115,7 +129,7 @@ const AdminPartner = () => {
                                             className='flex flex-col'
                                         >
                                             {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images" /> : null}
-                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage(imageUrl)}>REMOVE</Button> : null}
+                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={handleImageDelete}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}
                             >
@@ -147,7 +161,7 @@ const AdminPartner = () => {
                                 <td className='w-96'>{data.description}</td>
                                 <td className='w-56'><img src={data.imageURL} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>
