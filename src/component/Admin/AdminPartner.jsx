@@ -12,7 +12,7 @@ import { Delete } from '../utils/Delete'
 
 
 const AdminPartner = () => {
-    const [imageUrl, setImageUrl] = useState([]);
+    const [imageUrl, setImageUrl] = useState(null);
 
     const { handleSubmit, formState: { errors }, control } = useForm({
         defaultValues: {
@@ -28,7 +28,8 @@ const AdminPartner = () => {
 
     }
     const removeImage = () => {
-        setImageUrl([]);
+        setImageUrl(null);
+
     }
     const deleteRecord = (id, imageDelete) => {
         Delete(id, "partner", imageDelete);
@@ -111,7 +112,7 @@ const AdminPartner = () => {
                                             breakpoints={[{ maxWidth: 'xl', cols: 2 }]}
                                             className='flex flex-col'
                                         >
-                                            {imageUrl && imageUrl !== null ? <img src={imageUrl}></img> : null}
+                                            {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images"/> : null}
                                             {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}
