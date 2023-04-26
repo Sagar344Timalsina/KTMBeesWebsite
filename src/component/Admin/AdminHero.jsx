@@ -15,7 +15,7 @@ const Hero = () => {
         defaultValues: {
             heading: "",
             subheading: "",
-            bgImage: "",
+            image: "",
         }
     })
     //delete the data stored in storage 
@@ -92,7 +92,7 @@ const Hero = () => {
 
                         <div className='mb-5'>
                             <Controller
-                                name='bgImage'
+                                name='image'
                                 control={control}
                                 rules={
                                     { required: "Image reqired" }
@@ -102,7 +102,7 @@ const Hero = () => {
                                         <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
-                                            setValue("bgImage", url);
+                                            setValue("image", url);
                                         }}>
                                             <Text align="center">Drop images here</Text>
                                         </Dropzone>

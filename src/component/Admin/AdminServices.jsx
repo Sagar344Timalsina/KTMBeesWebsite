@@ -22,7 +22,7 @@ const AdminServices = () => {
 
     const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
-            bgImage: "",
+            image: "",
             text: "",
             headingtitle: "",
         }
@@ -72,7 +72,7 @@ const AdminServices = () => {
                     <div className='flex flex-col justify-center'>
                         <div className='mb-5'>
                             <Controller
-                                name='bgImage'
+                                name='image'
                                 control={control}
                                 rules={{ required: "Please enter the image" }}
                                 render={({ field }) =>
@@ -80,7 +80,7 @@ const AdminServices = () => {
                                         <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
-                                            setValue("bgImage", url);
+                                            setValue("image", url);
                                         }}>
                                             <Text align="center">Drop images here</Text>
                                         </Dropzone>
@@ -100,7 +100,7 @@ const AdminServices = () => {
                             >
                             </Controller>
 
-                            <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p>
+                            <p className='text-[red] px-3 font-[600] '>{errors.image?.message}</p>
 
 
                         </div>
@@ -155,10 +155,10 @@ const AdminServices = () => {
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
                                             </td>
                                             <td>
-                                                {ele.heading}
+                                                {ele.headingtitle}
                                             </td>
                                             <td>
-                                                {ele.subheading}
+                                                {ele.text}
                                             </td>
                                             <td>
                                                 <button >Edit</button>
@@ -169,8 +169,6 @@ const AdminServices = () => {
                                         </tr>
                                     ))
                                 }
-
-
                             </tbody>
                         </Table>
                     </div>

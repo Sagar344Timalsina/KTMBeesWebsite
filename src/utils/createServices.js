@@ -8,12 +8,7 @@ const createServices = async (data, url, collect) => {
     try {
         const servicesCollection = collection(db, collect);
         
-      
-        // if (url !== null)
-        //     await addDoc(servicesCollection, { heading: headingtitle, image: url, subheading: text });
-        // else {
-            
-            // }
+            console.log({...data})
                 await addDoc(servicesCollection, { ...data,image:url });
         notifications.show({
             title: 'Create',
