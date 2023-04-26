@@ -33,13 +33,7 @@ const AdminServices = () => {
 
     const onSubmit = (data) => {
         console.log("New data added", data);
-        createServices(data, imgUrl);
-        notifications.show({
-            title: 'Create',
-            message: 'New Data has been inserted',
-            color: 'white',
-            style: { backgroundColor: '#85FF7A' },
-          })
+        createServices(data, imgUrl,"services");
         // alert("Data inserted");
         reset();
         fetchDatas();
