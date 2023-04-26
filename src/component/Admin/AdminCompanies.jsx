@@ -94,7 +94,7 @@ const AdminCompanies = () => {
                             <tr key={data.id}>
                                 <td className='w-56'><img src={data.image} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>

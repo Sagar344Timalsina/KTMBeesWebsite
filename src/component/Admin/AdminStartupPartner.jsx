@@ -6,58 +6,64 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { createStartup } from '../../utils/Create';
-import { deleteFirebase } from '../../utils/Delete';
+import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
+import firebaseImageUpload from '../../utils/firebaseImageUpload';
 
 const AdminStartupPartner = () => {
-    const [files, setFiles] = useState([]);
+    const [imgUrl, setImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
-    // console.log(files);
-
-    //Event handling of delete button
-    const handleDeleteButton = (id, image) => {
-        deleteFirebase(id, "startup", image);
-        fetchDatas();
-        console.log("URL id", id, image);
-    }
-
-    //fetching data from DisplayData.js
-    async function fetchDatas() {
-        const fetchData = await DisplayData("startup");
-        console.log(fetchData);
-        setTableData(fetchData);
-        console.log("Tablke", tableData);
-
-    }
-    useEffect(() => {
-        fetchDatas();
-    }, [])
-
-    const previews = files.map((file, index) => {
-        const imageUrl = URL.createObjectURL(file);
-        return (
-            <Image
-                caption={files[0].name}
-                key={index}
-                src={imageUrl}
-                imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
-            />
-        );
-    });
-
-    const { handleSubmit, control, formState: { errors } } = useForm({
+    const { handleSubmit, control, formState: { errors }, reset } = useForm({
         defaultValues: {
             image: "",
         }
     })
 
+    const handleImageDelete = () => {
+        deleteStorageImage(imgUrl);
+        setImgUrl(null);
+    }
     const onsubmit = (data) => {
-
-        createStartup(files);
-        setFiles([]);
+        createStartup(imgUrl);
+        alert("Data inserted");
+        reset();
+        fetchDatas();
+        setImgUrl(null);
+    }
+    //fetching data from DisplayData.js
+    async function fetchDatas() {
+        const fetchData = await DisplayData("startup");
+        setTableData(fetchData);
     }
 
+    //Event handling of delete button
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "startup", image);
+        deleteStorageImage(image);
+        console.log("Deleted from storage");
+        fetchDatas();
+        reset();
+    }
+
+    useEffect(() => {
+        fetchDatas();
+    }, [])
+
+    // const previews = files.map((file, index) => {
+    //     const imageUrl = URL.createObjectURL(file);
+    //     return (
+    //         <Image
+    //             caption={files[0].name}
+    //             key={index}
+    //             src={imageUrl}
+    //             imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
+    //         />
+    //     );
+    // });
+
+
     const removeImage = () => {
-        setFiles([]);
+        setImgUrl(null)
+        handleImageDelete();
     }
 
     return (
@@ -73,17 +79,21 @@ const AdminStartupPartner = () => {
                                 { required: "Image reqired" }
                             }
                             render={({ field }) => <>
-                                <Dropzone  {...field} accept={IMAGE_MIME_TYPE} onDrop={setFiles}>
+                                <Dropzone  {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
+                                    const url = await firebaseImageUpload(setFilessss[0])
+                                    setImgUrl(url);
+                                }}>
                                     <Text align="center">Drop images here</Text>
                                 </Dropzone>
 
                                 <SimpleGrid
                                     cols={4}
                                     breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
-                                    mt={previews.length > 0 ? 'xl' : 0}
+
                                 >
-                                    {previews}
-                                    {files.length > 0 && <Button className='text-black' onClick={removeImage}>Remove</Button>}
+                                    {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
+                                    {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
+
                                 </SimpleGrid>
                             </>
                             }
@@ -107,16 +117,16 @@ const AdminStartupPartner = () => {
                     </thead>
                     <tbody>
                         {
-                            tableData.map((ele) => (
-                                <tr key={ele.id}>
+                            tableData && tableData.map((data) => (
+                                <tr key={data.id}>
                                     <td>
-                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.imageurl} alt="Image name" />
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={data.imageurl} alt="Image name" />
                                     </td>
 
                                     <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
 
                                     <td>
-                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button>
+                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageurl)}><MdOutlineDeleteOutline />Delete</Button>
                                     </td>
                                 </tr>
                             ))
