@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import DisplayData from '../../utils/DisplayData';
 import { Text, Image, SimpleGrid, Button, Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
@@ -8,6 +7,7 @@ import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { createStartup } from '../../utils/Create';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
+import { Display } from '../../utils/Display';
 
 const AdminStartupPartner = () => {
     const [imgUrl, setImgUrl] = useState();
@@ -31,8 +31,11 @@ const AdminStartupPartner = () => {
     }
     //fetching data from DisplayData.js
     async function fetchDatas() {
-        const fetchData = await DisplayData("startup");
-        setTableData(fetchData);
+        await Display("startup")
+        .then((data)=>{
+            setTableData(data);
+        })
+        
     }
 
     //Event handling of delete button
