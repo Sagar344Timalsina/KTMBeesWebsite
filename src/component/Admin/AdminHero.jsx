@@ -9,7 +9,7 @@ import {MdOutlineDeleteOutline} from 'react-icons/md';
 import {deleteFirebase, deleteStorageImage} from '../../utils/Delete';
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 const Hero = () => {
-    const [imgUrl, setImgUrl] = useState();
+    const [imgUrl, setImgUrl] = useState(null);
 
     const [display,setDisplay] = useState([]);
     const handleImageDelete = () => {
@@ -36,8 +36,8 @@ const Hero = () => {
     }
 
     const fetchData = () =>{
-        const display=Display("herosection");
-        display.then((data)=>{
+        const displaySec=Display("herosection");
+        displaySec.then((data)=>{
             setDisplay(data);
         }).catch((err)=>console.error(err))
     }
