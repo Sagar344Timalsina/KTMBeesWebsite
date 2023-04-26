@@ -14,7 +14,7 @@ import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 const AdminPartner = () => {
     const [imageUrl, setImageUrl] = useState(null);
 
-    const { handleSubmit, formState: { errors }, control } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset } = useForm({
         defaultValues: {
             heading: "",
             subheading: "",
@@ -25,20 +25,35 @@ const AdminPartner = () => {
 
     const onSubmit = async (data) => {
         CreatePartner(data, imageUrl);
-
-    }
-    const removeImage = () => {
+        reset();
         setImageUrl(null);
+        fetchData();
 
     }
-    const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "partner", imageDelete);
-        deleteStorageImage(imageDelete);
+    const removeImage = (imageUrl) => {
+        setImageUrl(null);
+        deleteStorageImage(imageUrl);
+    }
+    const handleImageDelete = () => {
+        deleteStorageImage(imageUrl);
+        setImageUrl(null);
+    }
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "partner", image);
+        deleteStorageImage(image);
+        fetchData();
+    }
+
+    const fetchData = () => {
+        const display = Display("partner");
+        display.then((data) => {
+            setDisplay(data);
+        }).catch((err) => console.error(err))
     }
 
     const [display, setDisplay] = useState([]);
     useEffect(() => {
-        Display("partner").then((data) => setDisplay(data)).catch((error) => console.error(error));
+        fetchData();
     }, []);
 
     const onError = () => {
@@ -114,7 +129,7 @@ const AdminPartner = () => {
                                             className='flex flex-col'
                                         >
                                             {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images" /> : null}
-                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage}>REMOVE</Button> : null}
+                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={handleImageDelete}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}
                             >
@@ -127,7 +142,7 @@ const AdminPartner = () => {
                 </form>
             </section>
             <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
-                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" className='p-7' striped withColumnBorders highlightOnHover>
                     <thead>
                         <tr >
                             <th>Heading</th>
@@ -138,18 +153,18 @@ const AdminPartner = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    {display && display.map((data) => (
-                        <tbody key={data.id}>
-                            <tr>
+                    <tbody >
+                        {display && display.map((data) => (
+                            <tr key={data.id}>
                                 <td className='w-44'>{data.heading}</td>
                                 <td className='w-44'>{data.subheading}</td>
                                 <td className='w-96'>{data.description}</td>
                                 <td className='w-56'><img src={data.imageURL} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
-                        </tbody>
-                    ))}
+                        ))}
+                    </tbody>
                 </Table>
             </section>
         </ main >

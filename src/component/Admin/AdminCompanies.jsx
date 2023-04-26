@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Image, SimpleGrid, Button } from '@mantine/core';
+import { Text, Image, SimpleGrid, Button, Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { createCompanies } from '../../utils/Create';
 import { Display } from '../../utils/Display'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
+import { FaEdit } from 'react-icons/fa';
+import { MdOutlineDeleteOutline } from 'react-icons/md'
+
 
 const AdminCompanies = () => {
     const [files, setFiles] = useState([]);
@@ -34,11 +37,11 @@ const AdminCompanies = () => {
 
     const [display, setDisplay] = useState([]);
     useEffect(() => {
-        Display("services").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
+        Display("companies").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
     }, []);
 
     const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "services", imageDelete);
+        deleteFirebase(id, "companies", imageDelete);
         deleteStorageImage(imageDelete);
     }
 
@@ -76,6 +79,26 @@ const AdminCompanies = () => {
                     <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
                     <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                 </form>
+            </section>
+            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" className='p-7' striped withColumnBorders highlightOnHover>
+                    <thead>
+                        <tr >
+                            <th>Companies</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {display && display.map((data) => (
+                            <tr key={data.id}>
+                                <td className='w-56'><img src={data.image} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
+                                <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
             </section>
         </ main >
     )

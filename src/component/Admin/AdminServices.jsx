@@ -4,7 +4,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { notifications } from '@mantine/notifications';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
-
+import { FaEdit } from 'react-icons/fa';
+import { MdOutlineDeleteOutline } from 'react-icons/md'
 import createServices from '../../utils/createServices';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import { useEffect } from 'react';
@@ -19,7 +20,6 @@ const AdminServices = () => {
         setImgUrl(null);
     }
 
-
     const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
             bgImage: "",
@@ -28,13 +28,9 @@ const AdminServices = () => {
         }
     });
 
-
-
-
     const onSubmit = (data) => {
-        console.log("New data added", data);
         createServices(data, imgUrl, "services");
-        // alert("Data inserted");
+        alert("Data inserted");
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -43,26 +39,21 @@ const AdminServices = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("services");
-            console.log(fetchData);
             setTableData(fetchData);
-            console.log("Tablke", tableData);
         } catch (error) {
-
+            console.error(error);
         }
-
     }
 
     //Event handling of delete button
     const handleDeleteButton = (id, image) => {
         deleteFirebase(id, "services", image);
         fetchDatas();
-        console.log("URL id", id, image);
+        reset();
     }
     useEffect(() => {
         fetchDatas();
     }, [])
-
-
 
     return (
         <main className='flex items-center justify-center flex-col' >
@@ -91,7 +82,7 @@ const AdminServices = () => {
                                             className='pt-6'
                                         >
                                             {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
-                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
+                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
                                         </SimpleGrid>
                                     </div>
 
@@ -149,48 +140,39 @@ const AdminServices = () => {
                     </div>
                 </form>
             </section>
-            <section>
-                <div className='flex flex-col justify-center'>
-                    <div className='mt-12'>
-                        <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
-                            <thead>
-                                <tr>
-                                    <td>Photo</td>
-                                    <td>Heading</td>
-                                    <td>Text</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
+            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" striped withColumnBorders highlightOnHover>
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Heading</th>
+                            <th>Text</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            tableData.map((ele) => (
+                                <tr key={ele.id}>
+                                    <td>
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
+                                    </td>
+                                    <td>
+                                        {ele.heading}
+                                    </td>
+                                    <td>
+                                        {ele.subheading}
+                                    </td>
+                                    <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                    <td>
+                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {
-
-                                    tableData.map((ele) => (
-                                        <tr key={ele.id}>
-                                            <td>
-                                                <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
-                                            </td>
-                                            <td>
-                                                {ele.heading}
-                                            </td>
-                                            <td>
-                                                {ele.subheading}
-                                            </td>
-                                            <td>
-                                                <button >Edit</button>
-                                            </td>
-                                            <td>
-                                                <button className='bg-yellow w-32 h-12 rounded-xl' onClick={() => handleDeleteButton(ele.id, ele.image)}>Delete</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-
-
-                            </tbody>
-                        </Table>
-                    </div>
-                </div>
+                            ))
+                        }
+                    </tbody>
+                </Table>
             </section>
         </main>
     )
