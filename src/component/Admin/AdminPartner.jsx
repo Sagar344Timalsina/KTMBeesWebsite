@@ -27,8 +27,9 @@ const AdminPartner = () => {
         CreatePartner(data, imageUrl);
 
     }
-    const removeImage = () => {
+    const removeImage = (imageUrl) => {
         setImageUrl(null);
+        deleteStorageImage(imageUrl);
 
     }
     const deleteRecord = (id, imageDelete) => {
@@ -114,7 +115,7 @@ const AdminPartner = () => {
                                             className='flex flex-col'
                                         >
                                             {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images" /> : null}
-                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage}>REMOVE</Button> : null}
+                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage(imageUrl)}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}
                             >
@@ -127,7 +128,7 @@ const AdminPartner = () => {
                 </form>
             </section>
             <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
-                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" className='p-7' striped withColumnBorders highlightOnHover>
                     <thead>
                         <tr >
                             <th>Heading</th>
@@ -138,9 +139,9 @@ const AdminPartner = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    {display && display.map((data) => (
-                        <tbody key={data.id}>
-                            <tr>
+                    <tbody >
+                        {display && display.map((data) => (
+                            <tr key={data.id}>
                                 <td className='w-44'>{data.heading}</td>
                                 <td className='w-44'>{data.subheading}</td>
                                 <td className='w-96'>{data.description}</td>
@@ -148,8 +149,8 @@ const AdminPartner = () => {
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
                                 <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
-                        </tbody>
-                    ))}
+                        ))}
+                    </tbody>
                 </Table>
             </section>
         </ main >

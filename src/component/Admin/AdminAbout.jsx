@@ -8,7 +8,7 @@ import { Display } from '../../utils/Display'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 
 const AdminAbout = () => {
-    const { handleSubmit, formState: { errors }, control } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset } = useForm({
         defaultValues: {
             title: "",
             description: ""
@@ -16,6 +16,8 @@ const AdminAbout = () => {
     })
     const onSubmit = (data) => {
         createAbout(data);
+        reset();
+
     }
     const [display, setDisplay] = useState([]);
     useEffect(() => {
@@ -24,7 +26,6 @@ const AdminAbout = () => {
 
     const deleteRecord = (id, imageDelete) => {
         deleteFirebase(id, "about", imageDelete);
-        deleteStorageImage(imageDelete);
     }
     const onError = () => {
         console.log("Error has occured", errors);
@@ -64,7 +65,7 @@ const AdminAbout = () => {
                 </form>
             </section>
             <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
-                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" className='p-7' striped withColumnBorders highlightOnHover>
                     <thead>
                         <tr >
                             <th>Title</th>
@@ -73,16 +74,16 @@ const AdminAbout = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    {display && display.map((data) => (
-                        <tbody key={data.id}>
-                            <tr>
+                    <tbody >
+                        {display && display.map((data) => (
+                            <tr key={data.id}>
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
                                 <td><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
-                        </tbody>
-                    ))}
+                        ))}
+                    </tbody>
                 </Table>
             </section>
         </main >

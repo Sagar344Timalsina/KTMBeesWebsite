@@ -3,7 +3,8 @@ import DisplayData from '../../utils/DisplayData';
 import { Text, Image, SimpleGrid, Button, Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-
+import { FaEdit } from 'react-icons/fa';
+import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { createStartup } from '../../utils/Create';
 import { deleteFirebase } from '../../utils/Delete';
 
@@ -93,41 +94,38 @@ const AdminStartupPartner = () => {
                     <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                 </form>
             </section>
-            <section>
-                <div className='flex flex-col justify-center'>
-                    <div className='mt-12'>
-                        <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
-                            <thead>
-                                <tr>
-                                    <td>Photo</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
+            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+
+
+                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" striped withColumnBorders highlightOnHover>
+                    <thead>
+                        <tr>
+                            <th>Partners</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            tableData.map((ele) => (
+                                <tr key={ele.id}>
+                                    <td>
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.imageurl} alt="Image name" />
+                                    </td>
+
+                                    <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+
+                                    <td>
+                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {
-
-                                    tableData.map((ele) => (
-                                        <tr key={ele.id}>
-                                            <td>
-                                                <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.imageurl} alt="Image name" />
-                                            </td>
-
-                                            <td>
-                                                <button>Edit</button>
-                                            </td>
-                                            <td>
-                                                <button className='bg-yellow w-32 h-12 rounded-xl' onClick={() => handleDeleteButton(ele.id, ele.image)}>Delete</button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
+                            ))
+                        }
 
 
-                            </tbody>
-                        </Table>
-                    </div>
-                </div>
+                    </tbody>
+                </Table>
+
             </section>
         </ main >
 
