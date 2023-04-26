@@ -9,7 +9,7 @@ export const Display = async (data) => {
         const filterdData = aboutData.docs.map((doc) => ({
             ...doc.data(), id: doc.id
         }));
-        console.log("Filtered data", filterdData);
+        console.log(filterdData);
         return (filterdData);
     } catch (error) {
         console.error(error);

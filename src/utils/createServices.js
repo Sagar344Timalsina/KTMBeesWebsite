@@ -10,7 +10,7 @@ const createServices = async (data, url, collect) => {
         const { headingtitle, text } = data;
         console.log(headingtitle, text, url);
         if (url !== null)
-            await addDoc(servicesCollection, { heading: headingtitle, image: url, subheading: text });
+            await addDoc(servicesCollection, { heading: headingtitle, imageUrl: url, subheading: text });
         else {
             await addDoc(servicesCollection, { heading: headingtitle, subheading: text });
 

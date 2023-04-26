@@ -5,27 +5,20 @@ import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
 import { Display } from './Display';
 import { useEffect } from 'react';
 
-export const createHeroSection = async (data, url, collect) => {
+export const createHeroSection = async (data, imgurl, collect) => {
     const startupCollection = collection(db, collect);
-    const {heading,subheading}=data;
-    if (url == null)
+    if (imgurl == null)
         alert("Please add image");
     else {
-        await addDoc(startupCollection, {...data , image:url });
+        await addDoc(startupCollection, {...data , imageUrl:imgurl });
         alert("Published");
     }
 }
 
-export const createStartup = async (files) => {
+export const createStartup = async (imgUrl) => {
+    try{
     const startupCollection = collection(db, "startup");
-    if (files === []) return null;
-    const imageRef = ref(storage, `images/${files[0].name + v4()}`);
-    try {
-        const uploadImage = await uploadBytesResumable(imageRef, files[0]);
-        const imageUrl = await getDownloadURL(uploadImage.ref);
-        console.log(imageUrl);
-        await addDoc(startupCollection, { imageurl: imageUrl });
-        alert("Added successfully to database");
+        await addDoc(startupCollection, { imageUrl: imgUrl });
     }
     catch (e) {
         console.error(e);
@@ -40,10 +33,10 @@ export const createAbout = async (data) => {
     console.log("Added data successfully");
 }
 
-export const CreatePartner = async (data, imageURL) => {
+export const CreatePartner = async (data, imageUrl) => {
     const partnerCollection = collection(db, "partner");
     const { heading, subheading, description } = data;
-    await addDoc(partnerCollection, { heading, subheading, description, imageURL });
+    await addDoc(partnerCollection, { heading, subheading, description, imageUrl:imageUrl });
     alert("Published");
     useEffect(() => {
         Display("partner");
@@ -59,7 +52,7 @@ export const createCompanies = async (files) => {
         const uploadImage = await uploadBytesResumable(imageRef, files[0]);
         const imageUrl = await getDownloadURL(uploadImage.ref);
         console.log(imageUrl);
-        await addDoc(startupCollection, { image: imageUrl });
+        await addDoc(startupCollection, { imageUrl: imageUrl });
         alert("Added successfully to database");
     }
     catch (e) {

@@ -9,7 +9,7 @@ import { MdOutlineDeleteOutline } from 'react-icons/md'
 import createServices from '../../utils/createServices';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import { useEffect } from 'react';
-import DisplayData from '../../utils/DisplayData';
+import { Display } from '../../utils/Display';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
@@ -38,8 +38,10 @@ const AdminServices = () => {
     //Fetching data from Displaydata.js Page
     async function fetchDatas() {
         try {
-            const fetchData = await DisplayData("services");
-            setTableData(fetchData);
+            await Display("services")
+            .then((data)=>{
+                setTableData(data);
+            })
         } catch (error) {
             console.error(error);
         }
@@ -140,38 +142,30 @@ const AdminServices = () => {
                     </div>
                 </form>
             </section>
-            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
-                <Table horizontalSpacing="xl" verticalSpacing="lg" fontSize="lg" striped withColumnBorders highlightOnHover>
+            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
                     <thead>
-                        <tr>
-                            <th>Photo</th>
+                        <tr >
                             <th>Heading</th>
-                            <th>Text</th>
+                            <th>Sub-heading</th>
+                            <th>Image</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {
-                            tableData.map((ele) => (
-                                <tr key={ele.id}>
-                                    <td>
-                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
-                                    </td>
-                                    <td>
-                                        {ele.heading}
-                                    </td>
-                                    <td>
-                                        {ele.subheading}
-                                    </td>
-                                    <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                    <td>
-                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
+                    {tableData && tableData.map((data) => (
+                        <tbody key={data.id}>
+                            <tr>
+                                <td>{data.heading}</td>
+                                <td>{data.subheading}</td>
+                                <td><img src={data.imageUrl} alt="Abc" className='w-44 h-44 rounded-full' /></td>
+                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                <td><Button onClick={async () => {
+                                    handleDeleteButton(data.id, data.imageUrl)
+                                }} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
+                            </tr>
+                        </tbody>
+                    ))}
                 </Table>
             </section>
         </main>

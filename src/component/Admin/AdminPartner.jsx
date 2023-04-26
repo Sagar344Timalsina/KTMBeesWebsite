@@ -159,9 +159,9 @@ const AdminPartner = () => {
                                 <td className='w-44'>{data.heading}</td>
                                 <td className='w-44'>{data.subheading}</td>
                                 <td className='w-96'>{data.description}</td>
-                                <td className='w-56'><img src={data.imageURL} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
+                                <td className='w-56'><img src={data.imageUrl} alt="Partners" className='w-44 h-44 rounded-full'></img></td>
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageURL)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>

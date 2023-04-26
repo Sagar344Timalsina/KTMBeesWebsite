@@ -132,10 +132,10 @@ const Hero = () => {
                             <tr>
                                 <td>{data.heading}</td>
                                 <td>{data.subheading}</td>
-                                <td><img src={data.image} alt="Abc" className='w-44' /></td>
+                                <td><img src={data.imageUrl} alt="Abc" className='w-44' /></td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
                                 <td><Button onClick={async () => {
-                                    handleDeleteButton(data.id, data.image)
+                                    handleDeleteButton(data.id, data.imageUrl)
                                 }} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>

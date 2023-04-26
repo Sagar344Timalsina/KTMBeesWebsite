@@ -120,13 +120,13 @@ const AdminStartupPartner = () => {
                             tableData && tableData.map((data) => (
                                 <tr key={data.id}>
                                     <td>
-                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={data.imageurl} alt="Image name" />
+                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={data.imageUrl} alt="Image name" />
                                     </td>
 
                                     <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
 
                                     <td>
-                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageurl)}><MdOutlineDeleteOutline />Delete</Button>
+                                        <Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageUrl)}><MdOutlineDeleteOutline />Delete</Button>
                                     </td>
                                 </tr>
                             ))
