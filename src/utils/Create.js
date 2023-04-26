@@ -5,20 +5,14 @@ import { uploadBytesResumable, ref, getDownloadURL } from 'firebase/storage';
 import { Display } from './Display';
 import { useEffect } from 'react';
 
-export const createHeroSection = async (files, data) => {
-    const startupCollection = collection(db, "herosection");
-    const { heading, subheading } = data;
-    if (files === []) return null;
-    const imageRef = ref(storage, `images/${files[0].name + v4()}`);
-    try {
-        const uploadImage = await uploadBytesResumable(imageRef, files[0]);
-        const imageUrl = await getDownloadURL(uploadImage.ref);
-        console.log(imageUrl);
-        await addDoc(startupCollection, { heading, subheading, image: imageUrl });
-        alert("Added successfully to database");
-    }
-    catch (e) {
-        console.error(e);
+export const createHeroSection = async (data, url, collect) => {
+    const startupCollection = collection(db, collect);
+    const {heading,subheading}=data;
+    if (url == null)
+        alert("Please add image");
+    else {
+        await addDoc(startupCollection, {...data , image:url });
+        alert("Published");
     }
 }
 
