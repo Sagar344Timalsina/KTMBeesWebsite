@@ -3,12 +3,12 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { CreatePartner } from '../utils/Create'
+import { CreatePartner } from '../../utils/Create'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { Display } from '../utils/Display'
-import firebaseImageUpload from '../utils/firebaseImageUpload'
-import { Delete } from '../utils/Delete'
+import { Display } from '../../utils/Display'
+import firebaseImageUpload from '../../utils/firebaseImageUpload'
+import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 
 
 const AdminPartner = () => {
@@ -32,7 +32,8 @@ const AdminPartner = () => {
 
     }
     const deleteRecord = (id, imageDelete) => {
-        Delete(id, "partner", imageDelete);
+        deleteFirebase(id, "partner", imageDelete);
+        deleteStorageImage(imageDelete);
     }
 
     const [display, setDisplay] = useState([]);
@@ -112,7 +113,7 @@ const AdminPartner = () => {
                                             breakpoints={[{ maxWidth: 'xl', cols: 2 }]}
                                             className='flex flex-col'
                                         >
-                                            {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images"/> : null}
+                                            {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images" /> : null}
                                             {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={removeImage}>REMOVE</Button> : null}
                                         </SimpleGrid>
                                     </>}

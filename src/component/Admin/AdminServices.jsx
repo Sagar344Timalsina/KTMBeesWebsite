@@ -1,26 +1,26 @@
 import React, { useState } from 'react'
-import { TextInput, Button, SimpleGrid, Text ,Table} from '@mantine/core'
-import { useForm, Controller} from 'react-hook-form'
+import { TextInput, Button, SimpleGrid, Text, Table } from '@mantine/core'
+import { useForm, Controller } from 'react-hook-form'
 import { notifications } from '@mantine/notifications';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 
 import createServices from '../../utils/createServices';
-import deleteServicesImage,{deleteFirebase} from '../../utils/deleteServicesImage';
+import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import { useEffect } from 'react';
 import DisplayData from '../../utils/DisplayData';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
-    const [tableData,setTableData]=useState([]);
-   
+    const [tableData, setTableData] = useState([]);
+
     const handleImageDelete = () => {
-        deleteServicesImage(imgUrl);
+        deleteStorageImage(imgUrl);
         setImgUrl(null);
     }
 
 
-    const { handleSubmit, formState: { errors }, control,reset,setValue } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
             bgImage: "",
             text: "",
@@ -33,34 +33,34 @@ const AdminServices = () => {
 
     const onSubmit = (data) => {
         console.log("New data added", data);
-        createServices(data, imgUrl,"services");
+        createServices(data, imgUrl, "services");
         // alert("Data inserted");
         reset();
         fetchDatas();
         setImgUrl(null);
     }
     //Fetching data from Displaydata.js Page
-async function fetchDatas(){
-    try {
-    const fetchData= await DisplayData("services");
-    console.log(fetchData);
-    setTableData(fetchData);
-    console.log("Tablke",tableData);
-    } catch (error) {
-        
+    async function fetchDatas() {
+        try {
+            const fetchData = await DisplayData("services");
+            console.log(fetchData);
+            setTableData(fetchData);
+            console.log("Tablke", tableData);
+        } catch (error) {
+
+        }
+
     }
 
-}
-
-//Event handling of delete button
-const handleDeleteButton=(id,image)=>{
-    deleteFirebase(id,"services",image);
-    fetchDatas();
-    console.log("URL id",id,image);
-}
-useEffect( () => {
-fetchDatas();
-}, [])
+    //Event handling of delete button
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "services", image);
+        fetchDatas();
+        console.log("URL id", id, image);
+    }
+    useEffect(() => {
+        fetchDatas();
+    }, [])
 
 
 
@@ -75,12 +75,12 @@ fetchDatas();
                                 name='bgImage'
                                 control={control}
                                 rules={{ required: "Please enter the image" }}
-                                render={({ field }) => 
-                                     <div >
+                                render={({ field }) =>
+                                    <div >
                                         <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
-                                            setValue("bgImage",url);
+                                            setValue("bgImage", url);
                                         }}>
                                             <Text align="center">Drop images here</Text>
                                         </Dropzone>
@@ -94,12 +94,12 @@ fetchDatas();
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                         </SimpleGrid>
                                     </div>
-                                    
+
 
                                 }
                             >
                             </Controller>
-                                    {/* <div>
+                            {/* <div>
                                         <Dropzone accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
@@ -152,42 +152,42 @@ fetchDatas();
             <section>
                 <div className='flex flex-col justify-center'>
                     <div className='mt-12'>
-                    <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
-                        <thead>
-                           <tr>
-                            <td>Photo</td>
-                            <td>Heading</td>
-                            <td>Text</td>
-                            <td>Edit</td>
-                            <td>Delete</td>
-                            </tr> 
-                        </thead>        
-                          <tbody>
-                        {
-                            
-                            tableData.map((ele)=>(
-                                <tr key={ele.id}>
-                                    <td>
-                                        <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
-                                    </td>
-                                    <td>
-                                        {ele.heading}
-                                    </td>
-                                    <td>
-                                        {ele.subheading}
-                                    </td>
-                                    <td>
-                                        <button >Edit</button>
-                                    </td>
-                                    <td>
-                                    <button className='bg-yellow w-32 h-12 rounded-xl' onClick={()=>handleDeleteButton(ele.id,ele.image)}>Delete</button>
-                                    </td>
+                        <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
+                            <thead>
+                                <tr>
+                                    <td>Photo</td>
+                                    <td>Heading</td>
+                                    <td>Text</td>
+                                    <td>Edit</td>
+                                    <td>Delete</td>
                                 </tr>
-                            ))
-                        }
-                            
-                            
-                            </tbody>      
+                            </thead>
+                            <tbody>
+                                {
+
+                                    tableData.map((ele) => (
+                                        <tr key={ele.id}>
+                                            <td>
+                                                <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
+                                            </td>
+                                            <td>
+                                                {ele.heading}
+                                            </td>
+                                            <td>
+                                                {ele.subheading}
+                                            </td>
+                                            <td>
+                                                <button >Edit</button>
+                                            </td>
+                                            <td>
+                                                <button className='bg-yellow w-32 h-12 rounded-xl' onClick={() => handleDeleteButton(ele.id, ele.image)}>Delete</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+
+
+                            </tbody>
                         </Table>
                     </div>
                 </div>

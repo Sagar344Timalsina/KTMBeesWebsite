@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { TextInput, Textarea, Button, Table } from '@mantine/core'
 import { useForm, Controller } from 'react-hook-form'
-import { createAbout } from '../utils/Create'
+import { createAbout } from '../../utils/Create';
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { Display } from '../utils/Display'
-import { Delete } from '../utils/Delete';
+import { Display } from '../../utils/Display'
+import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 
 const AdminAbout = () => {
     const { handleSubmit, formState: { errors }, control } = useForm({
@@ -23,7 +23,8 @@ const AdminAbout = () => {
     }, []);
 
     const deleteRecord = (id, imageDelete) => {
-        Delete(id, "about", imageDelete);
+        deleteFirebase(id, "about", imageDelete);
+        deleteStorageImage(imageDelete);
     }
     const onError = () => {
         console.log("Error has occured", errors);

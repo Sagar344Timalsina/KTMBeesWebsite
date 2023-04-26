@@ -1,7 +1,7 @@
 import { addDoc, collection } from "@firebase/firestore"
 import { db } from "../config/firebase";
 import { notifications } from "@mantine/notifications";
-import deleteServicesImage from "./deleteServicesImage";
+import { deleteStorageImage } from "./Delete";
 
 
 const createServices = async (data, url, collect) => {
@@ -22,7 +22,7 @@ const createServices = async (data, url, collect) => {
             style: { backgroundColor: '#85FF7A' },
         })
     } catch (error) {
-        deleteServicesImage(url);
+        deleteStorageImage(url);
         notifications.show({
             title: 'Error',
             message: 'Error while inserting Data ',

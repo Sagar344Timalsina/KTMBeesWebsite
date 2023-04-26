@@ -1,6 +1,6 @@
 import React from 'react'
 import { collection, getDocs } from '@firebase/firestore'
-import { db } from '../../config/firebase'
+import { db } from '../config/firebase'
 
 export const Display = async (data) => {
     const aboutCollection = collection(db, data);
