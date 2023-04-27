@@ -7,14 +7,9 @@ import { deleteStorageImage } from "./Delete";
 const createServices = async (data, url, collect) => {
     try {
         const servicesCollection = collection(db, collect);
-        const { headingtitle, text } = data;
-        console.log(headingtitle, text, url);
-        if (url !== null)
-            await addDoc(servicesCollection, { heading: headingtitle, imageUrl: url, subheading: text });
-        else {
-            await addDoc(servicesCollection, { heading: headingtitle, subheading: text });
-
-        }
+        
+            console.log({...data})
+                await addDoc(servicesCollection, { ...data,image:url });
         notifications.show({
             title: 'Create',
             message: 'New Data has been inserted',

@@ -3,12 +3,13 @@ import { ref, deleteObject } from "firebase/storage"
 import { doc, deleteDoc } from "firebase/firestore";
 import { notifications } from '@mantine/notifications';
 
-export const deleteStorageImage = (url) => {
-  const picRef = ref(storage, url);
-  deleteObject(picRef).then(() => console.log("deleted"))
-    .catch((error) => {
-      console.log(error);
-    });
+export const deleteStorageImage = async(url) => {
+  try {
+    const picRef = ref(storage, url);
+    await deleteObject(picRef);
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 

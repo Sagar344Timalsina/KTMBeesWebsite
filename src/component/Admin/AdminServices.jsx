@@ -22,7 +22,7 @@ const AdminServices = () => {
 
     const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
-            bgImage: "",
+            image: "",
             text: "",
             headingtitle: "",
         }
@@ -65,7 +65,7 @@ const AdminServices = () => {
                     <div className='flex flex-col justify-center'>
                         <div className='mb-5'>
                             <Controller
-                                name='bgImage'
+                                name='image'
                                 control={control}
                                 rules={{ required: "Please enter the image" }}
                                 render={({ field }) =>
@@ -73,7 +73,7 @@ const AdminServices = () => {
                                         <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
                                             const url = await firebaseImageUpload(setFilessss[0])
                                             setImgUrl(url);
-                                            setValue("bgImage", url);
+                                            setValue("image", url);
                                         }}>
                                             <Text align="center">Drop images here</Text>
                                         </Dropzone>
@@ -92,24 +92,8 @@ const AdminServices = () => {
                                 }
                             >
                             </Controller>
-                            {/* <div>
-                                        <Dropzone accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
-                                            const url = await firebaseImageUpload(setFilessss[0])
-                                            setImgUrl(url);
-                                        }}>
-                                            <Text align="center">Drop images here</Text>
-                                        </Dropzone>
 
-                                        <SimpleGrid
-                                            cols={4}
-                                            breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-                                            className='pt-6'
-                                        >
-                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
-                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
-                                        </SimpleGrid>
-                                    </div> */}
-                            <p className='text-[red] px-3 font-[600] '>{errors.bgImage?.message}</p>
+                            <p className='text-[red] px-3 font-[600] '>{errors.image?.message}</p>
 
 
                         </div>
@@ -142,31 +126,42 @@ const AdminServices = () => {
                     </div>
                 </form>
             </section>
-            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
-                <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
-                    <thead>
-                        <tr >
-                            <th>Heading</th>
-                            <th>Sub-heading</th>
-                            <th>Image</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    {tableData && tableData.map((data) => (
-                        <tbody key={data.id}>
-                            <tr>
-                                <td>{data.heading}</td>
-                                <td>{data.subheading}</td>
-                                <td><img src={data.imageUrl} alt="Abc" className='w-44 h-44 rounded-full' /></td>
-                                <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button onClick={async () => {
-                                    handleDeleteButton(data.id, data.imageUrl)
-                                }} className='bg-red font-sans text-black'><MdOutlineDeleteOutline />Delete</Button></td>
-                            </tr>
-                        </tbody>
-                    ))}
-                </Table>
+            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
+                <div className='flex flex-col justify-center'>
+                    <div >
+                        <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Heading</th>
+                                    <th>Text</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+
+                                    tableData.map((ele) => (
+                                        <tr key={ele.id}>
+                                            <td>
+                                                <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload name" />
+                                            </td>
+                                            <td>
+                                                {ele.headingtitle}
+                                            </td>
+                                            <td>
+                                                {ele.text}
+                                            </td>
+                                            <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>
             </section>
         </main>
     )
