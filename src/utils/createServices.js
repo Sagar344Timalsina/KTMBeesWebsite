@@ -7,8 +7,10 @@ import { deleteStorageImage } from "./Delete";
 const createServices = async (data, url, collect) => {
     try {
         const servicesCollection = collection(db, collect);
-        
-            console.log({...data})
+            delete data.image;
+            delete data.imageUrl;
+            console.log({...data});
+
                 await addDoc(servicesCollection, { ...data,imageUrl:url });
         notifications.show({
             title: 'Create',

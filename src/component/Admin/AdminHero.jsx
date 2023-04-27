@@ -133,7 +133,7 @@ const Hero = () => {
                                 <tr>
                                     <th>Photo</th>
                                     <th>Heading</th>
-                                    <th>Sub-Headin</th>
+                                    <th>Sub-Heading</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
