@@ -9,7 +9,7 @@ const createServices = async (data, url, collect) => {
         const servicesCollection = collection(db, collect);
         
             console.log({...data})
-                await addDoc(servicesCollection, { ...data,image:url });
+                await addDoc(servicesCollection, { ...data,imageUrl:url });
         notifications.show({
             title: 'Create',
             message: 'New Data has been inserted',

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { TextInput, Textarea, Button, Table } from '@mantine/core'
 import { useForm, Controller } from 'react-hook-form'
-import { createAbout } from '../../utils/Create';
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { Display } from '../../utils/Display'
-import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
+import { deleteFirebase } from '../../utils/Delete'
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
 
@@ -20,7 +18,6 @@ const AdminAbout = () => {
     
     const onSubmit = (data) => {
         createServices(data, null, "about");
-        // alert("Data inserted");
         reset();
         fetchDatas();
     }
@@ -28,11 +25,8 @@ const AdminAbout = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("about");
-            console.log(fetchData);
             setTableData(fetchData);
-            console.log("Tablke", tableData);
         } catch (error) {
-
         }
     }
     
@@ -40,8 +34,8 @@ const AdminAbout = () => {
             fetchDatas();
     }, []);
 
-    const handleDeleteButton = (id, image) => {
-        deleteFirebase(id, "about", image);
+    const handleDeleteButton = async(id, image) => {
+        await deleteFirebase(id, "about", image);
         fetchDatas();
     }
 

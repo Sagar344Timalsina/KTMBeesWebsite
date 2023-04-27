@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Image, SimpleGrid, Button,Table } from '@mantine/core';
+import { Text, SimpleGrid, Button,Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
-import { createCompanies } from '../../utils/Create';
-import { Display } from '../../utils/Display'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
@@ -30,9 +28,7 @@ const AdminCompanies = () => {
     setImgUrl(null);
 }
 const onSubmit = (data) => {
-    console.log("New data added", data);
     createServices(data, imgUrl, "companies");
-    // alert("Data inserted");
     reset();
     fetchDatas();
     setImgUrl(null);
@@ -42,7 +38,6 @@ const onSubmit = (data) => {
 async function fetchDatas() {
     try {
         const fetchData = await DisplayData("companies");
-        console.log(fetchData);
         setDisplay(fetchData);
       
     } catch (error) {
@@ -52,20 +47,13 @@ async function fetchDatas() {
 }
 
  //Event handling of delete button
- const handleDeleteButton = (id, image) => {
-    deleteFirebase(id, "companies", image);
+ const handleDeleteButton = async(id, image) => {
+    await deleteFirebase(id, "companies", image);
     fetchDatas();
-    console.log("URL id", id, image);
 }
 useEffect(() => {
     fetchDatas();
 }, [])
-
-
-    const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "companies", imageDelete);
-        deleteStorageImage(imageDelete);
-    }
 
     return (
         <main className='flex items-center justify-center flex-col' >
@@ -95,8 +83,7 @@ useEffect(() => {
                                        
                                     >
                                         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
-                                            {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
-                                         
+                                        {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}    
                                     </SimpleGrid>
                                 </div>
                             </>
@@ -129,7 +116,7 @@ useEffect(() => {
                                             </td>
                                          
                                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
                                 }

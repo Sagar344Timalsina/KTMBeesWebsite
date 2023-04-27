@@ -26,7 +26,6 @@ const Hero = () => {
         setImgUrl(null);
     }
     const onSubmit = (data) => {
-        console.log("New data added", data);
         createServices(data, imgUrl, "herosection");
         // alert("Data inserted");
         reset();
@@ -38,9 +37,7 @@ const Hero = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("herosection");
-            console.log(fetchData);
             setTableData(fetchData);
-            console.log("Tablke", tableData);
         } catch (error) {
 
         }
@@ -48,10 +45,9 @@ const Hero = () => {
     }
 
      //Event handling of delete button
-     const handleDeleteButton = (id, image) => {
-        deleteFirebase(id, "herosection", image);
+     const handleDeleteButton =async (id, image) => {
+        await deleteFirebase(id, "herosection", image);
         fetchDatas();
-        console.log("URL id", id, image);
     }
     useEffect(() => {
         fetchDatas();
@@ -137,7 +133,7 @@ const Hero = () => {
                                 <tr>
                                     <th>Photo</th>
                                     <th>Heading</th>
-                                    <th>Text</th>
+                                    <th>Sub-Headin</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -157,7 +153,7 @@ const Hero = () => {
                                                 {ele.subheading}
                                             </td>
                                             <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
                                 }

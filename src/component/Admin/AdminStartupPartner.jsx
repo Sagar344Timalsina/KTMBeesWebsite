@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Image, SimpleGrid, Button, Table } from '@mantine/core';
+import { Text, SimpleGrid, Button, Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { FaEdit } from 'react-icons/fa';
@@ -31,9 +31,7 @@ const AdminStartupPartner = () => {
     })
 
     const onSubmit = (data) => {
-        console.log("New data added", data);
         createServices(data, imgUrl, "startup");
-        // alert("Data inserted");
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -42,20 +40,16 @@ const AdminStartupPartner = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("startup");
-            console.log(fetchData);
             setTableData(fetchData);
-            console.log("Tablke", tableData);
         } catch (error) {
-
+            console.error(error);
         }
-
     }
 
     //Event handling of delete button
-    const handleDeleteButton = (id, image) => {
-        deleteFirebase(id, "startup", image);
+    const handleDeleteButton = async(id, image) => {
+        await deleteFirebase(id, "startup", image);
         fetchDatas();
-        console.log("URL id", id, image);
     }
     useEffect(() => {
         fetchDatas();
@@ -123,7 +117,7 @@ const AdminStartupPartner = () => {
                                             </td>
                                          
                                             <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
                                 }

@@ -3,10 +3,8 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { CreatePartner } from '../../utils/Create'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { Display } from '../../utils/Display'
 import firebaseImageUpload from '../../utils/firebaseImageUpload'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 import createServices from '../../utils/createServices'
@@ -35,8 +33,8 @@ const AdminPartner = () => {
         setImageUrl(null);
     }
 
-    const handleDeleteButton = (id, imageDelete) => {
-        deleteFirebase(id, "partner", imageDelete);
+    const handleDeleteButton = async (id, imageDelete) => {
+        await deleteFirebase(id, "partner", imageDelete);
         fetchDatas();
     }
     const handleImageDelete = () => {
@@ -46,7 +44,6 @@ const AdminPartner = () => {
     async function fetchDatas() {
         try {
             const fetchData = await DisplayData("partner");
-            console.log(fetchData);
             setDisplay(fetchData);
         } catch (error) {
 
@@ -162,7 +159,7 @@ const AdminPartner = () => {
                                 <td className='w-96'>{data.description}</td>
                                 <td className='w-56'><img src={data.image} alt="Partners" className='w-24 h-24 rounded-full'></img></td>
                                 <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>

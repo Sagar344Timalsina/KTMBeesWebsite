@@ -9,7 +9,7 @@ import { MdOutlineDeleteOutline } from 'react-icons/md'
 import createServices from '../../utils/createServices';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import { useEffect } from 'react';
-import { Display } from '../../utils/Display';
+import DisplayData from '../../utils/DisplayData';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
@@ -30,7 +30,6 @@ const AdminServices = () => {
 
     const onSubmit = (data) => {
         createServices(data, imgUrl, "services");
-        alert("Data inserted");
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -38,18 +37,16 @@ const AdminServices = () => {
     //Fetching data from Displaydata.js Page
     async function fetchDatas() {
         try {
-            await Display("services")
-            .then((data)=>{
-                setTableData(data);
-            })
+            const data=await DisplayData("services");
+            setTableData(data);  
         } catch (error) {
             console.error(error);
         }
     }
 
     //Event handling of delete button
-    const handleDeleteButton = (id, image) => {
-        deleteFirebase(id, "services", image);
+    const handleDeleteButton = async(id, image) => {
+        await deleteFirebase(id, "services", image);
         fetchDatas();
         reset();
     }
@@ -83,7 +80,7 @@ const AdminServices = () => {
                                             breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
                                             className='pt-6'
                                         >
-                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
+                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Upload' /> : null}
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
                                         </SimpleGrid>
                                     </div>
@@ -154,7 +151,7 @@ const AdminServices = () => {
                                                 {ele.text}
                                             </td>
                                             <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.imageUrl)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
                                 }
