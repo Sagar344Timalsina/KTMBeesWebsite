@@ -9,10 +9,11 @@ const createServices = async (data, url, collect) => {
         const servicesCollection = collection(db, collect);
             delete data.image;
             delete data.imageUrl;
-            console.log({...data});
-
-                await addDoc(servicesCollection, { ...data,imageUrl:url });
-        notifications.show({
+            if(url===null)
+                await addDoc(servicesCollection, { ...data });
+            else
+                await addDoc(servicesCollection, { ...data,image:url });
+            notifications.show({
             title: 'Create',
             message: 'New Data has been inserted',
             color: 'white',
