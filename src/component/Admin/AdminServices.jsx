@@ -10,10 +10,14 @@ import createServices from '../../utils/createServices';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';
 import { useEffect } from 'react';
 import DisplayData from '../../utils/DisplayData';
+import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 
 const AdminServices = () => {
     const [imgUrl, setImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+    const [id, setId] = useState();
+
 
     const handleImageDelete = () => {
         deleteStorageImage(imgUrl);
@@ -29,7 +33,7 @@ const AdminServices = () => {
     });
 
     const onSubmit = (data) => {
-        createServices(data, imgUrl, "services");
+        { isEdit === false ? createServices(data, imgUrl, "services") : handleUpdate(data, id); };
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -42,6 +46,24 @@ const AdminServices = () => {
         } catch (error) {
             console.error(error);
         }
+    }
+       //handle update in firebase
+       const handleUpdate = (data, id) => {
+        UpdateData(data, id, "services");
+        fetchDatas();
+    }
+
+    //Handle edit/update function
+    const handleEditButton = async (id) => {
+        setId(id);
+        setIsEdit(true);
+        const res = await getIndividualData(id,"services");
+        setImgUrl(res.image);
+        const {headingtitle,image,text}=res;
+        setValue("headingtitle",headingtitle);
+        setValue("text",text);
+        deleteStorageImage(image);
+        console.log(res);
     }
 
     //Event handling of delete button
@@ -119,11 +141,13 @@ const AdminServices = () => {
                             </Controller>
                             <p className='text-[red] px-3 font-[600] '>{errors.text?.message}</p>
                         </div>
-                        <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+              
                     </div>
                 </form>
             </section>
-            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
+            <section className='bg-light_gray w-[80%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
                     <div >
                         <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
@@ -150,7 +174,7 @@ const AdminServices = () => {
                                             <td>
                                                 {ele.text}
                                             </td>
-                                            <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                            <td className='w-36'><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
                                             <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))

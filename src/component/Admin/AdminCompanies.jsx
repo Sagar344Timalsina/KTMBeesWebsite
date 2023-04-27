@@ -9,11 +9,14 @@ import { MdOutlineDeleteOutline } from 'react-icons/md'
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
+import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 
 const AdminCompanies = () => {
    
     const [imgUrl, setImgUrl] = useState();
     const [display, setDisplay] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+    const [id, setId] = useState();
    
     const { handleSubmit, control, formState: { errors },setValue,reset } = useForm({
         defaultValues: {
@@ -28,7 +31,8 @@ const AdminCompanies = () => {
     setImgUrl(null);
 }
 const onSubmit = (data) => {
-    createServices(data, imgUrl, "companies");
+    // { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
+    
     reset();
     fetchDatas();
     setImgUrl(null);
@@ -51,6 +55,25 @@ async function fetchDatas() {
     await deleteFirebase(id, "companies", image);
     fetchDatas();
 }
+
+  //handle update in firebase
+  const handleUpdate = (data, id) => {
+    UpdateData(data, id, "companies");
+    fetchDatas();
+}
+
+//Handle edit/update function
+const handleEditButton = async (id) => {
+    setId(id);
+    setIsEdit(true);
+    const res = await getIndividualData(id,"companies");
+    setImgUrl(res.image);
+    const {image}=res;
+   
+    // deleteStorageImage(image);
+    console.log(res);
+}
+
 useEffect(() => {
     fetchDatas();
 }, [])
@@ -80,7 +103,7 @@ useEffect(() => {
                                     <SimpleGrid
                                         cols={4}
                                         breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
-                                       
+                                       className='p-5 flex'
                                     >
                                         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
                                         {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}    
@@ -92,10 +115,12 @@ useEffect(() => {
                         </Controller>
                     </div>
                     <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
-                    <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                    {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+              
                 </form>
             </section>
-            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
+            <section className='bg-light_gray w-[80%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
                     <div >
                         <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
@@ -115,7 +140,7 @@ useEffect(() => {
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
                                             </td>
                                          
-                                                <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                                <td className='w-36'><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
                                                 <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))

@@ -3,10 +3,10 @@ import { db } from "../config/firebase"
 import { notifications } from "@mantine/notifications";
 
 
-const UpdateData = async(data,id) => {
+const UpdateData = async(data,id,coll) => {
 try {
     console.log(data,id);
-    const docRef= doc(db,"startup",id);
+    const docRef= doc(db,coll,id);
     const res=await setDoc(docRef,data,{merge:true});
 if(res){
     notifications.show(
@@ -29,10 +29,11 @@ if(res){
 }
 }
 
-export const getIndividualData=async(id)=>{
+export const getIndividualData=async(id,coll)=>{
 try {
-    const docRef= doc(db,"startup",id);
+    const docRef= doc(db,coll,id);
     const res=await getDoc(docRef);
+    console.log("response",res.data());
    return(res.data());
 } catch (error) {
     console.log(error)

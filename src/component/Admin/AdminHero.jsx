@@ -8,10 +8,12 @@ import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
+import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 const Hero = () => {
     const [imgUrl, setImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
-
+    const [isEdit, setIsEdit] = useState(false);
+    const [id, setId] = useState();
    
     const { handleSubmit, control, formState: { errors },setValue,reset } = useForm({
         defaultValues: {
@@ -26,8 +28,7 @@ const Hero = () => {
         setImgUrl(null);
     }
     const onSubmit = (data) => {
-        createServices(data, imgUrl, "herosection");
-        // alert("Data inserted");
+        { isEdit === false ? createServices(data, imgUrl, "herosection") : handleUpdate(data, id); };
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -43,6 +44,26 @@ const Hero = () => {
         }
 
     }
+
+      //handle update in firebase
+      const handleUpdate = (data, id) => {
+        UpdateData(data, id, "herosection");
+        fetchDatas();
+    }
+
+    //Handle edit/update function
+    const handleEditButton = async (id) => {
+        setId(id);
+        setIsEdit(true);
+        const res = await getIndividualData(id,"herosection");
+        setImgUrl(res.image);
+        const {heading,image,subheading}=res;
+        setValue("heading",heading);
+        setValue("subheading",subheading);
+        deleteStorageImage(image);
+      
+    }
+
 
      //Event handling of delete button
      const handleDeleteButton =async (id, image) => {
@@ -121,11 +142,13 @@ const Hero = () => {
                             </Controller>
                         </div>
                         <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
-                        <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+              
                     </div>
                 </form>
             </section>
-            <section className='bg-light_gray w-[100%] shadow-2xl m-9'>
+            <section className='bg-light_gray w-[80%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
                     <div >
                     <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
@@ -152,7 +175,7 @@ const Hero = () => {
                                             <td>
                                                 {ele.subheading}
                                             </td>
-                                            <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
+                                            <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
                                             <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
