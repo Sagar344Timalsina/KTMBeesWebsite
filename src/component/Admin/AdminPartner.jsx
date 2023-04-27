@@ -9,11 +9,14 @@ import firebaseImageUpload from '../../utils/firebaseImageUpload'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 import createServices from '../../utils/createServices'
 import DisplayData from '../../utils/DisplayData'
+import UpdateData, { getIndividualData } from '../../utils/UpdateData'
 
 
 const AdminPartner = () => {
     const [display, setDisplay] = useState([]);
     const [imageUrl, setImageUrl] = useState(null);
+    const [isEdit, setIsEdit] = useState(false);
+    const [id, setId] = useState();
 
     const { handleSubmit, formState: { errors }, control,reset,setValue } = useForm({
         defaultValues: {
@@ -25,9 +28,7 @@ const AdminPartner = () => {
     })
   
     const onSubmit = (data) => {
-        console.log("New data added", data);
-        createServices(data, imageUrl, "partner");
-        // alert("Data inserted");
+        { isEdit === false ? createServices(data, imageUrl, "partner") : handleUpdate(data, id); };
         reset();
         fetchDatas();
         setImageUrl(null);
@@ -50,6 +51,26 @@ const AdminPartner = () => {
         }
 
     }
+  //handle update in firebase
+  const handleUpdate = (data, id) => {
+    UpdateData(data, id, "partner");
+    fetchDatas();
+}
+
+//Handle edit/update function
+const handleEditButton = async (id) => {
+    setId(id);
+    setIsEdit(true);
+    const res = await getIndividualData(id,"partner");
+    setImageUrl(res.image);
+    const {heading,description,image,subheading}=res;
+    setValue("heading",heading);
+    setValue("description",description);
+    setValue("subheading",subheading);
+
+    deleteStorageImage(image);
+    console.log(res);
+}
 
     useEffect(() => {
        fetchDatas();
@@ -124,10 +145,10 @@ const AdminPartner = () => {
                                         <SimpleGrid
                                             cols={4}
                                             breakpoints={[{ maxWidth: 'md', cols: 1 }]}
-                                            className='mt-6'
+                                            className='mt-6 mb-5'
                                         >
                                             {imageUrl && imageUrl !== null ? <img src={imageUrl} alt="Uploaded Images" /> : null}
-                                            {imageUrl && imageUrl !== null ? <Button className=' h-9 rounded-full  bg-yellow text-white hover:bg-red' onClick={handleImageDelete}>REMOVE</Button> : null}
+                                            {imageUrl && imageUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
                                         </SimpleGrid>
                                     </>}
                             >
@@ -135,7 +156,9 @@ const AdminPartner = () => {
                             </Controller>
 
                         </div>
-                        <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl mt-5'>CREATE</Button>
+                        {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+              
                     </div>
                 </form>
             </section>
@@ -154,12 +177,12 @@ const AdminPartner = () => {
                     <tbody >
                         {display && display.map((data) => (
                             <tr key={data.id}>
-                                <td className='w-44'>{data.heading}</td>
-                                <td className='w-44'>{data.subheading}</td>
-                                <td className='w-96'>{data.description}</td>
-                                <td className='w-56'><img src={data.image} alt="Partners" className='w-24 h-24 rounded-full'></img></td>
-                                <td className='w-36'><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td >{data.heading}</td>
+                                <td >{data.subheading}</td>
+                                <td>{data.description}</td>
+                                <td ><img src={data.image} alt="Partners" className='w-24 h-24 rounded-full object-contain'></img></td>
+                                <td ><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(data.id)}><FaEdit />Update</Button></td>
+                                <td ><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}
                     </tbody>
