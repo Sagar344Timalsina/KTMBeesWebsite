@@ -37,15 +37,15 @@ const AdminServices = () => {
     //Fetching data from Displaydata.js Page
     async function fetchDatas() {
         try {
-            const data=await DisplayData("services");
-            setTableData(data);  
+            const data = await DisplayData("services");
+            setTableData(data);
         } catch (error) {
             console.error(error);
         }
     }
 
     //Event handling of delete button
-    const handleDeleteButton = async(id, image) => {
+    const handleDeleteButton = async (id, image) => {
         await deleteFirebase(id, "services", image);
         fetchDatas();
         reset();
