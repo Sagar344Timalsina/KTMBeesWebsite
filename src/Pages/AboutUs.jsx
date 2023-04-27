@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, Tabs } from '@mantine/core'
 import Navbar from '../component/Navbar'
 import { Footer } from '../component/Footer'
+import DisplayData from '../utils/DisplayData'
 
 const AboutUs = () => {
-  const contents = [
-    { id: 1, name: "Our Story", describe: "In addition, based on your idea or your preference we are ready to share the risk for your project. Reach out to us via WhatsApp or any other platform and let us assist you in your dream project.Do not hesitate to reach out to us cause this really could be project of your lifetime that is worth working at." },
-    { id: 2, name: "Team", describe: "In addition, based on your idea or your preference we are ready to share the risk for your project. Reach out to us via WhatsApp or any other platform and let us assist you in your dream project.Do not hesitate to reach out to us cause this really could be project of your lifetime that is worth working at." },
-    { id: 3, name: "Mission & Vision", describe: "In addition, based on your idea or your preference we are ready to share the risk for your project. Reach out to us via WhatsApp or any other platform and let us assist you in your dream project.Do not hesitate to reach out to us cause this really could be project of your lifetime that is worth working at." },
-
-  ]
-  const tabValues = [
-    { id: 1, name: "Our Story" },
-    { id: 2, name: "Team" },
-    { id: 3, name: "Mission & Vision" }
-  ]
+  const [display,setDisplay]=useState([]);
+  const fetchData= async() =>{
+      const data=await DisplayData("about");
+      setDisplay(data);
+    }
+    useEffect(()=>{
+      fetchData();
+    },)
   return (
     <>
       <main className='bg-light_gray'>
@@ -36,16 +34,15 @@ const AboutUs = () => {
             },
           })}>
             <Tabs.List className='mt-[3.2rem] justify-center w-fit mx-auto font-bold ' >
-              {tabValues.map((tabValue) => (
-                <Tabs.Tab key={tabValue.id} value={tabValue.name} color="yellow" className=' p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '>{tabValue.name}</Tabs.Tab>
-
+              {display.map((tabValue) => (
+                <Tabs.Tab key={tabValue.id} value={tabValue.title} color="yellow" className=' p-[20px] w-auto mr-[45px] h-[23px] font-sans  text-[20px] leading-[23px] tracking-[0.047rem] '>{tabValue.title}</Tabs.Tab>
               ))}
             </Tabs.List>
-            {contents.map((content) => (
-              <Tabs.Panel key={content.id} value={content.name} pt='xl' className='mb-3 w-[60%] mx-auto' >
+            {display.map((content) => (
+              <Tabs.Panel key={content.id} value={content.title} pt='xl' className='mb-3 w-[60%] mx-auto' >
                 <Text className=' w-auto h-7 font-sans font-bold text-2xl leading-7 text-dark_gray'>{content.name}</Text>
-                <Text className=' mt-3 w-[61rem] h-28 font-sans font-normal text-lg leading-7 tracking-[0.047rem] text-dark_gray'>Our combined experience of over 40 years' diligent team is more than happy to help you make your dream come true.
-                  {content.describe}
+                <Text className=' mt-3 w-[61rem] h-28 font-sans font-normal text-lg leading-7 text-justify tracking-[0.047rem] text-dark_gray'>Our combined experience of over 40 years' diligent team is more than happy to help you make your dream come true.
+                  {content.description}
                 </Text>
               </Tabs.Panel>
             )
