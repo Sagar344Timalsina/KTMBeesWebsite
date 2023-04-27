@@ -17,8 +17,6 @@ const AdminCompanies = () => {
    
     const { handleSubmit, control, formState: { errors },setValue,reset } = useForm({
         defaultValues: {
-            title1: "",
-            title2: "",
             image: "",
         }
     })
@@ -62,7 +60,7 @@ useEffect(() => {
                 <form onSubmit={handleSubmit(onSubmit)} className='px-5 py-7 border-0 '>
                     <div className='mb-5'>
                         <Controller
-                            name='bgImage'
+                            name='image'
                             control={control}
                             rules={
                                 { required: "Image reqired" }
