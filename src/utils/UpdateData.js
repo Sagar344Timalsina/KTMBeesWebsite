@@ -8,7 +8,7 @@ try {
     console.log(data,id);
     const docRef= doc(db,coll,id);
     const res=await setDoc(docRef,data,{merge:true});
-if(res){
+
     notifications.show(
         {
             title: 'Data Updated',
@@ -18,7 +18,7 @@ if(res){
             message: ' Data has been Updated Successfully!!!!',
           }
     )
-}
+
 } catch (error) {
     notifications.show({
         title: 'Error',
