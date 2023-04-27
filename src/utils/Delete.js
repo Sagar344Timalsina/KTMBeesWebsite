@@ -14,7 +14,6 @@ export const deleteStorageImage = async(url) => {
 
 
 export const deleteFirebase = async (id, collection, imgUrl) => {
-
   try {
     const docRef = doc(db, collection, id);
     await deleteDoc(docRef);
