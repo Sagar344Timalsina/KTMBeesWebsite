@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Text, Grid } from '@mantine/core'
 import Giz from "../assets/images/Giz.png"
 import Precise from "../assets/images/Precise.png"
@@ -10,28 +10,27 @@ import Dami from "../assets/images/Dami.png"
 import AWS2 from "../assets/images/AWS2.png"
 import BitSquare from "../assets/images/BitSquare.png"
 import CityTour from "../assets/images/CityTour.png"
+import DisplayData from '../utils/DisplayData'
 
 const Companies = () => {
-    const companyImages = [
-        { id: 1, image: Giz },
-        { id: 2, image: Precise },
-        { id: 3, image: SSEE },
-        { id: 4, image: Collaborate },
-        { id: 5, image: QMED },
-        { id: 6, image: ABF }
-    ]
-    const partners = [
-        { id: 1, image: Dami },
-        { id: 2, image: AWS2 },
-        { id: 3, image: BitSquare },
-        { id: 4, image: CityTour },
-    ]
+    const [companiesDisplay,setCompaniesDisplay] =useState([]);
+    const fetchData= async () =>{
+        const companyData=await DisplayData("companies");
+        setCompaniesDisplay(companyData);
+        const companyData=await DisplayData("companies");
+        setCompaniesDisplay(companyData);
+
+    }
+    useEffect(()=>{
+        fetchData();
+    }
+,[])
     return (
         <div className='bg-light_gray'>
             <div>
                 <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Companies that trusted us</Text>
                 <Grid className='flex items-start justify-between gap-16 order-1 mx-56 mt-6 pb-12'>
-                    {companyImages.map((data) => (
+                    {display.map((data) => (
                         <Grid.Col span={3} key={data.id} className='flex justify-center'>
                             <img src={data.image} alt='Company' ></img>
                         </Grid.Col>
@@ -41,7 +40,7 @@ const Companies = () => {
             <div>
                 <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Startup Partners</Text>
                 <Grid className='flex items-center justify-between mx-56 pb-12'>
-                    {partners.map((data) => (
+                    {d.map((data) => (
                         <Grid.Col md={2} key={data.id}>
                             <img src={data.image} alt='Partners' className='flex justify-center'></img>
                         </Grid.Col>
