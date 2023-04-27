@@ -6,26 +6,45 @@ import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { Display } from '../../utils/Display'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
+import createServices from '../../utils/createServices';
+import DisplayData from '../../utils/DisplayData';
 
 const AdminAbout = () => {
-    const { handleSubmit, formState: { errors }, control } = useForm({
+    const [tableData, setTableData] = useState([]);
+    const { handleSubmit, formState: { errors }, control, reset } = useForm({
         defaultValues: {
             title: "",
             description: ""
         }
     })
+    
     const onSubmit = (data) => {
-        createAbout(data);
+        createServices(data, null, "about");
+        // alert("Data inserted");
+        reset();
+        fetchDatas();
     }
-    const [display, setDisplay] = useState([]);
+
+    async function fetchDatas() {
+        try {
+            const fetchData = await DisplayData("about");
+            console.log(fetchData);
+            setTableData(fetchData);
+            console.log("Tablke", tableData);
+        } catch (error) {
+
+        }
+    }
+    
     useEffect(() => {
-        Display("about").then((data) => { setDisplay(data) }).catch((error) => { console.error(error) });
+            fetchDatas();
     }, []);
 
-    const deleteRecord = (id, imageDelete) => {
-        deleteFirebase(id, "about", imageDelete);
-        deleteStorageImage(imageDelete);
+    const handleDeleteButton = (id, image) => {
+        deleteFirebase(id, "about", image);
+        fetchDatas();
     }
+
     const onError = () => {
         console.log("Error has occured", errors);
     }
@@ -73,13 +92,13 @@ const AdminAbout = () => {
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    {display && display.map((data) => (
+                    {tableData && tableData.map((data) => (
                         <tbody key={data.id}>
                             <tr>
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
                                 <td><Button className='bg-yellow font-sans text-black'><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black' onClick={() => deleteRecord(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}

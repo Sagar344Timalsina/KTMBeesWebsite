@@ -28,9 +28,6 @@ const AdminServices = () => {
         }
     });
 
-
-
-
     const onSubmit = (data) => {
         console.log("New data added", data);
         createServices(data, imgUrl, "services");

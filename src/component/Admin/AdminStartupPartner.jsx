@@ -102,15 +102,15 @@ const AdminStartupPartner = () => {
                     <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                 </form>
             </section>
-            <section>
+            <section className='bg-light_gray w-[60%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
-                    <div className='mt-12'>
-                        <Table horizontalSpacing="md" verticalSpacing="sm" fontSize="lg">
+                    <div >
+                        <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
                             <thead>
                                 <tr>
-                                    <td>Photo</td>
-                                    <td>Edit</td>
-                                    <td>Delete</td>
+                                    <th>Photo</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,11 +119,11 @@ const AdminStartupPartner = () => {
                                     tableData.map((ele) => (
                                         <tr key={ele.id}>
                                             <td>
-                                                <img className='w-36 h-36 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
+                                                <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Image name" />
                                             </td>
-
+                                         
                                             <td>
-                                                <button>Edit</button>
+                                                <button >Edit</button>
                                             </td>
                                             <td>
                                                 <button className='bg-yellow w-32 h-12 rounded-xl' onClick={() => handleDeleteButton(ele.id, ele.image)}>Delete</button>
@@ -131,8 +131,6 @@ const AdminStartupPartner = () => {
                                         </tr>
                                     ))
                                 }
-
-
                             </tbody>
                         </Table>
                     </div>
