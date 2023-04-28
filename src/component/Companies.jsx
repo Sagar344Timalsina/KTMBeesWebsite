@@ -28,7 +28,7 @@ const Companies = () => {
                 <Grid className='flex items-start justify-between gap-16 order-1 mx-56 mt-6 pb-12'>
                     {company.map((data) => (
                         <Grid.Col span={3} key={data.id} className='flex justify-center'>
-                            <Link to={data.url}><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
+                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
                         </Grid.Col>
                     ))}
                 </Grid>
@@ -38,7 +38,7 @@ const Companies = () => {
                 <Grid className='flex items-center justify-between mx-56 pb-12'>
                     {startup.map((data) => (
                         <Grid.Col md={2} key={data.id}>
-                            <Link to={data.url}><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
+                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
                         </Grid.Col>
                     ))}
                 </Grid>
