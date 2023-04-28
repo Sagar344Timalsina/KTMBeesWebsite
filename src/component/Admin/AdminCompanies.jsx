@@ -155,6 +155,6 @@ return (
         </section>
     </ main >
 )
-}
+
 
 export default AdminCompanies
