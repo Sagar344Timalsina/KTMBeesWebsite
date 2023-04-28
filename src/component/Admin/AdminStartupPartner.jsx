@@ -65,7 +65,7 @@ const AdminStartupPartner = () => {
     const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
-        const res = await getIndividualData(id);
+        const res = await getIndividualData(id,"startup");
         setImgUrl(res.image);
 
         deleteStorageImage(res.image);

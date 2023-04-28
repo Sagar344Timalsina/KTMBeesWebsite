@@ -29,7 +29,7 @@ const AdminCompanies = () => {
     setImgUrl(null);
 }
 const onSubmit = (data) => {
-    // { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
+    { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
     
     reset();
     fetchDatas();
@@ -68,7 +68,7 @@ const handleEditButton = async (id) => {
     setImgUrl(res.image);
     const {image}=res;
    
-    // deleteStorageImage(image);
+    deleteStorageImage(image);
     console.log(res);
 }
 
@@ -100,7 +100,7 @@ useEffect(() => {
 
                                     <SimpleGrid
                                         cols={4}
-                                        breakpoints={[{ maxWidth: 'xl', cols: 1 }]}
+                                        breakpoints={[{ maxWidth: 'md', cols: 1 }]}
                                        className='p-5 flex'
                                     >
                                         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
