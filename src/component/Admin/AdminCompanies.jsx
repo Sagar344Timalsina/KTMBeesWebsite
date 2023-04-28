@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SimpleGrid, Button,Table } from '@mantine/core';
+import { Text, SimpleGrid, Button, Table } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
@@ -13,69 +13,70 @@ import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 import { Link } from 'react-router-dom';
 
 const AdminCompanies = () => {
-   
+
     const [imgUrl, setImgUrl] = useState();
     const [display, setDisplay] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState();
-   
-    const { handleSubmit, control, formState: { errors },setValue,reset } = useForm({
+
+    const { handleSubmit, control, formState: { errors }, setValue, reset } = useForm({
         defaultValues: {
             image: "",
         }
     })
-   //delete the data stored in storage 
-   const handleImageDelete = () => {
-    deleteStorageImage(imgUrl);
-    setImgUrl(null);
-}
-const onSubmit = (data) => {
-    { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
-    
-    reset();
-    fetchDatas();
-    setImgUrl(null);
-}
+    //delete the data stored in storage 
+    const handleImageDelete = () => {
+        deleteStorageImage(imgUrl);
+        setImgUrl(null);
+    }
+    const onSubmit = (data) => {
+        { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
 
-//fetching data from firebase
-async function fetchDatas() {
-    try {
-        const fetchData = await DisplayData("companies");
-        setDisplay(fetchData);
-      
-    } catch (error) {
+        reset();
+        fetchDatas();
+        setImgUrl(null);
+    }
+
+
+    //fetching data from firebase
+    async function fetchDatas() {
+        try {
+            const fetchData = await DisplayData("companies");
+            setDisplay(fetchData);
+
+        } catch (error) {
+
+        }
 
     }
 
-}
+    //Event handling of delete button
+    const handleDeleteButton = async (id, image) => {
+        await deleteFirebase(id, "companies", image);
+        fetchDatas();
+    }
 
- //Event handling of delete button
- const handleDeleteButton = async(id, image) => {
-    await deleteFirebase(id, "companies", image);
-    fetchDatas();
-}
+    //handle update in firebase
+    const handleUpdate = (data, id) => {
+        UpdateData(data, id, "companies");
+        fetchDatas();
+    }
 
-  //handle update in firebase
-  const handleUpdate = (data, id) => {
-    UpdateData(data, id, "companies");
-    fetchDatas();
-}
+    //Handle edit/update function
+    const handleEditButton = async (id) => {
+        setId(id);
+        setIsEdit(true);
+        const res = await getIndividualData(id, "companies");
+        setImgUrl(res.image);
+        const { image } = res;
 
-//Handle edit/update function
-const handleEditButton = async (id) => {
-    setId(id);
-    setIsEdit(true);
-    const res = await getIndividualData(id,"companies");
-    setImgUrl(res.image);
-    const {image}=res;
-   
-    deleteStorageImage(image);
-    console.log(res);
-}
+        deleteStorageImage(image);
+        console.log(res);
+    }
 
-useEffect(() => {
-    fetchDatas();
-}, [])
+    useEffect(() => {
+        fetchDatas();
+    }, [])
 
     return (
         <main className='flex items-center justify-center flex-col' >
@@ -91,21 +92,21 @@ useEffect(() => {
                             }
                             render={({ field }) => <>
                                 <div>
-                                        <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
-                                            const url = await firebaseImageUpload(setFilessss[0])
-                                            setImgUrl(url);
-                                            setValue("image", url);
-                                        }}>
-                                            <Text align="center">Drop images here</Text>
-                                        </Dropzone>
+                                    <Dropzone {...field} accept={IMAGE_MIME_TYPE} onDrop={async (setFilessss) => {
+                                        const url = await firebaseImageUpload(setFilessss[0])
+                                        setImgUrl(url);
+                                        setValue("image", url);
+                                    }}>
+                                        <Text align="center">Drop images here</Text>
+                                    </Dropzone>
 
                                     <SimpleGrid
                                         cols={4}
                                         breakpoints={[{ maxWidth: 'md', cols: 1 }]}
-                                       className='p-5 flex'
+                                        className='p-5 flex'
                                     >
                                         {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
-                                        {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}    
+                                        {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                     </SimpleGrid>
                                 </div>
                             </>
@@ -116,7 +117,7 @@ useEffect(() => {
                     <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
                     {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
                         : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
-              
+
                 </form>
             </section>
             <section className='bg-light_gray w-[80%] shadow-2xl m-9'>
@@ -138,9 +139,9 @@ useEffect(() => {
                                             <td> 
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
                                             </td>
-                                         
-                                                <td className='w-36'><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
-                                                <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
+
+                                            <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
+                                            <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))
                                 }
