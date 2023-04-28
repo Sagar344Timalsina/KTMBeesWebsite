@@ -66,7 +66,9 @@ const AdminStartupPartner = () => {
     const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
-        const res = await getIndividualData(id);
+        const res = await getIndividualData(id,"startup");
+        console.log("Responsive:::",res);
+        setImgUrl(res.image)
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
             console.log(key);

@@ -75,7 +75,7 @@ const AdminCompanies = () => {
             console.log(key);
         });
 
-        // deleteStorageImage(res.image);
+        deleteStorageImage(res.image);
 
     }
 
