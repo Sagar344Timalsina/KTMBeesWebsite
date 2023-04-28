@@ -64,8 +64,7 @@ const handleEditButton = async (id) => {
     const res = await getIndividualData(id,"partner");
     setImageUrl(res.image);
     Object.keys(res).forEach((key) => {
-        setValue(key, res[key]);
-      
+        setValue(key, res[key]);   
     });
 
     deleteStorageImage(res.image);
