@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import { TextInput, Textarea, Button, Table } from '@mantine/core'
 import { useForm, Controller } from 'react-hook-form'
-import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-import { deleteFirebase} from '../../utils/Delete'
+import { deleteFirebase } from '../../utils/Delete'
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
+import { FaEdit } from 'react-icons/fa'
 
 const AdminAbout = () => {
     const [tableData, setTableData] = useState([]);
-    const [isEdit,setIsEdit]=useState(false);
-    const [id,setId]=useState();
+    const [isEdit, setIsEdit] = useState(false);
+    const [id, setId] = useState();
 
-    const { handleSubmit, formState: { errors }, control, reset,setValue } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
             title: "",
             description: ""
         }
     })
-    
+
     const onSubmit = (data) => {
         isEdit===false?createServices(data, null, "about"):handleUpdate(data,id)
         reset();
         fetchDatas();
     }
     //handle update in firebase
-    const handleUpdate=(data,id)=>{
-        UpdateData(data,id,"about");
+    const handleUpdate = (data, id) => {
+        UpdateData(data, id, "about");
         fetchDatas();
     }
-    
+
     //Handle edit/update function
-    const handleEditButton=async(id)=>{
+    const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
         const res=await getIndividualData(id,"about");
@@ -51,12 +51,12 @@ const AdminAbout = () => {
         } catch (error) {
         }
     }
-    
+
     useEffect(() => {
-            fetchDatas();
+        fetchDatas();
     }, []);
 
-    const handleDeleteButton = async(id, image) => {
+    const handleDeleteButton = async (id, image) => {
         await deleteFirebase(id, "about", image);
         fetchDatas();
     }
@@ -94,8 +94,8 @@ const AdminAbout = () => {
                             </Controller>
                         </div>
                         <p className='text-[red] px-3 font-semibold '>{errors.description?.message}</p>
-                        {isEdit!==true? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
-                   : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+                        {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
+                            : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
                     </div>
                 </form>
             </section>
@@ -114,12 +114,12 @@ const AdminAbout = () => {
                             <tr>
                                 <td>{data.title}</td>
                                 <td>{data.description}</td>
-                                <td><Button className='bg-yellow font-sans text-black'  onClick={()=>handleEditButton(data.id)}><FaEdit />Update</Button></td>
+                                <td><Button className='bg-yellow font-sans text-black border-4 ' onClick={() => handleEditButton(data.id)}><FaEdit />Update</Button></td>
                                 <td><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
-                            </tbody>
-                        ))}
-                   
+                        </tbody>
+                    ))}
+
                 </Table>
             </section>
         </main >
