@@ -75,7 +75,7 @@ const AdminSidebar = () => {
             }
           </Navbar.Section>
           <Navbar.Section>
-            <Text className='text-xl font-sans flex items-center justify-center transition-all text-white  bg-gray h-12 hover:bg-yellow hover:cursor-pointer hover:scale-105 rounded-lg' onClick={logOut}>Logout</Text>
+            <Text className='text-xl font-sans flex items-center justify-center transition-all text-white  bg-yellow h-12 hover:bg-gray hover:cursor-pointer hover:scale-105 rounded-lg' onClick={logOut}>Logout</Text>
           </Navbar.Section>
         </Navbar>
       }
