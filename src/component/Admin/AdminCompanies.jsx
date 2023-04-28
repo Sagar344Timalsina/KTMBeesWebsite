@@ -20,6 +20,7 @@ const AdminCompanies = () => {
 
     const { handleSubmit, control, formState: { errors }, setValue, reset } = useForm({
         defaultValues: {
+            url: "",
             image: "",
         }
     })

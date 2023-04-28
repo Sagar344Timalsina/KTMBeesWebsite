@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Text, Grid } from '@mantine/core'
 import DisplayData from '../utils/DisplayData'
+import { Link } from 'react-router-dom';
 
 const Companies = () => {
     const [company, setCompany] = useState([]);
     const displayCompany = async () => {
+
         const listCompanies = await DisplayData("companies");
         setCompany(listCompanies);
     }
     const [startup, setStartup] = useState([]);
     const displayStartup = async () => {
+
         const listStartup = await DisplayData("startup");
         setStartup(listStartup);
     }
@@ -25,7 +28,7 @@ const Companies = () => {
                 <Grid className='flex items-start justify-between gap-16 order-1 mx-56 mt-6 pb-12'>
                     {company.map((data) => (
                         <Grid.Col span={3} key={data.id} className='flex justify-center'>
-                            <img src={data.image} alt='Company' ></img>
+                            <Link to={data.url}><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
                         </Grid.Col>
                     ))}
                 </Grid>
@@ -35,7 +38,7 @@ const Companies = () => {
                 <Grid className='flex items-center justify-between mx-56 pb-12'>
                     {startup.map((data) => (
                         <Grid.Col md={2} key={data.id}>
-                            <img src={data.image} alt='Partners' className='flex justify-center'></img>
+                            <Link to={data.url}><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
                         </Grid.Col>
                     ))}
                 </Grid>
