@@ -10,6 +10,7 @@ import firebaseImageUpload from '../../utils/firebaseImageUpload';
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
+import { Link } from 'react-router-dom';
 
 const AdminCompanies = () => {
    
@@ -134,7 +135,7 @@ useEffect(() => {
 
                                     display.map((ele) => (
                                         <tr key={ele.id}>
-                                            <td>
+                                            <td> 
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
                                             </td>
                                          

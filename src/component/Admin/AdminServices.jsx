@@ -33,7 +33,7 @@ const AdminServices = () => {
     });
 
     const onSubmit = (data) => {
-        { isEdit === false ? createServices(data, imgUrl, "services") : handleUpdate(data, id); };
+        isEdit === false ? createServices(data, imgUrl, "services") : handleUpdate(data, id); 
         reset();
         fetchDatas();
         setImgUrl(null);

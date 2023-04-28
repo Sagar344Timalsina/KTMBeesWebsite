@@ -8,7 +8,7 @@ try {
     console.log(data,id);
     const docRef= doc(db,coll,id);
     const res=await setDoc(docRef,data,{merge:true});
-
+    console.log(res);
     notifications.show(
         {
             title: 'Data Updated',
