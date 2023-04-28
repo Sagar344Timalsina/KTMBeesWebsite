@@ -36,10 +36,12 @@ const AdminAbout = () => {
         setId(id);
         setIsEdit(true);
         const res=await getIndividualData(id,"about");
-        const {description,title}=res;
-        setValue("title",title);
-        setValue("description",description);
-        console.log(res);
+        
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+            console.log(key);
+        });
+    
     }
 
     async function fetchDatas() {

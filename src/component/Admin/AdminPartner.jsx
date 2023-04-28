@@ -63,12 +63,12 @@ const handleEditButton = async (id) => {
     setIsEdit(true);
     const res = await getIndividualData(id,"partner");
     setImageUrl(res.image);
-    const {heading,description,image,subheading}=res;
-    setValue("heading",heading);
-    setValue("description",description);
-    setValue("subheading",subheading);
+    Object.keys(res).forEach((key) => {
+        setValue(key, res[key]);
+      
+    });
 
-    deleteStorageImage(image);
+    deleteStorageImage(res.image);
     console.log(res);
 }
 

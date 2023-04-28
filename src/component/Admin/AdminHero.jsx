@@ -57,10 +57,12 @@ const Hero = () => {
         setIsEdit(true);
         const res = await getIndividualData(id,"herosection");
         setImgUrl(res.image);
-        const {heading,image,subheading}=res;
-        setValue("heading",heading);
-        setValue("subheading",subheading);
-        deleteStorageImage(image);
+       
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+            console.log(key);
+        });
+        deleteStorageImage(res.image);
       
     }
 

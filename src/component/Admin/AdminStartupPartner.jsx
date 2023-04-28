@@ -66,11 +66,14 @@ const AdminStartupPartner = () => {
     const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
-        const res = await getIndividualData(id, "startup");
-        setImgUrl(res.image);
+        const res = await getIndividualData(id);
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+            console.log(key);
+        });
 
         deleteStorageImage(res.image);
-        console.log(res);
+        
     }
     useEffect(() => {
         fetchDatas();

@@ -59,11 +59,12 @@ const AdminServices = () => {
         setIsEdit(true);
         const res = await getIndividualData(id,"services");
         setImgUrl(res.image);
-        const {headingtitle,image,text}=res;
-        setValue("headingtitle",headingtitle);
-        setValue("text",text);
-        deleteStorageImage(image);
-        console.log(res);
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+            console.log(key);
+        });
+        deleteStorageImage(res.image);
+       
     }
 
     //Event handling of delete button
@@ -102,7 +103,7 @@ const AdminServices = () => {
                                             breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
                                             className='pt-6'
                                         >
-                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Upload' /> : null}
+                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} className='object-contain' alt='Upload' /> : null}
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>Delete</button> : null}
                                         </SimpleGrid>
                                     </div>

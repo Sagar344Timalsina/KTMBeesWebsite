@@ -59,6 +59,8 @@ const AdminCompanies = () => {
     //handle update in firebase
     const handleUpdate = (data, id) => {
         UpdateData(data, id, "companies");
+        // UpdateData(data, id, "companies");
+        console.log("Inside Update ",data, id);
         fetchDatas();
     }
 
@@ -68,10 +70,13 @@ const AdminCompanies = () => {
         setIsEdit(true);
         const res = await getIndividualData(id, "companies");
         setImgUrl(res.image);
-        const { image } = res;
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+            console.log(key);
+        });
 
-        deleteStorageImage(image);
-        console.log(res);
+        // deleteStorageImage(res.image);
+
     }
 
     useEffect(() => {
@@ -117,7 +122,7 @@ const AdminCompanies = () => {
                                         breakpoints={[{ maxWidth: 'md', cols: 1 }]}
                                         className='p-5 flex'
                                     >
-                                        {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
+                                        {imgUrl && imgUrl !== null ? <img src={imgUrl} className='object-contain' alt='upload' /> : null}
                                         {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                     </SimpleGrid>
                                 </div>
