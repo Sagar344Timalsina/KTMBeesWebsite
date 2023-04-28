@@ -13,6 +13,7 @@ import UpdateData, { getIndividualData } from '../../utils/UpdateData'
 
 
 const AdminPartner = () => {
+    const [preimgUrl, setPreImgUrl] = useState();
     const [display, setDisplay] = useState([]);
     const [imageUrl, setImageUrl] = useState(null);
     const [isEdit, setIsEdit] = useState(false);
@@ -54,6 +55,8 @@ const AdminPartner = () => {
   //handle update in firebase
   const handleUpdate = (data, id) => {
     UpdateData(data, id, "partner");
+    if(preimgUrl!==imageUrl)
+    deleteStorageImage(preimgUrl);
     fetchDatas();
 }
 
@@ -68,8 +71,8 @@ const handleEditButton = async (id) => {
       
     });
 
-    deleteStorageImage(res.image);
-    console.log(res);
+   
+    setPreImgUrl(res.image);
 }
 
     useEffect(() => {

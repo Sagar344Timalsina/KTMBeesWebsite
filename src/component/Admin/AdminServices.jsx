@@ -13,6 +13,7 @@ import DisplayData from '../../utils/DisplayData';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 
 const AdminServices = () => {
+    const [preimgUrl, setPreImgUrl] = useState();
     const [imgUrl, setImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
@@ -50,6 +51,8 @@ const AdminServices = () => {
        //handle update in firebase
        const handleUpdate = (data, id) => {
         UpdateData(data, id, "services");
+        if(preimgUrl!==imgUrl)
+        deleteStorageImage(preimgUrl);
         fetchDatas();
     }
 
@@ -63,7 +66,8 @@ const AdminServices = () => {
             setValue(key, res[key]);
             console.log(key);
         });
-        deleteStorageImage(res.image);
+        setPreImgUrl(res.image);
+
        
     }
 
