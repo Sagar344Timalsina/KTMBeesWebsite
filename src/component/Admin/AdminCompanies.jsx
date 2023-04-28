@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SimpleGrid, Button, Table } from '@mantine/core';
+import { Text, SimpleGrid, Button, Table, TextInput } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
@@ -21,6 +21,7 @@ const AdminCompanies = () => {
 
     const { handleSubmit, control, formState: { errors }, setValue, reset } = useForm({
         defaultValues: {
+            url:"",
             image: "",
         }
     })
@@ -30,8 +31,7 @@ const AdminCompanies = () => {
         setImgUrl(null);
     }
     const onSubmit = (data) => {
-        { isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); };
-
+        isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); 
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -83,6 +83,18 @@ const AdminCompanies = () => {
             <section className='text-4xl my-2 font-sans font-bold'>Companies that trusted us</section>
             <section className='bg-light_gray w-[60%] shadow-2xl'>
                 <form onSubmit={handleSubmit(onSubmit)} className='px-5 py-7 border-0 '>
+                <div className='mb-5'>
+                            <Controller
+                                control={control}
+                                name='url'
+                                rules={{
+                                    required: "Please fill up title"
+                                }}
+                                render={({ field }) => <TextInput control={control} {...field}  label="Image Url" placeholder='www.example.com' size='lg' />}
+                            >
+                            </Controller>
+                            <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
+                        </div>
                     <div className='mb-5'>
                         <Controller
                             name='image'
@@ -127,6 +139,7 @@ const AdminCompanies = () => {
                             <thead>
                                 <tr>
                                     <th>Photo</th>
+                                    <th>Image url</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -138,6 +151,9 @@ const AdminCompanies = () => {
                                         <tr key={ele.id}>
                                             <td> 
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
+                                            </td>
+                                            <td> 
+                                                {ele.url}
                                             </td>
 
                                             <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>

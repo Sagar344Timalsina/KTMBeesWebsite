@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SimpleGrid, Button, Table } from '@mantine/core';
+import { Text, SimpleGrid, Button, Table, TextInput } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { FaEdit } from 'react-icons/fa';
@@ -29,12 +29,13 @@ const AdminStartupPartner = () => {
 
     const { handleSubmit, control, formState: { errors }, reset, setValue } = useForm({
         defaultValues: {
+            url : "",
             image: "",
         }
     })
 
     const onSubmit = (data) => {
-        { isEdit === false ? createServices(data, imgUrl, "startup") : handleUpdate(data, id); };
+        isEdit === false ? createServices(data, imgUrl, "startup") : handleUpdate(data, id);
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -80,6 +81,18 @@ const AdminStartupPartner = () => {
             <section className='bg-light_gray w-[60%] shadow-2xl'>
                 <form onSubmit={handleSubmit(onSubmit)} className='px-5 py-7 border-0 '>
                     <div className='mb-5'>
+                    <div className='mb-5'>
+                            <Controller
+                                control={control}
+                                name='url'
+                                rules={{
+                                    required: "Please fill up title"
+                                }}
+                                render={({ field }) => <TextInput control={control} {...field}  label="Image Url" placeholder='www.example.com' size='lg' />}
+                            >
+                            </Controller>
+                            <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
+                        </div>
                         <Controller
                             name='image'
                             control={control}
@@ -126,6 +139,7 @@ const AdminStartupPartner = () => {
                             <thead>
                                 <tr>
                                     <th>Photo</th>
+                                    <th>Url</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -137,6 +151,9 @@ const AdminStartupPartner = () => {
                                         <tr key={ele.id}>
                                             <td>
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
+                                            </td>
+                                            <td>
+                                                {ele.url}
                                             </td>
 
                                             <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
