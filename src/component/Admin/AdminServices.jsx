@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { TextInput, Button, SimpleGrid, Text, Table } from '@mantine/core'
 import { useForm, Controller } from 'react-hook-form'
-import { notifications } from '@mantine/notifications';
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 import { FaEdit } from 'react-icons/fa';

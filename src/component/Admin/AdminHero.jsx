@@ -29,7 +29,7 @@ const Hero = () => {
         setImgUrl(null);
     }
     const onSubmit = (data) => {
-        { isEdit === false ? createServices(data, imgUrl, "herosection") : handleUpdate(data, id); };
+        isEdit === false ? createServices(data, imgUrl, "herosection") : handleUpdate(data, id);
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -137,7 +137,7 @@ const Hero = () => {
                                             breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
                                             className='pt-6'
                                         >
-                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='Image' /> : null}
+                                            {imgUrl && imgUrl !== null ? <img src={imgUrl} alt='upload' /> : null}
                                             {imgUrl && imgUrl !== null ? <button className='w-16 h-9 rounded-lg  bg-dark_gray text-white' onClick={handleImageDelete}>delete</button> : null}
                                         
                                         </SimpleGrid>

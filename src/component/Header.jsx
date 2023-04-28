@@ -1,6 +1,5 @@
 import { Button } from '@mantine/core';
 import React, { useEffect, useState } from 'react';
-import Bees from '../assets/images/hero.png';
 import DisplayData from '../utils/DisplayData';
 
 const Header = () => {

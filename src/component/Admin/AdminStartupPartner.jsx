@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, SimpleGrid, Button, Table, TextInput } from '@mantine/core';
 import { useForm, Controller } from "react-hook-form";
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { Dropzone } from '@mantine/dropzone';
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete';

@@ -21,7 +21,7 @@ const AdminAbout = () => {
     })
     
     const onSubmit = (data) => {
-        {isEdit===false?createServices(data, null, "about"):handleUpdate(data,id)}
+        isEdit===false?createServices(data, null, "about"):handleUpdate(data,id)
         reset();
         fetchDatas();
     }

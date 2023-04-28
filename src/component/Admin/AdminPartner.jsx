@@ -1,4 +1,4 @@
-import { TextInput, Button, Textarea, Text, Image, SimpleGrid, Table } from '@mantine/core'
+import { TextInput, Button, Textarea, Text, SimpleGrid, Table } from '@mantine/core'
 import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone'
 import { MdAddPhotoAlternate } from 'react-icons/md'
 import React, { useState, useEffect } from 'react'
@@ -29,7 +29,7 @@ const AdminPartner = () => {
     })
   
     const onSubmit = (data) => {
-        { isEdit === false ? createServices(data, imageUrl, "partner") : handleUpdate(data, id); };
+        isEdit === false ? createServices(data, imageUrl, "partner") : handleUpdate(data, id);
         reset();
         fetchDatas();
         setImageUrl(null);
