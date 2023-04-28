@@ -29,7 +29,7 @@ const AdminStartupPartner = () => {
 
     const { handleSubmit, control, formState: { errors }, reset, setValue } = useForm({
         defaultValues: {
-            url : "",
+            url: "",
             image: "",
         }
     })
@@ -68,6 +68,9 @@ const AdminStartupPartner = () => {
         setIsEdit(true);
         const res = await getIndividualData(id, "startup");
         setImgUrl(res.image);
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+        })
 
         deleteStorageImage(res.image);
         console.log(res);
@@ -81,14 +84,14 @@ const AdminStartupPartner = () => {
             <section className='bg-light_gray w-[60%] shadow-2xl'>
                 <form onSubmit={handleSubmit(onSubmit)} className='px-5 py-7 border-0 '>
                     <div className='mb-5'>
-                    <div className='mb-5'>
+                        <div className='mb-5'>
                             <Controller
                                 control={control}
                                 name='url'
                                 rules={{
                                     required: "Please fill up title"
                                 }}
-                                render={({ field }) => <TextInput control={control} {...field}  label="Image Url" placeholder='www.example.com' size='lg' />}
+                                render={({ field }) => <TextInput control={control} {...field} label="Image Url" placeholder='www.example.com' size='lg' />}
                             >
                             </Controller>
                             <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
@@ -135,7 +138,7 @@ const AdminStartupPartner = () => {
             <section className='bg-light_gray w-[80%] shadow-2xl m-9'>
                 <div className='flex flex-col justify-center'>
                     <div >
-                        <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7' striped withColumnBorders>
+                        <Table horizontalSpacing="xl" verticalSpacing="lg" className='p-7 ' striped withColumnBorders>
                             <thead>
                                 <tr>
                                     <th>Photo</th>

@@ -48,7 +48,7 @@ const AdminSidebar = () => {
       asideOffsetBreakpoint="sm"
 
       header={
-        <Header height={{ base: 50, md: 70 }} p="md">
+        <Header height={{ base: 50, md: 70 }} p="md" className='bg-black m-0'>
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }} className='text-4xl'>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
@@ -65,12 +65,12 @@ const AdminSidebar = () => {
         </Header>
       }
       navbar={
-        <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
+        <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }} className='bg-black text-white'>
 
-          <Navbar.Section grow mt="sm" className='text-xl flex flex-col  '>
+          <Navbar.Section grow mt="sm" className='text-xl flex flex-col '>
             {
               navBar.map((nav) => (
-                <Text key={nav.id} component={Link} variant='link' to={nav.to} className='px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer '>{nav.text}</Text>
+                <Text key={nav.id} component={Link} variant='link' to={nav.to} className='navbar px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer ' >{nav.text}</Text>
               ))
             }
           </Navbar.Section>
