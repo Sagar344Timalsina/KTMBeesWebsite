@@ -10,13 +10,11 @@ import firebaseImageUpload from '../../utils/firebaseImageUpload';
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
-import { Link } from 'react-router-dom';
 
 const AdminCompanies = () => {
 
     const [imgUrl, setImgUrl] = useState();
     const [preimgUrl, setPreImgUrl] = useState();
-
     const [display, setDisplay] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState();
