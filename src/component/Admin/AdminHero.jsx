@@ -11,6 +11,7 @@ import { MdOutlineDeleteOutline } from 'react-icons/md';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 const Hero = () => {
     const [imgUrl, setImgUrl] = useState();
+    const [preimgUrl, setPreImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState();
@@ -48,6 +49,9 @@ const Hero = () => {
       //handle update in firebase
       const handleUpdate = (data, id) => {
         UpdateData(data, id, "herosection");
+         if(preimgUrl!==imgUrl)
+         deleteStorageImage(preimgUrl);
+
         fetchDatas();
     }
 
@@ -62,7 +66,7 @@ const Hero = () => {
             setValue(key, res[key]);
             console.log(key);
         });
-        deleteStorageImage(res.image);
+         setPreImgUrl(res.image);
       
     }
 

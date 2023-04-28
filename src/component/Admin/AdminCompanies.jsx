@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 const AdminCompanies = () => {
 
     const [imgUrl, setImgUrl] = useState();
+    const [preimgUrl, setPreImgUrl] = useState();
+
     const [display, setDisplay] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState();
@@ -59,7 +61,9 @@ const AdminCompanies = () => {
     //handle update in firebase
     const handleUpdate = (data, id) => {
         UpdateData(data, id, "companies");
-        // UpdateData(data, id, "companies");
+      if(preimgUrl!==imgUrl)
+         deleteStorageImage(preimgUrl);
+
         console.log("Inside Update ",data, id);
         fetchDatas();
     }
@@ -75,7 +79,7 @@ const AdminCompanies = () => {
             console.log(key);
         });
 
-        deleteStorageImage(res.image);
+        setPreImgUrl(res.image);
 
     }
 

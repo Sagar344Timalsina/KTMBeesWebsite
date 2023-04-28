@@ -11,6 +11,7 @@ import DisplayData from '../../utils/DisplayData';
 import UpdateData, { getIndividualData } from '../../utils/UpdateData';
 
 const AdminStartupPartner = () => {
+    const [preimgUrl, setPreImgUrl] = useState();
     const [imgUrl, setImgUrl] = useState();
     const [tableData, setTableData] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
@@ -59,6 +60,10 @@ const AdminStartupPartner = () => {
     //handle update in firebase
     const handleUpdate = (data, id) => {
         UpdateData(data, id, "startup");
+        if(preimgUrl!==imgUrl)
+        deleteStorageImage(preimgUrl);
+
+        // deleteStorageImage(imgUrl);
         fetchDatas();
     }
 
@@ -74,7 +79,7 @@ const AdminStartupPartner = () => {
             console.log(key);
         });
 
-        deleteStorageImage(res.image);
+        setPreImgUrl(res.image);
         
     }
     useEffect(() => {
@@ -110,6 +115,7 @@ const AdminStartupPartner = () => {
                                     onDrop={async (setImage) => {
 
                                         const url = await firebaseImageUpload(setImage[0]);
+                                        deleteStorageImage(imgUrl);
                                         setImgUrl(url);
                                         setValue("image", url)
 
