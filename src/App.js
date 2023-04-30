@@ -13,10 +13,14 @@ import AdminPartner from './component/Admin/AdminPartner';
 import Companies from './component/Admin/AdminCompanies';
 import Startup from './component/Admin/AdminStartupPartner';
 import AdminServices from './component/Admin/AdminServices';
+import ProtectedRoute from './ProtectedRoute';
+import AuthProvider from './Auth';
 
 function App() {
-  return (
+  
 
+  return (
+    <AuthProvider>
     <MantineProvider
       theme={{
         colors: {
@@ -29,16 +33,17 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path='/admin' element={<AdminSidebar />} >
+      <Route element={<ProtectedRoute/>} >
+        <Route path='/admin' element={<AdminSidebar />} >
             <Route path='ourProjects' element={<AdminOurProjects />} />
             <Route path='partner' element={<AdminPartner />} />
             <Route path='about' element={<AdminAbout />} />
             <Route path='hero' element={<Hero />} />
             <Route path='companies' element={<Companies />} />
             <Route path='startup' element={<Startup />} />
-            <Route path='services' element={<AdminServices />} />
-
-          </Route>
+            <Route path='services' element={<AdminServices />} />   
+        </Route>
+      </Route>
           <Route path='/contact' element={<Contact />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
@@ -47,6 +52,7 @@ function App() {
         </Routes >
       </BrowserRouter >
     </MantineProvider >
+    </AuthProvider>
   );
 }
 
