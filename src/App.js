@@ -42,13 +42,12 @@ function App() {
             <Route path='companies' element={<Companies />} />
             <Route path='startup' element={<Startup />} />
             <Route path='services' element={<AdminServices />} />   
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/about' element={<AboutUs />} />
         </Route>
       </Route>
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/about' element={<AboutUs />} />
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-
+          <Route path='/login' element={<Login />}/>
         </Routes >
       </BrowserRouter >
     </MantineProvider >
