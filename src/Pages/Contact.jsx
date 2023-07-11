@@ -32,16 +32,16 @@ const Contacts = () => {
         {/* <section className="my-8"> */}
         <section className="my-4 sm:my-8">
           <Text
-            className="text-2xl text-white text-center sm:text-4xl  font-sans "
+            className=" text-white text-center text-4xl  font-sans "
             fw={700}
           >
             Contact
           </Text>
-          <Text className="text-white text-center text-1xl  font-sans" fw={400}>
+          <Text className="text-white text-center text-2xl font-sans" fw={400}>
             Have a question? Write to us
           </Text>
         </section>
-        <section className="w-[80%] sm:w-[60%]  rounded-2xl mb-10 bg-white">
+        <section className="w-[60%] rounded-2xl mb-10 bg-white">
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
@@ -88,10 +88,10 @@ const Contacts = () => {
                     <TextInput
                       control={control}
                       {...field}
-                      className="w-[100%] px-3"
+                      className="w-[100%] px-3 responsive-input"
                       fw={600}
                       placeholder="Email"
-                      label="Email"
+                      label={<span className="responsive-label">Email</span>}
                       radius="md"
                       size={largeScreen ? "md" : "xs"}
                     />
@@ -119,10 +119,10 @@ const Contacts = () => {
                       control={control}
                       {...field}
                       type="number"
-                      className="w-[100%] px-3 "
+                      className="w-[100%] px-3 responsive-input"
                       fw={600}
                       placeholder="Mobile Number"
-                      label="Contact"
+                      label={<span className="responsive-label">Contact</span>}
                       radius="md"
                       size={largeScreen ? "md" : "xs"}
                     />
@@ -144,10 +144,10 @@ const Contacts = () => {
                     <TextInput
                       control={control}
                       {...field}
-                      className="w-[100%] px-3 "
+                      className="w-[100%] px-3 responsive-input"
                       fw={600}
                       placeholder="Your Company"
-                      label="Comany Name"
+                      label={<span className="responsive-label">Company Name</span>}
                       radius="md"
                       size={largeScreen ? "md" : "xs"}
                     />
@@ -166,7 +166,7 @@ const Contacts = () => {
                 <Textarea
                   control={control}
                   {...field}
-                  className="px-3 mb-[1rem] "
+                  className="px-3 mb-[1rem] responsive-input"
                   fw={600}
                   placeholder="Tell us about your product, current challenges and objectives."
                   label="Message"

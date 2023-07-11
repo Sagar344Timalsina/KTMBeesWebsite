@@ -24,11 +24,12 @@ const Companies = () => {
     return (
         <div className='bg-light_gray'>
             <div>
-                <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Companies that trusted us</Text>
-                <Grid className='flex items-start justify-between gap-16 order-1 mx-56 mt-6 pb-12'>
+                <Text className='flex flex-col items-center gap-2 font-sans font-bold text-2xl sm:text-3xl text-black p-12 '>Companies that trusted us</Text>
+                <Grid className='flex items-start justify-between gap-5 sm:gap-16 mx-56 mt-6 pb-12'
+                >
                     {company.map((data) => (
                         <Grid.Col span={3} key={data.id} className='flex justify-center'>
-                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
+                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center w-[80px] sm:w-[170px]' onClick={console.log(data.url)} /></Link>
                         </Grid.Col>
                     ))}
                 </Grid>
