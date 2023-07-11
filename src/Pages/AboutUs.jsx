@@ -12,7 +12,7 @@ const AboutUs = () => {
   }
   useEffect(() => {
     fetchData();
-  },)
+  }, []);
   return (
     <>
       <main className='bg-light_gray'>
@@ -35,13 +35,13 @@ const AboutUs = () => {
           })}>
             <Tabs.List className='mt-[3.2rem] justify-center w-fit mx-auto font-bold' >
               {display.map((tabValue) => (
-                <Tabs.Tab key={tabValue.id} value={tabValue.title} color="yellow" className=' p-4 w-auto mr-[1rem] sm:mr-[2.8rem] h-auto font-sans  text-sm sm:text-lg leading-[23px] tracking-[0.047rem] '>{tabValue.title}</Tabs.Tab>
+                <Tabs.Tab key={tabValue.id} value={tabValue.title} color="yellow" className=' p-4 w-auto mr-[0.5rem] sm:mr-[2.8rem] h-auto font-sans text-xs sm:text-lg leading-[23px] tracking-[0.047rem] '>{tabValue.title}</Tabs.Tab>
               ))}
             </Tabs.List>
             {display.map((content) => (
               <Tabs.Panel key={content.id} value={content.title} pt='xl' className='mb-3 w-[60%] mx-auto' >
-                <Text className=' w-auto h-7 font-sans font-bold  text-sm sm:text-lg leading-7 text-dark_gray'>{content.name}</Text>
-                <Text className=' mt-3 sm:w-auto lg:w-[61rem] h-28 font-sans font-normal text-sm sm:text-lg leading-7 text-justify tracking-[0.047rem] text-dark_gray'>
+                {/* <Text className=' w-auto h-7 font-sans font-bold  text-sm sm:text-lg leading-7 text-dark_gray'>{content.name}</Text> */}
+                <Text className=' mt-3 w-auto sm:w-[61rem] h-auto mb-10 font-sans font-normal text-sm sm:text-lg leading-7 text-justify  text-dark_gray  sm:tracking-[0.047rem]'>
                   {content.description}
                 </Text>
               </Tabs.Panel>
