@@ -59,8 +59,8 @@
   width: 15rem;
   height: 13rem;
   display: block;
-  left: .5rem;
-  top: .5rem;
+  left: 0.5rem;
+  top: 0.5rem;
   background-color: white;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
@@ -79,7 +79,7 @@
   top: 20%;
   font-weight: 700;
   font-family: Helvetica;
-  color: #1E293B;
+  color: #1e293b;
   z-index: 100;
   position: relative;
 }
@@ -97,7 +97,8 @@
 }
 
 .service__images {
-  background-image: url('../src/assets/images/Beegon.png');
+  background-image: url("../src/assets/images/Beegon.png");
   transform: rotate(360deg);
   background-repeat: no-repeat;
+  /* width: 1rem; */
 }
