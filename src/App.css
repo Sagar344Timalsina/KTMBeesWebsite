@@ -73,6 +73,7 @@
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
+
 .container__text1 {
   font-size: 2rem;
   text-align: center;
@@ -101,3 +102,34 @@
   transform: rotate(360deg);
   background-repeat: no-repeat;
 }
+
+.responsive-label {
+  font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    /* 
+    .responsive-input::placeholder {
+      font-size: 12px;
+    } */
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+
+    /* .responsive-input::placeholder {
+      font-size: 10px;
+    } */
+  }
+}
+
+/* @media screen and (max-width:415px) {
+  .item1 {
+    grid-column: 1;
+  }
+
+  .image_size-response {
+    height: 130px;
+    width: 30px;
+  }
+} */
