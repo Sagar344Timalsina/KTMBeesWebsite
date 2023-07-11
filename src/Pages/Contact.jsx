@@ -4,6 +4,7 @@ import captcha from "../assets/images/Captcha.png";
 import { Controller, useForm } from "react-hook-form";
 import Navbar from "../component/Navbar";
 import { Footer } from "../component/Footer";
+import { useMediaQuery } from "@mantine/hooks";
 
 const Contacts = () => {
   const {
@@ -22,7 +23,7 @@ const Contacts = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
-
+  const largeScreen = useMediaQuery("(min-width: 640px)");
   return (
     // <Navbar/>
     <>
@@ -56,21 +57,19 @@ const Contacts = () => {
                   }}
                   render={({ field }) => (
                     <TextInput
-                      Owner
-                      nameTextInput
                       control={control}
                       {...field}
-                      className="w-[100%] px-3  "
+                      className="w-[100%] px-3"
                       fw={600}
+                      size={largeScreen ? "md" : "xs"}
                       placeholder="Full Name"
                       label="Name"
                       radius="md"
-                      // size="lg"
-                      // variant="filled"
+                      theme={{}}
                     />
                   )}
                 />
-                <p className="text-[red] px-3 font-[600] ">
+                <p className="text-[red] px-3 font-[600] text-xs sm:text-base">
                   {errors.name?.message}
                 </p>
               </div>
@@ -94,12 +93,11 @@ const Contacts = () => {
                       placeholder="Email"
                       label="Email"
                       radius="md"
-                      // size="lg"
-                      // variant="filled"
+                      size={largeScreen ? "md" : "xs"}
                     />
                   )}
                 />
-                <p className="text-[red] px-3 font-[600] ">
+                <p className="text-[red] px-3 font-[600] text-xs sm:text-base">
                   {errors.email?.message}
                 </p>
               </div>
@@ -126,12 +124,11 @@ const Contacts = () => {
                       placeholder="Mobile Number"
                       label="Contact"
                       radius="md"
-                      // size="lg"
-                      // variant="filled"
+                      size={largeScreen ? "md" : "xs"}
                     />
                   )}
                 />
-                <p className="text-[red] px-3 font-[600] ">
+                <p className="text-[red] px-3 font-[600] text-xs sm:text-base">
                   {errors.contact?.message}
                 </p>
               </div>
@@ -152,10 +149,11 @@ const Contacts = () => {
                       placeholder="Your Company"
                       label="Comany Name"
                       radius="md"
+                      size={largeScreen ? "md" : "xs"}
                     />
                   )}
                 />
-                <p className="text-[red] px-3 font-[600] ">
+                <p className="text-[red] px-3 font-[600] text-xs sm:text-base">
                   {errors.company?.message}
                 </p>
               </div>
@@ -172,15 +170,14 @@ const Contacts = () => {
                   fw={600}
                   placeholder="Tell us about your product, current challenges and objectives."
                   label="Message"
-                  minRows={3}
-                  // size={{ sm: "lg" }}
-                  // variant="filled"
+                  minRows={largeScreen ? 4 : 3}
+                  size={largeScreen ? "md" : "xs"}
                   radius="md"
                 />
               )}
             />
 
-            <div className="w-46 text-xs ml-3 bg-[#F2F2F2] sm:w-[18rem] sm:h-[6rem] sm:mx-3 sm:mb-[0rem]  border border-gray_2 flex justify-around items-center">
+            <div className="w-44 text-xs ml-3 bg-[#F2F2F2] sm:w-[18rem] sm:h-[6rem] sm:mx-3 sm:mb-[0rem]  border border-gray_2 flex justify-around items-center">
               <Controller
                 name="checkbox"
                 rules={{
@@ -192,7 +189,8 @@ const Contacts = () => {
                     control={control}
                     {...field}
                     // fw={100}
-                    className="sm:w-[60%]"
+                    size={largeScreen ? "md" : "xs"}
+                    className="w-[60%]"
                     label="I'm not a robot "
                   />
                 )}
@@ -203,13 +201,13 @@ const Contacts = () => {
                 alt="ReCaptcha"
               />
             </div>
-            <p className="text-[red] px-3 font-[600] mb-[1rem] ">
+            <p className="text-[red] px-3 font-[600] mb-[1rem] text-xs sm:text-base">
               {errors.checkbox?.message}
             </p>
 
             <button
               type="submit"
-              className="ml-4 w-20 my-1 rounded-lg h-8 bg-[#F0B62F] sm:w-[12rem] sm:h-[4rem] sm:mx-3 sm:rounded-[40px] tracking-[.06rem] font-[Poppins] text-white sm:text-[20px] font-semibold"
+              className="ml-4 w-16 my-1 rounded-lg h-5 text-xs bg-[#F0B62F] sm:w-[12rem] sm:h-[4rem] sm:mx-3 sm:rounded-[40px] tracking-[.06rem] font-[Poppins] text-white sm:text-[20px] font-semibold"
             >
               Send
             </button>
