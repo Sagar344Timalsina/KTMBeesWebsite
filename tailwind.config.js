@@ -16,10 +16,29 @@ module.exports = {
       'gray_2': '#D9DBE9',
       'button_gray': '#0F172A',
       'orange': '#FFC34C',
-      'red': '#ff0000'
+      'red': '#ff0000',
+      'light_yellow': '#FFFBEC',
+      'dark_yellow': '#FFF6D8',
+
     },
     fontFamily: {
       sans: ['Helvetica']
+    },
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      'msm': { 'max': '639px' }
     }
   },
   plugins: [],

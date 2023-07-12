@@ -25,37 +25,37 @@ export const Footer = () => {
   ];
   return (
     <div className="footer flex bg-[#111111] flex-col">
-      <section className="w-[80%] mt-2 m-auto mb-2 text-[white] sm:w-[75%] sm:mt-[2rem] sm:mb-4 sm:m-auto flex justify-between">
-        <article className="quick-link flex flex-col">
-          <div className="text-[10px] mb-4 sm:text-2xl">Quick Links</div>
+      <section className="w-10/12 sm:mt-10 ml-10 mt-10 mb-2 text-[white] sm:w-[75%]  sm:mb-4 sm:m-auto sm:flex justify-between">
+        <article className="quick-link flex flex-col mb-6">
+          <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">Quick Links</div>
           {quickLinks.map((data) => (
             <Link
               to={data.link}
-              className="text-[8px] links mb-2 sm:text-[1.125rem]"
+              className="text-xs links mb-2 sm:text-lg"
               key={data.id}
             >
               {data.name}
             </Link>
           ))}
         </article>
-        <article className="about flex flex-col">
-          <div className="text-[10px] mb-4 sm:text-2xl">About us</div>
+        <article className="about flex flex-col mb-6">
+          <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">About us</div>
           {about.map((data) => (
             <Link
               to={data.link}
-              className="text-[8px] links mb-2 sm:text-[1.125rem]"
+              className="text-xs links mb-1 sm:mb-2 sm:text-lg"
               key={data.id}
             >
               {data.name}
             </Link>
           ))}
         </article>
-        <article className="contact flex flex-col">
-          <div className="text-[10px] mb-4 sm:text-2xl">Contact</div>
+        <article className="contact flex flex-col mb-6">
+          <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">Contact</div>
           {contact.map((data) => (
             <div key={data.id}>
               <Link
-                className="flex items-center text-[8px] links mb-2 sm:text-[1.125rem]"
+                className="flex items-center text-xs links mb-1 sm:mb-2 sm:text-lg"
                 to={data.link}
               >
                 <span className="mr-4">{data.logo}</span>
@@ -70,7 +70,7 @@ export const Footer = () => {
         <img
           src="../assests/logo/bees.png"
           alt="BeeLogo"
-          className="w-16 sm:w-44"
+          className="w-24 sm:w-44"
         />
         <div className="footer-right flex items-center">
           <label className="text-[8px] sm:text-base mx-2 text-[gray]">

@@ -15,7 +15,7 @@ const Header = () => {
     <header>
       {display.map((data) => (
         <div
-          className="h-[10rem] sm:mb-4 flex  items-center sm:h-[55rem]  bg-contain bg-no-repeat"
+          className="mb-4 flex items-center sm:h-[55rem] bg-contain bg-no-repeat"
           key={data.id}
           style={{ backgroundImage: `url(${data.image})` }}
         >

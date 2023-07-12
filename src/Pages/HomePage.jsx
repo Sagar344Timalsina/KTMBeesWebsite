@@ -21,7 +21,6 @@ const HomePage = () => {
       <Companies />
       <ReadyCreate />
       <Footer />
-
     </main>
   )
 }
