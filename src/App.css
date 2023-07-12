@@ -44,13 +44,32 @@
 
 @media(min-width: 640px) {
   .dynamic_x_padding {
-    padding: 3rem 20rem;
+    padding: 20rem;
   }
 }
 
 /* .dynamic_padding {
   padding: 10px 30px;
 } */
+
+.content {
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  @media (min-width: 620px) {
+    margin-left: 10rem;
+    margin-right: 4rem;
+  }
+
+  @media only screen and (min-width: 520px) and (max-width: 620px) {
+    margin-left: 7rem;
+    margin-right: 6rem;
+  }
+}
+
+.hamburger {
+  cursor: pointer;
+}
 
 .container {
   width: 12rem;
