@@ -87,8 +87,8 @@ const Navbar = (props) => {
                   </Link>
                 </div>
               ))}
-              <div className="flex-col ml-4">
-                <section className="mb-5">Contact</section>
+              <div className="flex-col mt-16">
+                <section className="mb-5 ">Contact</section>
                 {contact.map((data) => (
                   <div key={data.id}>
                     <Link className="flex items-center mb-5" to={data.link}>
