@@ -10,8 +10,8 @@ const ReadyCreate = () => {
         src={Bee}
         alt="BeeImage"
       />
-      <section className=" w-full  flex justify-center ">
-        <h1 className="text-base sm:text-5xl font-sans font-bold tracking-tight w-1/2 text-button_gray  z-10">
+      <section className=" w-full flex justify-center ">
+        <h1 className="sm:text-5xl  font-sans font-bold tracking-tight w-1/2 text-button_gray  z-10">
           Ready to create & collaborate
         </h1>
       </section>

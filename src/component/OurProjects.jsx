@@ -129,12 +129,12 @@ const OurProjects = () => {
             },
           })}
         >
-          <Tabs.List className="mt-[3.2rem] justify-between w-fit mx-auto font-bold sm:p-[20px] display__tabs hidden">
+          <Tabs.List className="mt-12 justify-between w-fit mx-auto font-bold sm:p-5 display__tabs hidden">
             {TabName.map((tab) => (
               <Tabs.Tab
                 key={tab.id}
                 value={tab.value}
-                className="text-[8px]  -mr-4 sm:mr-[45px] flex h-[23px] font-sans p-[20px] sm:text-[20px] leading-[23px]"
+                className="text-xs -mr-4 flex sm:mr-11 h-6 font-sans p-5 sm:text-xl leading-6"
               >
                 {tab.title}
               </Tabs.Tab>
@@ -143,7 +143,7 @@ const OurProjects = () => {
 
           <Tabs.Panel value="Ecommerce" pt="xs">
             <div className="flex relative bg-orange justify-between z-10 overflow-hidden">
-              <section className="content relative mt-4 ml-4 sm:ml-10 sm:mt-10 w-[38%]">
+              <section className="content relative mt-4 ml-10 sm:mt-10 w-2/4">
                 <img src={DamiLogo} alt="Dami" className="mb-4 w-16 sm:w-32" />
                 <hr className="w-10 mb-5 border-white border-2 sm:w-20 sm:mb-10" />
                 <article className="reuseable flex flex-col ">

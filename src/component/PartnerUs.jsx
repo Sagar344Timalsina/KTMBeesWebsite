@@ -21,7 +21,7 @@ const PartnerUs = () => {
       <section className='sm:dynamic_x_padding w-full sm:col-span-6 col-span-12'>
         <h3 className='font-sans font-bold text-dark_gray sm:text-3xl mt-16 text-2xl'>{partners.heading}</h3>
         <h1 className='text-yellow font-sans font-bold sm:text-4xl text-3xl'>{partners.subheading}</h1>
-        <p className='tracking-wider sm:text-lg max-w-lg text-dark_gray'>{partners.description}</p>
+        <p className='tracking-wider sm:text-lg max-w-lg text-dark_gray mb-5'>{partners.description}</p>
         <GetInTouch />
       </section>
     </main>
