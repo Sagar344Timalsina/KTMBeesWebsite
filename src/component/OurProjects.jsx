@@ -29,7 +29,7 @@ const OurProjects = () => {
           high-quality, sector-specific web and mobile solutions.
         </h6>
       </section>
-      <section>
+      <section className="w-fit m-auto">
         <Accordion radius="md" defaultValue="E-commerce" className='display__accordian'>
           {TabName.map((tabValue) => (
             <Accordion.Item key={tabValue.id} value={tabValue.title}>

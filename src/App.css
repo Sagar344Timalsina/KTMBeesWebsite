@@ -182,7 +182,7 @@
   }
 
   .display__tabs {
-    display: contents;
+    display: flex;
   }
 }
 
