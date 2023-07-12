@@ -15,22 +15,22 @@ const Header = () => {
     <header>
       {display.map((data) => (
         <div
-          className="h-[10rem] sm:mb-4 flex  items-center sm:h-[40rem]  bg-contain bg-no-repeat"
+          className="flex h-screen bg-center bg-cover overflow-hidden"
           key={data.id}
-          style={{ backgroundImage: `url(${data.image})` }}
+          // style={{ backgroundImage: `url(${data.image})` }}
         >
-          <section className="content my-auto sm:ml-80 ml-20">
+          <section className="content mt-44 mx-auto z-20">
             <span className="title">
-              <h1 className="text-[14px] mb-1 sm:text-6xl font-bold sm:mb-4">
+              <h1 className="text-5xl sm:text-6xl font-bold mb-4">
                 {data.heading}
               </h1>
-              <h6 className="mb-2 text-[9px] sm:mb-10 sm:text-2xl text-[#475569]">
+              <h6 className="mb-10 text-xl sm:text-2xl text-[#475569]">
                 {data.subheading}
               </h6>
             </span>
             <Button
               color="dark"
-              className="h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base "
+              className=" bg-black rounded-full h-16 w-48 text-base "
             >
               Get in touch
             </Button>

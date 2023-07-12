@@ -73,7 +73,6 @@
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
-
 .container__text1 {
   font-size: 2rem;
   text-align: center;
@@ -102,4 +101,41 @@
   transform: rotate(360deg);
   background-repeat: no-repeat;
   /* width: 1rem; */
+  @media (max-width: 360px) {
+    left: 5.6rem;
+  }
+}
+.service__headingtitle {
+  @media (max-width: 360px) {
+    text-align: center;
+  }
+}
+.service__text {
+  @media (max-width: 360px) {
+    text-align: center;
+  }
+}
+
+.header {
+  margin-left: 2rem;
+  @media (min-width: 784px) {
+    margin-left: 10px;
+  }
+}
+
+.content {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  @media (min-width: 620px) {
+    margin-left: 10rem;
+    margin-right: 4rem;
+  }
+  @media only screen and (min-width: 520px) and (max-width: 620px) {
+    margin-left: 7rem;
+    margin-right: 6rem;
+  }
+}
+
+.hamburger {
+  cursor: pointer;
 }
