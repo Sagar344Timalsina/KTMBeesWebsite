@@ -69,17 +69,30 @@ const Navbar = (props) => {
             onClick={(e) => handleHam()}
           />
         </section>
-        {hamActive && (
-          <section className="ml-3 h-screen flex flex-col absolute right-0 top-0 sm:w-80 w-full bg-black text-white z-50">
-            <div className=" flex justify-between my-2">
-              <div></div>
-              <IoMdClose
-                className="text-5xl cursor-pointer"
-                onClick={(e) => closeHam()}
-              />
-            </div>
-            <div className="flex flex-col ml-5 text-xl">
-              {quickLinks.map((data) => (
+        <section
+          className={`ml-3 h-screen flex flex-col fixed right-0 top-0 sm:w-80 w-full bg-black text-white z-50 ease-in-out duration-300 ${
+            hamActive ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className=" flex justify-between my-2">
+            <div></div>
+            <IoMdClose
+              className="text-5xl cursor-pointer"
+              onClick={(e) => closeHam()}
+            />
+          </div>
+          <div className="flex flex-col ml-5 text-xl">
+            {quickLinks.map((data) => (
+              <div key={data.id}>
+                <Link className="flex items-center mb-5" to={data.link}>
+                  <span className="mr-5">{data.logo}</span>
+                  <h6>{data.name}</h6>
+                </Link>
+              </div>
+            ))}
+            <div className="flex-col mt-16">
+              <section className="mb-5 ">Contact</section>
+              {contact.map((data) => (
                 <div key={data.id}>
                   <Link className="flex items-center mb-5" to={data.link}>
                     <span className="mr-5">{data.logo}</span>
@@ -87,22 +100,11 @@ const Navbar = (props) => {
                   </Link>
                 </div>
               ))}
-              <div className="flex-col mt-16">
-                <section className="mb-5 ">Contact</section>
-                {contact.map((data) => (
-                  <div key={data.id}>
-                    <Link className="flex items-center mb-5" to={data.link}>
-                      <span className="mr-5">{data.logo}</span>
-                      <h6>{data.name}</h6>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-              {/* <button>Send</button> */}
-              {/* <div></div> */}
             </div>
-          </section>
-        )}
+            {/* <button>Send</button> */}
+            {/* <div></div> */}
+          </div>
+        </section>
       </nav>
     </>
   );
