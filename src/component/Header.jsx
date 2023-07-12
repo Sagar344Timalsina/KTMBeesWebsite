@@ -17,7 +17,7 @@ const Header = () => {
         <div
           className="flex h-screen bg-center bg-cover overflow-hidden"
           key={data.id}
-          // style={{ backgroundImage: `url(${data.image})` }}
+        // style={{ backgroundImage: `url(${data.image})` }}
         >
           <section className="content mt-44 mx-auto z-20">
             <span className="title">

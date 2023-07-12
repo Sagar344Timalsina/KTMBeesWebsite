@@ -22,27 +22,27 @@ const Companies = () => {
     }, []);
 
     return (
-        <div className='bg-light_gray'>
+        <div className='bg-light_yellow sm:dynamic_x_padding'>
             <div>
                 <Text className='flex flex-col items-center gap-2 font-sans font-bold text-2xl sm:text-3xl text-black p-12 '>Companies that trusted us</Text>
-                <Grid className='flex items-start justify-between gap-5 sm:gap-16 mx-56 mt-6 pb-12'
+                <div className='grid grid-cols-12 items-start justify-between gap-5 sm:gap-16 md:px-16 mx-auto'
                 >
                     {company.map((data) => (
-                        <Grid.Col span={3} key={data.id} className='flex justify-center'>
-                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center w-[80px] sm:w-[170px]' onClick={console.log(data.url)} /></Link>
-                        </Grid.Col>
+                        <div key={data.id} className='flex col-span-12 md:col-span-4 sm:col-span-6 justify-center '>
+                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center max-w-xs max-h-20 sm:w-40 md:w-60' onClick={console.log(data.url)} /></Link>
+                        </div>
                     ))}
-                </Grid>
+                </div>
             </div>
             <div>
-                <Text className='flex flex-col items-center gap-2 font-sans font-bold text-3xl text-black p-12 '>Startup Partners</Text>
-                <Grid className='flex items-center justify-between mx-56 pb-12'>
+                <Text className='flex flex-col items-center gap-2 font-sans font-bold text-2xl sm:text-3xl text-black p-12 '>Startup Partners</Text>
+                <div className='grid grid-cols-12 items-start justify-between sm:gap-16 px-10 md:px-16 mx-auto '>
                     {startup.map((data) => (
-                        <Grid.Col md={2} key={data.id}>
-                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center' onClick={console.log(data.url)} /></Link>
-                        </Grid.Col>
+                        <div key={data.id} className='flex col-span-12 md:col-span-4 sm:col-span-6 justify-center '>
+                            <Link to={data.url} target='_blank'><img src={data.image} alt='Partners' className='flex justify-center my-4  max-w-xs max-h-20 sm:w-40 md:w-60' onClick={console.log(data.url)} /></Link>
+                        </div>
                     ))}
-                </Grid>
+                </div>
             </div>
         </div>
 

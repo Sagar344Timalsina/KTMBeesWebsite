@@ -32,20 +32,20 @@ const Contacts = () => {
         {/* <section className="my-8"> */}
         <section className="my-4 sm:my-8">
           <Text
-            className=" text-white text-center text-4xl  font-sans "
+            className=" text-white text-center text-xl sm:text-4xl  font-sans "
             fw={700}
           >
             Contact
           </Text>
-          <Text className="text-white text-center text-2xl font-sans" fw={400}>
+          <Text className="text-white text-center text-lg sm:text-2xl font-sans" fw={400}>
             Have a question? Write to us
           </Text>
         </section>
-        <section className="w-[60%] rounded-2xl mb-10 bg-white">
+        <section className="sm:w-[60%] w-[90%] rounded-2xl mb-5 sm:mb-10 bg-white">
           <form
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
-            className="px-2 py-4 sm:px-4 sm:py-[3rem] focus:none border-0"
+            className="px-2 py-4 sm:px-4 sm:py-12 focus:none border-0 "
           >
             <div className="sm:mb-[1rem] sm:flex">
               <div className="w-[100%] mb-1 sm:w-[50%] sm:mb-0">
