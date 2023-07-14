@@ -9,6 +9,7 @@ import { Footer } from "../component/Footer";
 import OurProjects from "../component/OurProjects";
 import ReadyCreate from "../component/ReadyCreate";
 import topFrame from "../assets/images/topFrame.png";
+import Feedback from "../component/Feedback";
 
 const HomePage = () => {
   return (
@@ -18,7 +19,7 @@ const HomePage = () => {
       <OurProjects />
       <PartnerUs />
       <Services />
-      {/* <OurProcess /> */}
+      <Feedback />
       <Companies />
       <ReadyCreate />
       <Footer />

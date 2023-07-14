@@ -2,45 +2,51 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        "2xl": "0px 3px 8px rgba(0, 0, 0, 0.24) ",
+      },
+    },
     colors: {
-      'light_gray': '#f1f5f9',
-      'white': '#ffffff',
-      'yellow': '#F0B62F',
-      'gray': '#64748B',
-      'black': '#000000',
-      'dark_gray': '#475569',
-      'dark_blue': '#2D3B52',
-      'dark': '#0F172A',
-      'blue2': '#1E293B',
-      'gray_2': '#D9DBE9',
-      'button_gray': '#0F172A',
-      'orange': '#FFC34C',
-      'red': '#ff0000',
-      'light_yellow': '#FFFBEC',
-      'dark_yellow': '#FFF6D8',
-
+      light_gray: "#f1f5f9",
+      white: "#ffffff",
+      yellow: "#F0B62F",
+      gray: "#64748B",
+      black: "#000000",
+      black_1: "#0F1728",
+      black_label: "#475569",
+      dark_gray: "#475569",
+      dark_blue: "#2D3B52",
+      dark: "#0F172A",
+      blue2: "#1E293B",
+      gray_2: "#D9DBE9",
+      button_gray: "#0F172A",
+      orange: "#FFC34C",
+      red: "#ff0000",
+      light_yellow: "#FFFBEC",
+      dark_yellow: "#FFF6D8",
+      light_yellow_1: "#FFF6D8",
     },
     fontFamily: {
-      sans: ['Helvetica']
+      sans: ["Helvetica"],
     },
     screens: {
-      'sm': '640px',
+      sm: "640px",
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: "768px",
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: "1280px",
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
-      'msm': { 'max': '639px' }
-    }
+      "2xl": "1536px",
+
+      msm: { max: "639px" },
+    },
   },
   plugins: [],
-}
-
+};

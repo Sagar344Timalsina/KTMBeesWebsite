@@ -30,14 +30,23 @@ const OurProjects = () => {
         </h6>
       </section>
       <section className="w-fit m-auto">
-        <Accordion radius="md" defaultValue="E-commerce" className='display__accordian'>
+        <Accordion
+          radius="md"
+          defaultValue="E-commerce"
+          className="display__accordian"
+        >
           {TabName.map((tabValue) => (
             <Accordion.Item key={tabValue.id} value={tabValue.title}>
               <Accordion.Control>{tabValue.title}</Accordion.Control>
-              <Accordion.Panel>{tabValue.value}
+              <Accordion.Panel>
+                {tabValue.value}
                 <div className="flex relative bg-orange justify-between z-10 overflow-hidden">
                   <section className="content relative mt-4 ml-4 sm:ml-10 sm:mt-10 w-[38%]">
-                    <img src={DamiLogo} alt="Dami" className="mb-4 w-16 sm:w-32" />
+                    <img
+                      src={DamiLogo}
+                      alt="Dami"
+                      className="mb-4 w-16 sm:w-32"
+                    />
                     <hr className="w-10 mb-5 border-white border-2 sm:w-20 sm:mb-10" />
                     <article className="reuseable flex flex-col ">
                       <span className="text-xs mb-5 title sm:text-2xl font-bold sm:mb-10 text-left">
@@ -68,7 +77,11 @@ const OurProjects = () => {
                           variant="filled"
                           color="light-gray"
                           rightIcon={
-                            <img src={figma} alt="Figma" className="w-2 sm:w-7" />
+                            <img
+                              src={figma}
+                              alt="Figma"
+                              className="w-2 sm:w-7"
+                            />
                           }
                           className="z-50 w-[4.5rem] h-5 sm:h-10  text-[8px] sm:text-sm bg-[#cbd5e1] font-normal text-[#475569] sm:w-[7.2rem] rounded-3xl"
                         >
@@ -129,7 +142,7 @@ const OurProjects = () => {
             },
           })}
         >
-          <Tabs.List className="mt-12 justify-between w-fit mx-auto font-bold sm:p-5 display__tabs hidden">
+          <Tabs.List className="mt-12 justify-between w-fit mx-auto font-bold sm:p-5 home__tabs hidden">
             {TabName.map((tab) => (
               <Tabs.Tab
                 key={tab.id}

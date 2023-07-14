@@ -25,7 +25,7 @@ export const Footer = () => {
   ];
   return (
     <div className="footer flex bg-[#111111] flex-col">
-      <section className="w-10/12 sm:mt-10 ml-10 mt-10 mb-2 text-[white] sm:w-[75%]  sm:mb-4 sm:m-auto sm:flex justify-between">
+      <section className="w-10/12 sm:mt-10 ml-10 mt-10 mb-2 text-white sm:w-3/4  sm:mb-4 sm:m-auto sm:flex justify-between">
         <article className="quick-link flex flex-col mb-6">
           <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">Quick Links</div>
           {quickLinks.map((data) => (
