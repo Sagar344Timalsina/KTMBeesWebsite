@@ -19,9 +19,9 @@ const Navbar = (props) => {
   const [scrolled, setScrolled] = useState(false);
   const ChangeNavColor = () => {
     // console.log(window.scrollY);
-    if (window.scrollY > 391) {
+    if (window.scrollY > 30) {
       setScrolled(true);
-    } else if (window.scrollY < 391) {
+    } else if (window.scrollY < 30) {
       setScrolled(false);
     }
   };
@@ -60,17 +60,10 @@ const Navbar = (props) => {
 
   return (
     <>
-      {image && (
-        <img
-          alt="Bess"
-          src={topFrame}
-          className="absolute right-0 top-0 z-0 hidden sm:w-3/5   md:block"
-        />
-      )}
       <nav
         className={`h-9 flex justify-between items-center px-4 ${
-          scrolled ? "bg-white" : ""
-        } sticky top-0 sm:h-14 z-40`}
+          scrolled ? "bg-light_yellow_1" : ""
+        } fixed w-full top-0 sm:h-14 z-40`}
       >
         <section className="logo">
           <Link to={"/"}>

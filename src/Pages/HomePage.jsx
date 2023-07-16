@@ -14,8 +14,10 @@ import Feedback from "../component/Feedback";
 const HomePage = () => {
   return (
     <main>
-      <Navbar image={true} />
-      <Header />
+      <div className="bg-light_yellow_1">
+        <Navbar image={true} />
+        <Header />
+      </div>
       <OurProjects />
       <PartnerUs />
       <Services />

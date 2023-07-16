@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import DisplayData from "../utils/DisplayData";
+import topFrame from "../assets/images/topFrame.png";
 
 const Header = () => {
   const [display, setDisplay] = useState([]);
@@ -13,6 +14,11 @@ const Header = () => {
   }, []);
   return (
     <header>
+      <img
+        alt="Bess"
+        src={topFrame}
+        className="absolute right-0 top-0 z-0 hidden sm:w-3/5   md:block"
+      />
       {display.map((data) => (
         <div
           className="flex h-[55vh] lg:h-[85vh] bg-center bg-cover overflow-hidden "

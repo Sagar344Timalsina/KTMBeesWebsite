@@ -297,3 +297,7 @@
 .indicator-symbol-active {
   color: #ffffff;
 }
+
+.check {
+  border: solid red 2px;
+}
