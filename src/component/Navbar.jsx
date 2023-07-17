@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import "../index.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
@@ -16,6 +16,20 @@ import { FiPhoneCall } from "react-icons/fi";
 import topFrame from "../assets/images/topFrame.png";
 
 const Navbar = (props) => {
+  const [scrolled, setScrolled] = useState(false);
+  const ChangeNavColor = () => {
+    // console.log(window.scrollY);
+    if (window.scrollY > 30) {
+      setScrolled(true);
+    } else if (window.scrollY < 30) {
+      setScrolled(false);
+    }
+  };
+  // console.log(scrolled);
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", ChangeNavColor);
+  }, []);
+
   const { image } = props;
   const [hamActive, setHamActive] = useState(false);
   const handleHam = async () => {
@@ -24,7 +38,7 @@ const Navbar = (props) => {
   const closeHam = async () => {
     setHamActive(false);
   };
-  console.log(image);
+  // console.log(image);
   const contact = [
     { id: 1, logo: <ImLocation />, name: "Baneshwor, Kathmandu", link: "/" },
     { id: 2, logo: <FiPhoneCall />, name: "+977-9800022222", link: "/" },
@@ -46,33 +60,28 @@ const Navbar = (props) => {
 
   return (
     <>
-      {image && (
-        <img
-          alt="Bess"
-          src={topFrame}
-          className="absolute right-0 top-0 z-0 hidden sm:w-3/5  sm:block lg:block"
-        />
-      )}
-      <nav className="h-9 flex justify-between items-center px-4  sticky top-0 sm:h-14 z-40">
+      <nav
+        className={`h-9 flex justify-between items-center px-4 ${scrolled ? "bg-light_yellow_1" : ""
+          } fixed w-full top-0 sm:h-14 z-40`}
+      >
         <section className="logo">
           <Link to={"/"}>
             <img
               src="../assests/logo/bees.png"
               alt="Bees"
-              className="w-36 sm:w-48"
+              className="w-36 sm:w-48 hover:scale-110 transition-all"
             />
           </Link>
         </section>
-        <section className="hamburger__logo z-10">
+        <section className="hamburger__logo z-10 hover:scale-110 transition-all">
           <GiHamburgerMenu
             className="hamburger text-xl sm:text-3xl"
             onClick={(e) => handleHam()}
           />
         </section>
         <section
-          className={`ml-3 h-screen flex flex-col fixed right-0 top-0 sm:w-80 w-full bg-black text-white z-50 ease-in-out duration-300 ${
-            hamActive ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`ml-3 h-screen flex flex-col fixed right-0 top-0 sm:w-80 w-full bg-black text-white z-50 ease-in-out duration-300 ${hamActive ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className=" flex justify-between my-2">
             <div></div>

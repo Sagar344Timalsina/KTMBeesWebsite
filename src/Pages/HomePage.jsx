@@ -9,16 +9,19 @@ import { Footer } from "../component/Footer";
 import OurProjects from "../component/OurProjects";
 import ReadyCreate from "../component/ReadyCreate";
 import topFrame from "../assets/images/topFrame.png";
+import Feedback from "../component/Feedback";
 
 const HomePage = () => {
   return (
     <main>
-      <Navbar image={true} />
-      <Header />
+      <div className="bg-light_yellow_1">
+        <Navbar image={true} />
+        <Header />
+      </div>
       <OurProjects />
       <PartnerUs />
       <Services />
-      {/* <OurProcess /> */}
+      <Feedback />
       <Companies />
       <ReadyCreate />
       <Footer />

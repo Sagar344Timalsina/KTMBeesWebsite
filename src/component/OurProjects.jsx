@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Tabs } from "@mantine/core";
-import DamiLogo from "../assets/images/dami pasal-logo 1.png";
-import laptop from "../assets/images/laptop.png";
-import figma from "../assets/images/figma.png";
-import vue from "../assets/images/vue.png";
-import aws from "../assets/images/awsLogo.png";
-import TopPatch from "../assets/images/topo.png";
-import BottomPatch from "../assets/images/bottom.png";
 import DisplayData from "../utils/DisplayData";
-import { Carousel } from '@mantine/carousel';
+import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
 
 const OurProjects = () => {
@@ -22,8 +15,7 @@ const OurProjects = () => {
   const filteredValues = projects.filter((project) => project.category == selectedValueAccordian);
   const filteredValuesTab = projects.filter((project) => project.category == selectedValueTab);
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
-  // const unique = [...new Set(projects.map((m) => [m.category, m])).values()];
-  // console.log(selectedValue, 'hgfhgfh')
+
   useEffect(() => {
     displayProjects();
   }, []);
@@ -55,11 +47,11 @@ const OurProjects = () => {
                           color="dark"
                           className="z-10 text-xs w-24 h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base relative"
                         >
-                          <Link to={filterData.url} target='_blank'>Go to site</Link>
+                          <Link to={filterData.url} target="_blank">
+                            Go to site
+                          </Link>
                         </Button>
-                        <button
-                          className="bg-[transparent] font-[600] sm:text-xl text-[10px] text-[#475569] tracking-[0.75px] z-50"
-                        >
+                        <button className="bg-[transparent] font-[600] sm:text-xl text-[10px] text-[#475569] tracking-[0.75px] z-50">
                           Read Case Study
                         </button>
                       </div>
@@ -68,12 +60,18 @@ const OurProjects = () => {
                 </Carousel>
               </Accordion.Panel>
             </Accordion.Item>
-          ))
-          }
+          ))}
         </Accordion>
       </section>
       <section className="display__tabs hidden m-auto">
-        <Tabs defaultValue={selectedValueTab} color="yellow" onTabChange={(e) => setSelectedValueTab(e)} styles={(theme) => ({ tab: { "&[data-active]": { color: "#F0B62F", }, }, })}>
+        <Tabs
+          defaultValue={selectedValueTab}
+          color="yellow"
+          onTabChange={(e) => setSelectedValueTab(e)}
+          styles={(theme) => ({
+            tab: { "&[data-active]": { color: "#F0B62F" } },
+          })}
+        >
           <Tabs.List className="mt-12 justify-between w-fit mx-auto font-bold sm:p-5">
             {unique.map((tab) => (
               <Tabs.Tab
@@ -84,37 +82,36 @@ const OurProjects = () => {
               </Tabs.Tab>
             ))}
           </Tabs.List>
-          {
-            unique.map((tab) => {
-              console.log(tab.category);
-            })
-          }
 
           <Tabs.Panel value={selectedValueTab} pt="xs" className="">
             <Carousel mx="auto" withIndicators height={600}>
               {filteredValuesTab.map((filterData) => (
                 <Carousel.Slide>
-                  <img src={filterData.largeImage} alt="Projects" className="w-full object-contain absolute" />
+                  <img
+                    src={filterData.largeImage}
+                    alt="Projects"
+                    className="w-full object-contain absolute"
+                  />
                   <div className="site__button flex justify-between items-center w-40 mt-96 ml-12 sm:w-80 ">
                     <Button
                       color="dark"
-                      className="z-10 text-xs w-24 h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base relative  "
+                      className="z-10 text-xs w-24 h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base relative "
                     >
-                      <Link to={filterData.url} target='_blank' >Go to site</Link>
+                      <Link to={filterData.url} target="_blank">
+                        Go to site
+                      </Link>
                     </Button>
-                    <button
-                      className="bg-[transparent] font-[600] sm:text-xl text-[10px] text-[#475569] tracking-[0.75px] z-50"
-                    >
+                    <button className="bg-[transparent] font-[600] sm:text-xl text-[10px] text-[#475569] tracking-[0.75px] z-50">
                       Read Case Study
                     </button>
                   </div>
                 </Carousel.Slide>
               ))}
             </Carousel>
-          </Tabs.Panel >
-        </Tabs >
-      </section >
-    </div >
+          </Tabs.Panel>
+        </Tabs>
+      </section>
+    </div>
   );
 };
 
