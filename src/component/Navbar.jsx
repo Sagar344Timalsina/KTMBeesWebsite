@@ -110,8 +110,6 @@ const Navbar = (props) => {
                 </div>
               ))}
             </div>
-            {/* <button>Send</button> */}
-            {/* <div></div> */}
           </div>
         </section>
       </nav>

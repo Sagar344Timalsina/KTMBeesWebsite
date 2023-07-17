@@ -22,11 +22,11 @@ const AboutUs = () => {
     fetchData();
   }, []);
   return (
-    <>
-      <Navbar className="bg-light_yellow" />
+    <div className="bg-light_yellow">
+      <Navbar />
       <main className='bg-light_yellow pt-15'>
-        <section>
-          <div className="flex flex-col h-auto mb-10 mt-10 mx-auto bg-white justify-center items-center px-1 pt-9 pb-9 py-1.8rem gap-[0.5rem]">
+        <section className="pt-14">
+          <div className="flex flex-col h-auto  mt-10 mx-auto bg-white justify-center items-center px-1 pt-9 pb-9 py-1.8rem gap-[0.5rem]">
             <Text className="text-gray text-center font-sans font-bold tracking-wide text-sm sm:text-lg leading-7 w-[12.625rem] h-[1.75rem]">
               About Company
             </Text>
@@ -37,9 +37,9 @@ const AboutUs = () => {
               Don't just dream, do
             </Text>
           </div>
-        </section>
+        </section >
         <section>
-          <Accordion radius="md" defaultValue="Mission & Vision" className='display__accordian' onChange={setSelectedAccordian}>
+          <Accordion radius="md" defaultValue="Mission & Vision" className='display__accordian pb-8' onChange={setSelectedAccordian}>
             {display.map((tabValue) => (
               <Accordion.Item key={tabValue.id} value={tabValue.title}>
                 <Accordion.Control>{tabValue.title}</Accordion.Control>
@@ -102,9 +102,9 @@ const AboutUs = () => {
             </Tabs.Panel>
           </Tabs>
         </section>
-      </main>
+      </main >
       <Footer />
-    </>
+    </div >
   );
 };
 

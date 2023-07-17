@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <main>
       <div className="bg-light_yellow_1">
-        <Navbar image={true} />
+        <Navbar />
         <Header />
       </div>
       <OurProjects />
