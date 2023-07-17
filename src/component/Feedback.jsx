@@ -23,14 +23,14 @@ const Feedback = () => {
       name: "Shyam Shrestha",
       jobPosition: "CEO",
       description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you",
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
     },
     {
       image: "https://i.imgur.com/hczKIze.jpg",
       name: "Shyam Shrestha",
       jobPosition: "CEO",
       description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make your dream come true.",
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you make your dream come true. In addition",
     },
   ];
   const col3 = [
@@ -76,10 +76,10 @@ const Feedback = () => {
         <h1 className="text-2xl font-semibold mt-3">
           Here is what our client says
         </h1>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 xl:gap-20 mt-36 ">
-          <div className="grid gap-4 ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 xl:gap-20 mt-36 ">
+          <div className="grid gap-4">
             {col1?.map((data) => (
-              <div className="bg-light_yellow h-auto w-80 p-4 shadow-2xl">
+              <div className="bg-light_yellow h-auto w-80 rounded-lg p-4 shadow-2xl">
                 <section className="flex  items-center">
                   <img
                     alt="pic"
@@ -128,7 +128,7 @@ const Feedback = () => {
             ))}
           </div>
           <div className="grid gap-4 ">
-            {col2?.map((data) => (
+            {col3?.map((data) => (
               <div className="bg-light_yellow h-auto w-80 rounded-lg p-4 shadow-2xl">
                 <section className="flex  items-center">
                   <img
