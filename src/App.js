@@ -16,6 +16,8 @@ import AdminServices from "./component/Admin/AdminServices";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthProvider from "./Auth";
 import AdminTeam from "./component/Admin/AdminTeam";
+import Career from "./component/Career";
+import CareerList from "./component/CareerList";
 
 function App() {
   return (
@@ -66,6 +68,8 @@ function App() {
               </Route>
             </Route>
             <Route path="/contact" element={<Contact />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/careerList" element={<CareerList />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

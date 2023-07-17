@@ -17,6 +17,11 @@
   }
 }
 
+.career_box {
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(231, 190, 38, 0.30);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -254,6 +259,7 @@
   white-space: normal;
   color: #617d98;
 }
+
 .carousel-img {
   width: 250px;
   padding: 0 20px 0 20px;
@@ -285,7 +291,7 @@
   cursor: pointer;
 }
 
-.indicators > button {
+.indicators>button {
   margin: 5px;
   background: none;
 }
@@ -301,4 +307,3 @@
 .check {
   border: solid red 2px;
 }
-
