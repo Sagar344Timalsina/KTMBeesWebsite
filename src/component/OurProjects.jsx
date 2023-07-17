@@ -10,10 +10,15 @@ const OurProjects = () => {
     const listProjects = await DisplayData("projects");
     setProjects(listProjects);
   };
-  const [selectedValueAccordian, setSelectedValueAccordian] = useState("Tourism");
+  const [selectedValueAccordian, setSelectedValueAccordian] =
+    useState("Tourism");
   const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
-  const filteredValues = projects.filter((project) => project.category == selectedValueAccordian);
-  const filteredValuesTab = projects.filter((project) => project.category == selectedValueTab);
+  const filteredValues = projects.filter(
+    (project) => project.category == selectedValueAccordian
+  );
+  const filteredValuesTab = projects.filter(
+    (project) => project.category == selectedValueTab
+  );
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
 
   useEffect(() => {
@@ -24,7 +29,7 @@ const OurProjects = () => {
       className="bg-light_yellow flex flex-col text-center py-6 sm:px-36"
       style={{ overflow: "hidden" }}
     >
-      <section className="title sm:mb-8 sm:w-[45%] mx-auto ">
+      <section className="title sm:mb-8 sm:w-2/4 mx-auto ">
         <h1 className="sm:text-3xl font-sans font-[700] mb-2"> Our Projects</h1>
         <h6 className="text-[#475569] text-xs sm:text-xl ">
           Global clients rely on our team of committed developers to deliver
@@ -32,7 +37,12 @@ const OurProjects = () => {
         </h6>
       </section>
       <section className="my-5 display__accordian">
-        <Accordion radius="md" defaultValue="Tourism" className='w-full ' onChange={(e) => setSelectedValueAccordian(e)}>
+        <Accordion
+          radius="md"
+          defaultValue="Tourism"
+          className="w-full "
+          onChange={(e) => setSelectedValueAccordian(e)}
+        >
           {unique.map((tabValue) => (
             <Accordion.Item value={tabValue.category}>
               <Accordion.Control>{tabValue.category}</Accordion.Control>
@@ -41,8 +51,17 @@ const OurProjects = () => {
                   {filteredValues.map((filterData) => (
                     <Carousel.Slide>
                       {/* <img src={filterData.largeImage} alt="Projects" className="absolute" /> */}
-                      <Link to={filterData.url} target='_blank'><img src={filterData.smallImage} alt="Projects" className="w-full object-contain absolute " /></Link>
-                      <div div className="site__button flex justify-between items-center w-40 mb-4 sm:w-80 mt-72 ml-5 " >
+                      <Link to={filterData.url} target="_blank">
+                        <img
+                          src={filterData.smallImage}
+                          alt="Projects"
+                          className="w-full object-contain absolute "
+                        />
+                      </Link>
+                      <div
+                        div
+                        className="site__button flex justify-between items-center w-40 mb-4 sm:w-80 mt-72 ml-5 "
+                      >
                         <Button
                           color="dark"
                           className="z-10 text-xs w-24 h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base relative"
