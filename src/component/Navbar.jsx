@@ -70,11 +70,11 @@ const Navbar = (props) => {
             <img
               src="../assests/logo/bees.png"
               alt="Bees"
-              className="w-36 sm:w-48"
+              className="w-36 sm:w-48 hover:scale-110 transition-all"
             />
           </Link>
         </section>
-        <section className="hamburger__logo z-10">
+        <section className="hamburger__logo z-10 hover:scale-110 transition-all">
           <GiHamburgerMenu
             className="hamburger text-xl sm:text-3xl"
             onClick={(e) => handleHam()}

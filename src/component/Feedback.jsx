@@ -4,48 +4,65 @@ const Feedback = () => {
   const col1 = [
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
-      description: "sdjhasdjaksjda sjdhk",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
+      description: "Our combined experience of over 40",
     },
 
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
       description:
-        "sdjhasdjaksjda sjdhkashdkjahskj dhasdhkasdkjhaskd haskhdkjahskjhasdkhas asdhkjashdkj asdhaskhdkjashjkdhjad",
+        "Our combined experience of over 40 years’ diligent team is more than happy to",
     },
   ];
   const col2 = [
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
       description:
-        "sdjhasdjaksjda sjdhkashdkjahskj dhasdhkasdkjhaskd haskhdkjahskjhasdkhas asdhkjashdkj asdhaskhdkjashjkdhjad",
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you",
     },
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
       description:
-        "sdjhasdjaksjda sjdhkashdkjahskj dhasdhkasdkjhaskd haskhdkjahskjhasdkhas asdhkjashdkj asdhaskhdkjashjkdhjad",
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you make your dream come true.",
     },
   ];
   const col3 = [
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
       description:
-        "sdjhasdjaksjda sjdhkashdkjahskj dhasdhkasdkjhaskd haskhdkjahskjhasdkhas asdhkjashdkj ",
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you ",
     },
     {
       image: "https://i.imgur.com/hczKIze.jpg",
-      name: "asjasja",
-      jobPosition: "Asdhajsd",
-      description: "sdjhasdjaksjda sjdhkashdkjahskj dhasdhkasdkjhaskd  ",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
+      description:
+        "Our combined experience of over 40 years’ diligent team is more than happ",
+    },
+  ];
+  const col4 = [
+    {
+      image: "https://i.imgur.com/hczKIze.jpg",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
+      description:
+        "Our combined experience of over 40 years’ diligent team is more than happy to help you make ",
+    },
+    {
+      image: "https://i.imgur.com/hczKIze.jpg",
+      name: "Shyam Shrestha",
+      jobPosition: "CEO",
+      description:
+        "Our combined experience of over 40 years’ diligent team is more than happy to help ",
     },
   ];
   return (
@@ -59,10 +76,10 @@ const Feedback = () => {
         <h1 className="text-2xl font-semibold mt-3">
           Here is what our client says
         </h1>
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overflow-hidden gap-4 lg:gap-20 lg:mt-28 mt-10 ">
-          <div className="flex flex-col ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 xl:gap-20 mt-36 ">
+          <div className="grid gap-4 ">
             {col1?.map((data) => (
-              <div className=" bg-white w-72 h-auto p-2 shadow-2xl mb-4">
+              <div className="bg-light_yellow h-auto w-80 p-4 shadow-2xl">
                 <section className="flex  items-center">
                   <img
                     alt="pic"
@@ -70,55 +87,72 @@ const Feedback = () => {
                     src={data?.image}
                   />
                   <div>
-                    <div className="">{data?.name}</div>
-                    <div>{data?.jobPosition}</div>
+                    <div className="font-bold text-xl text-black_1">
+                      {data?.name}
+                    </div>
+                    <div className="text-lg text-black_label">
+                      {data?.jobPosition}
+                    </div>
                   </div>
                 </section>
 
-                <div>{data?.description}</div>
+                <div className="mt-2 text-lg text-black_label text-justify">
+                  {data?.description}
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex flex-col">
+          <div className="grid gap-4 ">
             {col2?.map((data) => (
-              <div className=" bg-white col-span-4  w-72 h-auto p-2 shadow-2xl mb-4 ">
-                <section className="flex  items-center ">
+              <div className="bg-light_yellow h-auto w-80 rounded-lg p-4 shadow-2xl">
+                <section className="flex  items-center">
                   <img
                     alt="pic"
                     className="h-20 mr-4 rounded-full"
                     src={data?.image}
                   />
                   <div>
-                    <div className="">{data?.name}</div>
-                    <div>{data?.jobPosition}</div>
+                    <div className="font-bold text-xl text-black_1">
+                      {data?.name}
+                    </div>
+                    <div className="text-lg text-black_label">
+                      {data?.jobPosition}
+                    </div>
                   </div>
                 </section>
 
-                <div>{data?.description}</div>
+                <div className="mt-2 text-lg text-black_label text-justify">
+                  {data?.description}
+                </div>
               </div>
             ))}
           </div>
-          <div className="flex flex-col ">
-            {col3?.map((data) => (
-              <div className=" bg-white col-span-4  w-72 h-auto p-2 shadow-2xl mb-4 ">
-                <section className="flex  items-center ">
+          <div className="grid gap-4 ">
+            {col2?.map((data) => (
+              <div className="bg-light_yellow h-auto w-80 rounded-lg p-4 shadow-2xl">
+                <section className="flex  items-center">
                   <img
                     alt="pic"
                     className="h-20 mr-4 rounded-full"
                     src={data?.image}
                   />
                   <div>
-                    <div className="">{data?.name}</div>
-                    <div>{data?.jobPosition}</div>
+                    <div className="font-bold text-xl text-black_1">
+                      {data?.name}
+                    </div>
+                    <div className="text-lg text-black_label">
+                      {data?.jobPosition}
+                    </div>
                   </div>
                 </section>
 
-                <div>{data?.description}</div>
+                <div className="mt-2 text-lg text-black_label text-justify">
+                  {data?.description}
+                </div>
               </div>
             ))}
           </div>
         </div>
-        <section className=""></section>
       </div>
     </main>
   );
