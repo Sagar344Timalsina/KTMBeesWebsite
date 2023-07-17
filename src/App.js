@@ -18,6 +18,7 @@ import AuthProvider from "./Auth";
 import AdminTeam from "./component/Admin/AdminTeam";
 import Career from "./component/Career";
 import CareerList from "./component/CareerList";
+import AdminCareer from "./component/Admin/AdminCareer";
 
 function App() {
   return (
@@ -65,10 +66,11 @@ function App() {
                 <Route path="startup" element={<Startup />} />
                 <Route path="services" element={<AdminServices />} />
                 <Route path="teams" element={<AdminTeam />} />
+                <Route path="career" element={<AdminCareer />} />
               </Route>
             </Route>
             <Route path="/contact" element={<Contact />} />
-            <Route path="/career" element={<Career />} />
+            <Route path="/career/:id" element={<Career />} />
             <Route path="/careerList" element={<CareerList />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/" element={<Home />} />
