@@ -15,6 +15,7 @@ import Startup from "./component/Admin/AdminStartupPartner";
 import AdminServices from "./component/Admin/AdminServices";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthProvider from "./Auth";
+import AdminTeam from "./component/Admin/AdminTeam";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
                 <Route path="companies" element={<Companies />} />
                 <Route path="startup" element={<Startup />} />
                 <Route path="services" element={<AdminServices />} />
+                <Route path="teams" element={<AdminTeam />} />
               </Route>
             </Route>
             <Route path="/contact" element={<Contact />} />

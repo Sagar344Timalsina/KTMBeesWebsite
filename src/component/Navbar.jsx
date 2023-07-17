@@ -61,9 +61,8 @@ const Navbar = (props) => {
   return (
     <>
       <nav
-        className={`h-9 flex justify-between items-center px-4 ${
-          scrolled ? "bg-light_yellow_1" : ""
-        } fixed w-full top-0 sm:h-14 z-40`}
+        className={`h-9 flex justify-between items-center px-4 ${scrolled ? "bg-light_yellow_1" : ""
+          } fixed w-full top-0 sm:h-14 z-40`}
       >
         <section className="logo">
           <Link to={"/"}>
@@ -81,9 +80,8 @@ const Navbar = (props) => {
           />
         </section>
         <section
-          className={`ml-3 h-screen flex flex-col fixed right-0 top-0 sm:w-80 w-full bg-black text-white z-50 ease-in-out duration-300 ${
-            hamActive ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`ml-3 h-screen flex flex-col fixed right-0 top-0 sm:w-80 w-full bg-black text-white z-50 ease-in-out duration-300 ${hamActive ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className=" flex justify-between my-2">
             <div></div>

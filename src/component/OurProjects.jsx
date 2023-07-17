@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Tabs } from "@mantine/core";
-import DamiLogo from "../assets/images/dami pasal-logo 1.png";
-import laptop from "../assets/images/laptop.png";
-import figma from "../assets/images/figma.png";
-import vue from "../assets/images/vue.png";
-import aws from "../assets/images/awsLogo.png";
-import TopPatch from "../assets/images/topo.png";
-import BottomPatch from "../assets/images/bottom.png";
 import DisplayData from "../utils/DisplayData";
 import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
@@ -17,24 +10,18 @@ const OurProjects = () => {
     const listProjects = await DisplayData("projects");
     setProjects(listProjects);
   };
-  const [selectedValueAccordian, setSelectedValueAccordian] =
-    useState("E-commerce");
-  const [selectedValueTab, setSelectedValueTab] = useState("E-commerce");
-  const filteredValues = projects.filter(
-    (project) => project.category === selectedValueAccordian
-  );
-  const filteredValuesTab = projects.filter(
-    (project) => project.category === selectedValueTab
-  );
+  const [selectedValueAccordian, setSelectedValueAccordian] = useState("Tourism");
+  const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
+  const filteredValues = projects.filter((project) => project.category == selectedValueAccordian);
+  const filteredValuesTab = projects.filter((project) => project.category == selectedValueTab);
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
-  // const unique = [...new Set(projects.map((m) => [m.category, m])).values()];
-  // console.log(selectedValue, 'hgfhgfh')
+
   useEffect(() => {
     displayProjects();
   }, []);
   return (
     <div
-      className="bg-light_yellow flex flex-col text-center py-6 sm:p-36"
+      className="bg-light_yellow flex flex-col text-center py-6 sm:px-36"
       style={{ overflow: "hidden" }}
     >
       <section className="title sm:mb-8 sm:w-[45%] mx-auto ">
@@ -45,12 +32,7 @@ const OurProjects = () => {
         </h6>
       </section>
       <section className="my-5 display__accordian">
-        <Accordion
-          radius="md"
-          defaultValue="E-commerce"
-          className="w-full "
-          onChange={(e) => setSelectedValueAccordian(e)}
-        >
+        <Accordion radius="md" defaultValue="Tourism" className='w-full ' onChange={(e) => setSelectedValueAccordian(e)}>
           {unique.map((tabValue) => (
             <Accordion.Item value={tabValue.category}>
               <Accordion.Control>{tabValue.category}</Accordion.Control>
@@ -59,15 +41,8 @@ const OurProjects = () => {
                   {filteredValues.map((filterData) => (
                     <Carousel.Slide>
                       {/* <img src={filterData.largeImage} alt="Projects" className="absolute" /> */}
-                      <img
-                        src={filterData.smallImage}
-                        alt="Projects"
-                        className="w-full object-contain absolute "
-                      />
-                      <div
-                        div
-                        className="site__button flex justify-between items-center w-40 mb-4 sm:w-80 mt-72 ml-5 "
-                      >
+                      <Link to={filterData.url} target='_blank'><img src={filterData.smallImage} alt="Projects" className="w-full object-contain absolute " /></Link>
+                      <div div className="site__button flex justify-between items-center w-40 mb-4 sm:w-80 mt-72 ml-5 " >
                         <Button
                           color="dark"
                           className="z-10 text-xs w-24 h-6 bg-black rounded-xl sm:rounded-full sm:h-16 sm:w-48 text-[12px] sm:text-base relative"

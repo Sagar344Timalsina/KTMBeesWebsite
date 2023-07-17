@@ -36,6 +36,7 @@ const AdminSidebar = () => {
     { id: 5, to: "/admin/companies", text: "Companies That Trusted" },
     { id: 6, to: "/admin/startup", text: "Startup Partners" },
     { id: 7, to: "/admin/about", text: "About Page" },
+    { id: 8, to: "/admin/teams", text: "Our Teams" }
   ]
   return (
     <AppShell
