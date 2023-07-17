@@ -73,8 +73,8 @@ const AdminCompanies = () => {
   }
 
   //Event handling of delete button
-  const handleDeleteButton = async (id, image) => {
-    await deleteFirebase(id, "projects", image);
+  const handleDeleteButton = async (id, smallImage, largeImage) => {
+    await deleteFirebase(id, "projects", { smallImage, largeImage });
     fetchDatas();
   }
 
@@ -93,8 +93,8 @@ const AdminCompanies = () => {
     setId(id);
     setIsEdit(true);
     const res = await getIndividualData(id, "projects");
-    setImgUrl(res.image);
-    // setSmallImgUrl()
+    setImgUrl(res.largeImage);
+    setSmallImgUrl(res.smallImage);
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
       console.log(key);
@@ -256,7 +256,7 @@ const AdminCompanies = () => {
                         {ele.url}
                       </td>
                       <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
-                      <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
+                      <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.largeImage, ele.smallImage)}><MdOutlineDeleteOutline />Delete</Button></td>
                     </tr>
                   ))
                 }

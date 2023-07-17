@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import DisplayData from "../utils/DisplayData";
+import GetInTouch from "./Buttons/GetInTouch";
 
 const Header = () => {
   const [display, setDisplay] = useState([]);
@@ -28,12 +29,7 @@ const Header = () => {
                 {data.subheading}
               </h6>
             </span>
-            <Button
-              color="dark"
-              className=" bg-black rounded-full h-16 w-48 text-base "
-            >
-              Get in touch
-            </Button>
+            <GetInTouch />
           </section>
         </div>
       ))}

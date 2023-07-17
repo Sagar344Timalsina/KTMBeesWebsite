@@ -17,8 +17,8 @@ const OurProjects = () => {
     const listProjects = await DisplayData("projects");
     setProjects(listProjects);
   };
-  const [selectedValueAccordian, setSelectedValueAccordian] = useState("E-commerce");
-  const [selectedValueTab, setSelectedValueTab] = useState("E-commerce");
+  const [selectedValueAccordian, setSelectedValueAccordian] = useState("Tourism");
+  const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
   const filteredValues = projects.filter((project) => project.category == selectedValueAccordian);
   const filteredValuesTab = projects.filter((project) => project.category == selectedValueTab);
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
@@ -29,7 +29,7 @@ const OurProjects = () => {
   }, []);
   return (
     <div
-      className="bg-light_yellow flex flex-col text-center py-6 sm:dynamic_x_padding"
+      className="bg-light_yellow flex flex-col text-center py-6 sm:px-36"
       style={{ overflow: "hidden" }}
     >
       <section className="title sm:mb-8 sm:w-[45%] mx-auto ">
@@ -40,7 +40,7 @@ const OurProjects = () => {
         </h6>
       </section>
       <section className="my-5 display__accordian">
-        <Accordion radius="md" defaultValue="E-commerce" className='w-full ' onChange={(e) => setSelectedValueAccordian(e)}>
+        <Accordion radius="md" defaultValue="Tourism" className='w-full ' onChange={(e) => setSelectedValueAccordian(e)}>
           {unique.map((tabValue) => (
             <Accordion.Item value={tabValue.category}>
               <Accordion.Control>{tabValue.category}</Accordion.Control>
@@ -49,7 +49,7 @@ const OurProjects = () => {
                   {filteredValues.map((filterData) => (
                     <Carousel.Slide>
                       {/* <img src={filterData.largeImage} alt="Projects" className="absolute" /> */}
-                      <img src={filterData.smallImage} alt="Projects" className="w-full object-contain absolute " />
+                      <Link to={filterData.url} target='_blank'><img src={filterData.smallImage} alt="Projects" className="w-full object-contain absolute " /></Link>
                       <div div className="site__button flex justify-between items-center w-40 mb-4 sm:w-80 mt-72 ml-5 " >
                         <Button
                           color="dark"

@@ -21,7 +21,7 @@ const AdminAbout = () => {
     })
 
     const onSubmit = (data) => {
-        isEdit===false?createServices(data, null, "about"):handleUpdate(data,id)
+        isEdit === false ? createServices(data, null, "about") : handleUpdate(data, id)
         reset();
         fetchDatas();
     }
@@ -35,13 +35,13 @@ const AdminAbout = () => {
     const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
-        const res=await getIndividualData(id,"about");
-        
+        const res = await getIndividualData(id, "about");
+
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
             console.log(key);
         });
-    
+
     }
 
     async function fetchDatas() {
@@ -110,12 +110,12 @@ const AdminAbout = () => {
                         </tr>
                     </thead>
                     {tableData && tableData.map((data) => (
-                        <tbody key={data.id}>
+                        <tbody key={data?.id}>
                             <tr>
-                                <td>{data.title}</td>
-                                <td>{data.description}</td>
-                                <td><Button className='bg-yellow font-sans text-black border-4 ' onClick={() => handleEditButton(data.id)}><FaEdit />Update</Button></td>
-                                <td><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
+                                <td>{data?.title}</td>
+                                <td>{data?.description}</td>
+                                <td><Button className='bg-yellow font-sans text-black border-4 ' onClick={() => handleEditButton(data?.id)}><FaEdit />Update</Button></td>
+                                <td><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data?.id, null)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         </tbody>
                     ))}
