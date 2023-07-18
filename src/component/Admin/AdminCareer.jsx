@@ -7,7 +7,7 @@ import createServices from "../../utils/createServices";
 import UpdateData, { getIndividualData } from "../../utils/UpdateData";
 import DisplayData from "../../utils/DisplayData";
 import { deleteFirebase } from "../../utils/Delete";
-import { DateInput, DatePickerInput } from "@mantine/dates";
+import { DatePickerInput } from "@mantine/dates";
 import moment from "moment";
 
 const AdminCareer = () => {
@@ -117,7 +117,7 @@ const AdminCareer = () => {
                     required: "Please fill up Date",
                   }}
                   render={({ field }) => (
-                    <DateInput
+                    <DatePickerInput
                       {...field}
                       valueFormat="YYYY MMM DD"
                       maw={400}
