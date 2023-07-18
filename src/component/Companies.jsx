@@ -47,11 +47,11 @@ const Companies = () => {
         <Text className="flex flex-col items-center gap-2 font-sans font-bold text-2xl sm:text-3xl text-black pt-28 pb-8 ">
           Startup Partners
         </Text>
-        <div className="grid grid-cols-12 items-start justify-between sm:gap-12 px-10 md:px-16 mx-auto ">
+        <div className="grid grid-cols-12 items-start justify-between sm:gap-10 px-10 md:px-16 mx-auto ">
           {startup.map((data) => (
             <div
               key={data.id}
-              className="flex col-span-12 md:col-span-4 sm:col-span-6 justify-center "
+              className="flex col-span-12 md:col-span-3 sm:col-span-6 justify-center "
             >
               <Link to={data.url} target="_blank">
                 <img
