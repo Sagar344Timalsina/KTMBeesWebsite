@@ -30,7 +30,7 @@ const CareerList = () => {
                 </section>
                 <section className='py-12 px-10 md:py-12 pb-16 md:px-24 lg:py-12 lg:px-56 bg-light_yellow_1 grid grid-cols-12 gap-5'>
                     {careerList.map((data) => (
-                        <Link to={`/career/${data.id}`} className='col-span-12 md:col-span-6 lg:col-span-3 career_box p-4 bg-light_yellow cursor-pointer' key={data.id}>
+                        <Link to={`/career/${data.id}`} className='col-span-12 md:col-span-6 career_box p-4 bg-light_yellow cursor-pointer' key={data.id}>
                             <Text className='font-bold text-xl text-yellow mb-14'>{data.jobTitle}</Text>
                             <div className='flex flex-col items-end'>
                                 <Text className='flex items-center gap-1'><BiTimeFive />{data.jobType}</Text>

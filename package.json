@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.6",
     "@mantine/carousel": "^6.0.16",
     "@mantine/core": "^6.0.9",
     "@mantine/dates": "^6.0.16",
