@@ -9,6 +9,7 @@ import DisplayData from "../../utils/DisplayData";
 import { deleteFirebase } from "../../utils/Delete";
 import { DatePickerInput } from "@mantine/dates";
 import moment from "moment";
+import dayjs from "dayjs";
 
 const AdminCareer = () => {
   const [tableData, setTableData] = useState([]);
@@ -25,7 +26,7 @@ const AdminCareer = () => {
   } = useForm({
     defaultValues: {
       jobTitle: "",
-      date: "",
+      // date: new Date(),
       description: "",
       jobType: "",
       location: "",
@@ -35,7 +36,6 @@ const AdminCareer = () => {
   const onSubmit = (data) => {
     const date = new Date(data.date);
     data.date = moment(date).format("LL");
-    console.log(data, "asdbjasgdasdasdag");
     isEdit === false
       ? createServices(data, null, "career")
       : handleUpdate(data, id);
@@ -44,6 +44,8 @@ const AdminCareer = () => {
   };
   //handle update in firebase
   const handleUpdate = (data, id) => {
+    const date = new Date(data.date);
+    data.date = moment(date).format("LL");
     UpdateData(data, id, "career");
     fetchDatas();
   };
@@ -53,6 +55,7 @@ const AdminCareer = () => {
     setId(id);
     setIsEdit(true);
     const res = await getIndividualData(id, "career");
+    res.date = new Date(res.date);
 
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
@@ -119,6 +122,9 @@ const AdminCareer = () => {
                   render={({ field }) => (
                     <DatePickerInput
                       {...field}
+                      minDate={new Date()}
+                      // label="Date input"
+                      placeholder="Date"
                       valueFormat="YYYY MMM DD"
                       maw={400}
                       size="lg"
@@ -239,7 +245,7 @@ const AdminCareer = () => {
                   <td>{data?.jobTitle}</td>
                   <td>{data?.description}</td>
                   <td>{data?.date}</td>
-                  <td>{data?.location}</td>
+                  <td>{data?.jobType}</td>
                   <td>{data?.location}</td>
                   <td>
                     <Button
