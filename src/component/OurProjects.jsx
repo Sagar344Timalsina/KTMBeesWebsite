@@ -5,14 +5,9 @@ import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mantine/hooks";
 
-const OurProjects = () => {
-  const [projects, setProjects] = useState([]);
-  const displayProjects = async () => {
-    const listProjects = await DisplayData("projects");
-    setProjects(listProjects);
-  };
+const OurProjects = (props) => {
   const largeScreen = useMediaQuery('(min-width: 1024px)');
-  console.log(largeScreen);
+  const { projects } = props;
   const [selectedValueAccordian, setSelectedValueAccordian] =
     useState("Tourism");
   const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
@@ -23,10 +18,6 @@ const OurProjects = () => {
     (project) => project.category == selectedValueTab
   );
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
-
-  useEffect(() => {
-    displayProjects();
-  }, []);
   return (
     <div
       className="h-auto bg-light_yellow flex flex-col text-center py-6 md:px-11 lg:px-36"

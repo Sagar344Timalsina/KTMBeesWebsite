@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FeedBackground from "../assets/images/backgroundFeedBack.png";
-import { getIndividualData } from "../utils/UpdateData";
-import DisplayData from "../utils/DisplayData";
-const Feedback = () => {
+const Feedback = (props) => {
   const data = [
     {
       image: "https://i.imgur.com/hczKIze.jpg",
@@ -47,14 +45,7 @@ const Feedback = () => {
         "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
     },
   ];
-  const [testimonial, setTestimonial] = useState([]);
-  const fetchData = async () => {
-    const listTestinomial = await DisplayData("testimonial");
-    setTestimonial(listTestinomial);
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { testimonial } = props;
   return (
     <main>
       <div
@@ -66,11 +57,11 @@ const Feedback = () => {
         </h1>
         <div className="gridView ">
           {testimonial?.map((data) => (
-            <div className="card bg-light_yellow h-auto w-80 2xl:w-[30rem] rounded-lg p-6 shadow-2xl">
+            <div className="card bg-light_yellow h-auto w-80 2xl:w-[27rem] rounded-lg p-6 shadow-2xl">
               <section className="flex  items-center">
                 <img
                   alt="pic"
-                  className="h-20 mr-4 rounded-full"
+                  className="h-20 mr-4 rounded-full w-20 object-contain"
                   src={data?.image}
                 />
                 <div>

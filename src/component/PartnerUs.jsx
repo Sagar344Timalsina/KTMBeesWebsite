@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import GetInTouch from "./Buttons/GetInTouch";
 import DisplayData from "../utils/DisplayData";
 
-const PartnerUs = () => {
-  const [partners, setPartners] = useState([]);
-  const display = async () => {
-    const list = await DisplayData("partner");
-    setPartners(list[0]);
-  };
-  useEffect(() => {
-    display();
-  }, []);
+const PartnerUs = (props) => {
+  const { partners } = props;
   return (
     <main className="sm:grid sm:grid-cols-12 bg-dark_yellow p-10 sm:dynamic_x_padding">
       <section className="sm:col-span-6 sm:flex justify-center items-center">

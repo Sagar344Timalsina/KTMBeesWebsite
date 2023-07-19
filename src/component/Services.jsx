@@ -2,15 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Text, Grid } from "@mantine/core";
 import DisplayData from "../utils/DisplayData";
 
-const Services = () => {
-  const [services, setServices] = useState([]);
-  const displayServices = async () => {
-    const listServices = await DisplayData("services");
-    setServices(listServices);
-  };
-  useEffect(() => {
-    displayServices();
-  }, []);
+const Services = (props) => {
+  const { services } = props;
   return (
     <section className="bg-light_yellow p-10 sm:dynamic_x_padding ">
       <div className="">
@@ -25,9 +18,7 @@ const Services = () => {
       </div>
 
       <div className="mx-auto lg:w-full overflow-hidden">
-        <div
-          className="mt-6 bg-light_yellow mb-20 grid grid-cols-12"
-        >
+        <div className="mt-6 bg-light_yellow mb-20 grid grid-cols-12">
           {services.map((service) => (
             <div
               span={3}
