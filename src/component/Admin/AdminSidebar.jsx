@@ -37,6 +37,7 @@ const AdminSidebar = () => {
     { id: 7, to: "/admin/about", text: "About Page" },
     { id: 8, to: "/admin/teams", text: "Our Teams" },
     { id: 8, to: "/admin/career", text: "Career" },
+    { id: 8, to: "/admin/testimonial", text: "Testimonial" },
   ];
   return (
     <AppShell

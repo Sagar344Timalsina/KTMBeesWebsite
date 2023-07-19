@@ -14,7 +14,7 @@ const Header = () => {
     fetchData();
   }, []);
   return (
-    <header>
+    <header className="home">
       <img
         alt="Bess"
         src={topFrame}
@@ -24,7 +24,7 @@ const Header = () => {
         <div
           className="flex h-[60vh] lg:h-screen bg-center bg-cover overflow-hidden "
           key={data?.id}
-        // style={{ backgroundImage: `url(${data?.image})` }}
+          // style={{ backgroundImage: `url(${data?.image})` }}
         >
           <section className="content mt-28 md:mt-44 mx-auto z-20">
             <span className="title">

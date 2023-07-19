@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Text, Table, SimpleGrid, TextInput, Button } from "@mantine/core";
-import { useForm, Controller } from "react-hook-form";
+import {
+  Button,
+  SimpleGrid,
+  Table,
+  Text,
+  TextInput,
+  Textarea,
+} from "@mantine/core";
 import { Dropzone, IMAGE_MIME_TYPE } from "@mantine/dropzone";
+import React, { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import firebaseImageUpload from "../../utils/firebaseImageUpload";
+import { FaEdit } from "react-icons/fa";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import { deleteFirebase, deleteStorageImage } from "../../utils/Delete";
 import createServices from "../../utils/createServices";
 import DisplayData from "../../utils/DisplayData";
-import { FaEdit } from "react-icons/fa";
-import { MdOutlineDeleteOutline } from "react-icons/md";
 import UpdateData, { getIndividualData } from "../../utils/UpdateData";
-const Hero = () => {
+
+const AdminTestimonial = () => {
   const [imgUrl, setImgUrl] = useState();
   const [preimgUrl, setPreImgUrl] = useState();
   const [tableData, setTableData] = useState([]);
@@ -24,8 +32,10 @@ const Hero = () => {
     reset,
   } = useForm({
     defaultValues: {
+      name: "",
       heading: "",
-      subheading: "",
+      position: "",
+      description: "",
       image: "",
     },
   });
@@ -36,7 +46,7 @@ const Hero = () => {
   };
   const onSubmit = (data) => {
     isEdit === false
-      ? createServices(data, imgUrl, "herosection")
+      ? createServices(data, imgUrl, "testimonial")
       : handleUpdate(data, id);
     reset();
     fetchDatas();
@@ -46,14 +56,14 @@ const Hero = () => {
   //fetching data from firebase
   async function fetchDatas() {
     try {
-      const fetchData = await DisplayData("herosection");
+      const fetchData = await DisplayData("testimonial");
       setTableData(fetchData);
     } catch (error) {}
   }
 
   //handle update in firebase
   const handleUpdate = (data, id) => {
-    UpdateData(data, id, "herosection");
+    UpdateData(data, id, "testimonial");
     if (preimgUrl !== imgUrl) deleteStorageImage(preimgUrl);
 
     fetchDatas();
@@ -63,7 +73,7 @@ const Hero = () => {
   const handleEditButton = async (id) => {
     setId(id);
     setIsEdit(true);
-    const res = await getIndividualData(id, "herosection");
+    const res = await getIndividualData(id, "testimonial");
     setImgUrl(res.image);
 
     Object.keys(res).forEach((key) => {
@@ -72,10 +82,8 @@ const Hero = () => {
     });
     setPreImgUrl(res.image);
   };
-
-  //Event handling of delete button
   const handleDeleteButton = async (id, image) => {
-    await deleteFirebase(id, "herosection", image);
+    await deleteFirebase(id, "testimonial", image);
     fetchDatas();
   };
   useEffect(() => {
@@ -85,7 +93,7 @@ const Hero = () => {
   return (
     <main className="flex items-center justify-center flex-col">
       <section className="text-4xl my-2 font-sans font-bold">
-        Hero Section
+        Testimonial
       </section>
       <section className="bg-light_gray w-[60%] shadow-2xl">
         <form onSubmit={handleSubmit(onSubmit)} className="px-5 py-7 border-0 ">
@@ -93,44 +101,44 @@ const Hero = () => {
             <div className="mb-5">
               <Controller
                 control={control}
-                name="heading"
+                name="name"
                 rules={{
-                  required: "Please fill up heading title",
+                  required: "Please fill up name",
                 }}
                 render={({ field }) => (
                   <TextInput
                     control={control}
                     {...field}
-                    label="Heading-Title"
-                    placeholder="Title-1"
+                    label="Full Name"
+                    placeholder="Name"
                     size="lg"
                   />
                 )}
               ></Controller>
               <p className="text-[red] px-3 font-semibold ">
-                {errors.heading?.message}
+                {errors.name?.message}
               </p>
             </div>
 
             <div className="mb-5">
               <Controller
                 control={control}
-                name="subheading"
+                name="position"
                 rules={{
-                  required: "Please fill up title",
+                  required: "Please fill up Position",
                 }}
                 render={({ field }) => (
                   <TextInput
                     control={control}
                     {...field}
-                    label="Title"
-                    placeholder="Title-2"
+                    label="Position"
+                    placeholder="Eg:- CEO"
                     size="lg"
                   />
                 )}
               ></Controller>
               <p className="text-[red] px-3 font-semibold ">
-                {errors.subheading?.message}
+                {errors.position?.message}
               </p>
             </div>
 
@@ -181,9 +189,26 @@ const Hero = () => {
                 {errors.image?.message}
               </p>
             </div>
-            <p className="text-[red] px-3 font-semibold ">
-              {errors.description?.message}
-            </p>
+            <div className="mb-5">
+              <Controller
+                name="description"
+                control={control}
+                rules={{ required: "Fill up the description" }}
+                render={({ field }) => (
+                  <Textarea
+                    control={control}
+                    {...field}
+                    placeholder="Description"
+                    label="Description"
+                    minRows={6}
+                    size="lg"
+                  />
+                )}
+              ></Controller>
+              <p className="text-[red] px-3 font-semibold ">
+                {errors.description?.message}
+              </p>
+            </div>
             {isEdit !== true ? (
               <Button
                 type="submit"
@@ -217,8 +242,9 @@ const Hero = () => {
               <thead>
                 <tr>
                   <th>Photo</th>
-                  <th>Heading</th>
-                  <th>Sub-Heading</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Description</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -233,8 +259,9 @@ const Hero = () => {
                         alt="upload name"
                       />
                     </td>
-                    <td>{ele.heading}</td>
-                    <td>{ele.subheading}</td>
+                    <td>{ele.name}</td>
+                    <td>{ele.position}</td>
+                    <td>{ele.description}</td>
                     <td className="w-36">
                       <Button
                         className="bg-yellow font-sans text-black"
@@ -264,4 +291,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default AdminTestimonial;

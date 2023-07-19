@@ -6,6 +6,11 @@ import { Controller, useForm } from "react-hook-form";
 import Navbar from "../component/Navbar";
 import { Footer } from "../component/Footer";
 import { useMediaQuery } from "@mantine/hooks";
+import ReCAPTCHA from "react-google-recaptcha";
+import {
+  GoogleReCaptcha,
+  GoogleReCaptchaProvider,
+} from "react-google-recaptcha-v3";
 
 const Contacts = () => {
   const form = useRef();
@@ -196,34 +201,12 @@ const Contacts = () => {
               className="flex
             flex-col items-end"
             >
-              <div className="w-44 text-xs ml-3 bg-white sm:w-[18rem] sm:h-[6rem] sm:mx-3 sm:mb-[0rem]  border border-gray_2 flex justify-around items-center">
-                <Controller
-                  name="checkbox"
-                  rules={{
-                    required: "Please check the Captcha box",
-                  }}
-                  control={control}
-                  render={({ field }) => (
-                    <Checkbox
-                      control={control}
-                      {...field}
-                      // fw={100}
-                      size={largeScreen ? "md" : "xs"}
-                      className="w-3/5"
-                      label="I'm not a robot "
-                    />
-                  )}
-                />
-                <img
-                  className="sm:w-[5rem] w-14 "
-                  src={captcha}
-                  alt="ReCaptcha"
-                />
-              </div>
-              <p className="text-[red] px-3 font-[600] mb-[1rem] text-xs sm:text-base">
-                {errors.checkbox?.message}
-              </p>
-
+              {/* <div className="w-44 text-xs ml-3 sm:w-[18rem] sm:h-[6rem] sm:mx-3 sm:mb-[0rem]  border border-gray_2 flex justify-around items-center"> */}
+              <ReCAPTCHA sitekey={"6LfP9jInAAAAAK6oWWH7tzXNr-X-QcXIHbD4ReZ-"} />
+              {/* <GoogleReCaptchaProvider reCaptchaKey="6Lc5_jInAAAAAMw9XZgINeJbJZdJlwbIdnp2IvjB">
+                <GoogleReCaptcha />
+              </GoogleReCaptchaProvider> */}
+              {/* </div> */}
               <button
                 type="submit"
                 className="ml-4 w-28 my-1 rounded-full h-8 text-xs bg-[#F0B62F] sm:w-[12rem] sm:h-[4rem] sm:mx-3 sm:rounded-[40px] tracking-[.06rem] font-[Poppins] text-white sm:text-[20px] font-semibold"
