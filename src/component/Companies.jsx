@@ -22,7 +22,10 @@ const Companies = () => {
   return (
     <div className="bg-light_yellow sm:dynamic_x_padding ">
       <div>
-        <Text className="flex flex-col items-center gap-2 font-sans font-bold text-xl sm:text-3xl text-black p-12  pb-8">
+        <Text
+          className="flex flex-col items-center gap-2 font-sans font-bold text-xl sm:text-3xl text-black p-12  pb-8"
+          id="startup"
+        >
           Companies that trusted us
         </Text>
         <div className="grid grid-cols-12 items-start justify-between gap-5 sm:gap-12 md:px-16 mx-auto ">

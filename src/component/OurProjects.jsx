@@ -26,6 +26,7 @@ const OurProjects = () => {
   }, []);
   return (
     <div
+      id="projects"
       className="bg-light_yellow flex flex-col text-center py-6 sm:px-36"
       style={{ overflow: "hidden" }}
     >

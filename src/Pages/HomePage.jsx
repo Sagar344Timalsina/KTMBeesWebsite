@@ -9,12 +9,13 @@ import { Footer } from "../component/Footer";
 import OurProjects from "../component/OurProjects";
 import ReadyCreate from "../component/ReadyCreate";
 import topFrame from "../assets/images/topFrame.png";
-import Feedback from "../component/Feedback";
+import Feedback from "../component/Testimonial";
+import { HashLink } from "react-router-hash-link";
 
 const HomePage = () => {
   return (
     <main>
-      <div className="bg-light_yellow_1">
+      <div className="bg-light_yellow_1" id="home">
         <Navbar />
         <Header />
       </div>
