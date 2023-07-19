@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TextInput, Textarea, Checkbox } from "@mantine/core";
 import captcha from "../assets/images/Captcha.png";
 import { Controller, useForm } from "react-hook-form";
@@ -12,6 +12,7 @@ import {
 } from "react-google-recaptcha-v3";
 
 const Contacts = () => {
+  const [verified, setVerified] = useState(true);
   const {
     handleSubmit,
     formState: { errors },
@@ -24,7 +25,10 @@ const Contacts = () => {
       company: "",
     },
   });
-
+  const handleChange = () => {
+    // console.log("");
+    setVerified(false);
+  };
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -191,7 +195,10 @@ const Contacts = () => {
             flex-col items-end"
             >
               {/* <div className="w-44 text-xs ml-3 sm:w-[18rem] sm:h-[6rem] sm:mx-3 sm:mb-[0rem]  border border-gray_2 flex justify-around items-center"> */}
-              <ReCAPTCHA sitekey={"6LfP9jInAAAAAK6oWWH7tzXNr-X-QcXIHbD4ReZ-"} />
+              <ReCAPTCHA
+                sitekey={"6LfP9jInAAAAAK6oWWH7tzXNr-X-QcXIHbD4ReZ-"}
+                onChange={handleChange}
+              />
               {/* <GoogleReCaptchaProvider reCaptchaKey="6Lc5_jInAAAAAMw9XZgINeJbJZdJlwbIdnp2IvjB">
                 <GoogleReCaptcha />
               </GoogleReCaptchaProvider> */}
@@ -199,6 +206,7 @@ const Contacts = () => {
               <button
                 type="submit"
                 className="ml-4 w-28 my-1 rounded-full h-8 text-xs bg-[#F0B62F] sm:w-[12rem] sm:h-[4rem] sm:mx-3 sm:rounded-[40px] tracking-[.06rem] font-[Poppins] text-white sm:text-[20px] font-semibold"
+                disabled={verified}
               >
                 Send
               </button>
