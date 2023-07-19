@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from '@emailjs/browser';
 import { Text, TextInput, Textarea, Checkbox } from "@mantine/core";
 import captcha from "../assets/images/Captcha.png";
 import { Controller, useForm } from "react-hook-form";
@@ -7,6 +8,8 @@ import { Footer } from "../component/Footer";
 import { useMediaQuery } from "@mantine/hooks";
 
 const Contacts = () => {
+  const form = useRef();
+
   const {
     handleSubmit,
     formState: { errors },
@@ -21,8 +24,15 @@ const Contacts = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    emailjs.sendForm('service_evreki4', 'template_8wo2mhq', form.current, '7REa7X66xBCG68J_r')
+      .then((result) => {
+        alert("Email sent");
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
   };
+
   const largeScreen = useMediaQuery("(min-width: 640px)");
   return (
     // <Navbar/>
@@ -46,6 +56,7 @@ const Contacts = () => {
         </section>
         <section className="lg:w-3/5 w-[90%] rounded-2xl mb-10 sm:mb-10 bg-white ">
           <form
+            ref={form}
             onSubmit={handleSubmit(onSubmit)}
             autoComplete="off"
             className="px-2 py-7 md:px-4 md:py-12 focus:none border-0 shadow-2xl rounded-lg"
@@ -165,7 +176,7 @@ const Contacts = () => {
             </div>
 
             <Controller
-              name="textArea"
+              name="message"
               control={control}
               render={({ field }) => (
                 <Textarea
