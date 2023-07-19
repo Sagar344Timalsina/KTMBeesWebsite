@@ -3,6 +3,7 @@ import { Text, Tabs, Accordion } from "@mantine/core";
 import Navbar from "../component/Navbar";
 import { Footer } from "../component/Footer";
 import DisplayData from "../utils/DisplayData";
+import { Router } from "react-router-dom";
 
 const AboutUs = () => {
   const [display, setDisplay] = useState([]);
@@ -20,7 +21,12 @@ const AboutUs = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
+    let unsubscribe;
+    unsubscribe = fetchData().then((r) => r);
+    return () => {
+      unsubscribe = [];
+    };
   }, []);
   return (
     <div className="bg-light_yellow">

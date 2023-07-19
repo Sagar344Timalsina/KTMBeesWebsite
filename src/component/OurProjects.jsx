@@ -4,12 +4,8 @@ import DisplayData from "../utils/DisplayData";
 import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
 
-const OurProjects = () => {
-  const [projects, setProjects] = useState([]);
-  const displayProjects = async () => {
-    const listProjects = await DisplayData("projects");
-    setProjects(listProjects);
-  };
+const OurProjects = (props) => {
+  const { projects } = props;
   const [selectedValueAccordian, setSelectedValueAccordian] =
     useState("Tourism");
   const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
@@ -20,10 +16,6 @@ const OurProjects = () => {
     (project) => project.category == selectedValueTab
   );
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
-
-  useEffect(() => {
-    displayProjects();
-  }, []);
   return (
     <div
       id="projects"
