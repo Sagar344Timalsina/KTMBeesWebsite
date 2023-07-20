@@ -128,6 +128,7 @@ const AdminCareer = () => {
                       control={control}
                       {...field}
                       placeholder="Title"
+                      label="Title"
                       size="lg"
                     />
                   )}
@@ -147,8 +148,8 @@ const AdminCareer = () => {
                     <DatePickerInput
                       {...field}
                       minDate={new Date()}
-                      // label="Date input"
-                      placeholder="Date"
+                      label="Expiry Date"
+                      placeholder="Expiry Date"
                       valueFormat="YYYY MMM DD"
                       maw={400}
                       size="lg"
@@ -166,50 +167,7 @@ const AdminCareer = () => {
                 name={"description"}
                 rules={{ required: "Fill up the description" }}
                 render={({ field }) => (
-                  <RichTextEditor editor={editor}>
-                    <RichTextEditor.Toolbar sticky stickyOffset={60}>
-                      <RichTextEditor.ControlsGroup>
-                        <RichTextEditor.Bold />
-                        <RichTextEditor.Italic />
-                        <RichTextEditor.Underline />
-                        <RichTextEditor.Strikethrough />
-                        <RichTextEditor.ClearFormatting />
-                        <RichTextEditor.Highlight />
-                        <RichTextEditor.Code />
-                      </RichTextEditor.ControlsGroup>
-
-                      <RichTextEditor.ControlsGroup>
-                        <RichTextEditor.H1 />
-                        <RichTextEditor.H2 />
-                        <RichTextEditor.H3 />
-                        <RichTextEditor.H4 />
-                      </RichTextEditor.ControlsGroup>
-
-                      <RichTextEditor.ControlsGroup>
-                        <RichTextEditor.Blockquote />
-                        <RichTextEditor.Hr />
-                        <RichTextEditor.BulletList />
-                        <RichTextEditor.OrderedList />
-                        <RichTextEditor.Subscript />
-                        <RichTextEditor.Superscript />
-                      </RichTextEditor.ControlsGroup>
-
-                      <RichTextEditor.ControlsGroup>
-                        <RichTextEditor.Link />
-                        <RichTextEditor.Unlink />
-                      </RichTextEditor.ControlsGroup>
-
-                      <RichTextEditor.ControlsGroup>
-                        <RichTextEditor.AlignLeft />
-                        <RichTextEditor.AlignCenter />
-                        <RichTextEditor.AlignJustify />
-                        <RichTextEditor.AlignRight />
-                      </RichTextEditor.ControlsGroup>
-                    </RichTextEditor.Toolbar>
-
-                    <RichTextEditor.Content />
-
-                  </RichTextEditor>
+                  <Textarea {...field} label="Job description" size="lg" placeholder="Description"></Textarea>
                 )}
               ></Controller>
               <p className="text-[red] px-3 font-semibold ">
@@ -292,7 +250,7 @@ const AdminCareer = () => {
             <tr>
               <th>Title</th>
               <th>Description</th>
-              <th>Date</th>
+              <th>Expiry Date</th>
               <th>Job type</th>
               <th>Location</th>
               <th>Edit</th>
@@ -304,7 +262,7 @@ const AdminCareer = () => {
               <tbody key={data?.id}>
                 <tr>
                   <td>{data?.jobTitle}</td>
-                  <td>{data?.description}</td>
+                  <td ><div className="overflow-scroll h-64 w-72">{data?.description}</div></td>
                   <td>{data?.date}</td>
                   <td>{data?.jobType}</td>
                   <td>{data?.location}</td>

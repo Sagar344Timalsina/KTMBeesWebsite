@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import { Footer } from './Footer'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrLocation } from 'react-icons/gr'
+import { BsCalendarDate } from 'react-icons/bs'
 import DisplayData from '../utils/DisplayData'
 import { Link } from 'react-router-dom'
 
@@ -35,6 +36,7 @@ const CareerList = () => {
                             <div className='flex flex-col items-end'>
                                 <Text className='flex items-center gap-1'><BiTimeFive />{data.jobType}</Text>
                                 <Text className='flex items-center gap-1'><GrLocation />{data.location}</Text>
+                                <Text className='flex items-center gap-1'><BsCalendarDate />{data.date}</Text>
                             </div>
                         </Link>
                     ))}

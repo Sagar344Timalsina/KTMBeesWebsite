@@ -55,7 +55,7 @@ const AdminAbout = () => {
     try {
       const fetchData = await DisplayData("about");
       setTableData(fetchData);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   useEffect(() => {
@@ -91,6 +91,7 @@ const AdminAbout = () => {
                     control={control}
                     {...field}
                     placeholder="Title"
+                    label="Title"
                     size="lg"
                   />
                 )}
@@ -109,6 +110,7 @@ const AdminAbout = () => {
                     control={control}
                     {...field}
                     placeholder="Description"
+                    label="Description"
                     minRows={13}
                     size="lg"
                   />
