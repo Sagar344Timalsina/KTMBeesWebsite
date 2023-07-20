@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Text, Grid } from "@mantine/core";
-import DisplayData from "../utils/DisplayData";
+import React from "react";
+import { Text } from "@mantine/core";
 
 const Services = (props) => {
   const { services } = props;
   return (
-    <section className="bg-light_yellow p-10 sm:dynamic_x_padding ">
+    <section id="services" className="bg-light_yellow p-10 sm:dynamic_x_padding ">
       <div className="">
         <Text className="h-9 font-sans font-bold lg:text-3xl text-2xl leading-9 tracking-wider text-dark text-center">
           Services

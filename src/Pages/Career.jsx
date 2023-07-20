@@ -3,9 +3,7 @@ import { Text } from "@mantine/core";
 import { BiTimeFive } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
 import { useParams } from "react-router";
-// import Navbar from "../component/Navbar";
 import { getIndividualData } from "../utils/UpdateData";
-import Loading from "../component/loading/Loading";
 import { Footer } from "../component/Footer";
 import Navbar from "../component/Navbar";
 

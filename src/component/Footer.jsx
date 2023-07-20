@@ -8,7 +8,7 @@ export const Footer = () => {
   const quickLinks = [
     { id: 1, name: "Home", link: "/#home" },
     { id: 2, name: "Our Projects", link: "/#projects" },
-    { id: 3, name: "Services", link: "/" },
+    { id: 3, name: "Services", link: "/#services" },
     { id: 4, name: "What we offer", link: "/" },
     { id: 5, name: "Startup Partners", link: "/#startup" },
   ];

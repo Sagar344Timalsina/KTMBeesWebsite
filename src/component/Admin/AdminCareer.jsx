@@ -9,7 +9,7 @@ import DisplayData from "../../utils/DisplayData";
 import { deleteFirebase } from "../../utils/Delete";
 import { DatePickerInput } from "@mantine/dates";
 import moment from "moment";
-import { RichTextEditor, Link } from '@mantine/tiptap'
+import { Link } from '@mantine/tiptap'
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from '@tiptap/extension-underline';
@@ -17,8 +17,6 @@ import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import Highlight from '@tiptap/extension-highlight';
-// import { BulletListControl } from "@mantine/tiptap/lib/controls";
-import dayjs from "dayjs";
 
 const AdminCareer = () => {
   const [tableData, setTableData] = useState([]);
@@ -35,7 +33,6 @@ const AdminCareer = () => {
   } = useForm({
     defaultValues: {
       jobTitle: "",
-      // date: new Date(),
       description: "",
       jobType: "",
       location: "",
@@ -83,7 +80,6 @@ const AdminCareer = () => {
 
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
-      console.log(key);
     });
   };
 

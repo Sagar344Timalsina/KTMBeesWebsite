@@ -48,7 +48,7 @@ const Hero = () => {
     try {
       const fetchData = await DisplayData("herosection");
       setTableData(fetchData);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   //handle update in firebase
@@ -68,7 +68,6 @@ const Hero = () => {
 
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
-      console.log(key);
     });
     setPreImgUrl(res.image);
   };

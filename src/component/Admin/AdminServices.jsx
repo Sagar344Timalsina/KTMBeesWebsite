@@ -33,7 +33,7 @@ const AdminServices = () => {
     });
 
     const onSubmit = (data) => {
-        isEdit === false ? createServices(data, imgUrl, "services") : handleUpdate(data, id); 
+        isEdit === false ? createServices(data, imgUrl, "services") : handleUpdate(data, id);
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -47,11 +47,11 @@ const AdminServices = () => {
             console.error(error);
         }
     }
-       //handle update in firebase
-       const handleUpdate = (data, id) => {
+    //handle update in firebase
+    const handleUpdate = (data, id) => {
         UpdateData(data, id, "services");
-        if(preimgUrl!==imgUrl)
-        deleteStorageImage(preimgUrl);
+        if (preimgUrl !== imgUrl)
+            deleteStorageImage(preimgUrl);
         fetchDatas();
     }
 
@@ -59,15 +59,14 @@ const AdminServices = () => {
     const handleEditButton = async (id) => {
         setId(id);
         setIsEdit(true);
-        const res = await getIndividualData(id,"services");
+        const res = await getIndividualData(id, "services");
         setImgUrl(res.image);
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
-            console.log(key);
         });
         setPreImgUrl(res.image);
 
-       
+
     }
 
     //Event handling of delete button
@@ -146,8 +145,8 @@ const AdminServices = () => {
                             <p className='text-[red] px-3 font-[600] '>{errors.text?.message}</p>
                         </div>
                         {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
-                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
-              
+                            : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+
                     </div>
                 </form>
             </section>
@@ -178,7 +177,7 @@ const AdminServices = () => {
                                             <td>
                                                 {ele.text}
                                             </td>
-                                            <td className='w-36'><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
+                                            <td className='w-36'><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(ele.id)}><FaEdit />Update</Button></td>
                                             <td className='w-36'><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(ele.id, ele.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                                         </tr>
                                     ))

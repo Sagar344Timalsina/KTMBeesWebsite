@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Text, Grid } from "@mantine/core";
-import DisplayData from "../utils/DisplayData";
+import React from "react";
+import { Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const Companies = (props) => {

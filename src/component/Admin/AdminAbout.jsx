@@ -47,7 +47,6 @@ const AdminAbout = () => {
 
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
-      console.log(key);
     });
   };
 

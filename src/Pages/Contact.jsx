@@ -1,16 +1,11 @@
 import React, { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
 import { Text, TextInput, Textarea, Checkbox } from "@mantine/core";
-import captcha from "../assets/images/Captcha.png";
 import { Controller, useForm } from "react-hook-form";
 import Navbar from "../component/Navbar";
 import { Footer } from "../component/Footer";
 import { useMediaQuery } from "@mantine/hooks";
 import ReCAPTCHA from "react-google-recaptcha";
-import {
-  GoogleReCaptcha,
-  GoogleReCaptchaProvider,
-} from "react-google-recaptcha-v3";
 
 const Contacts = () => {
   const form = useRef();
@@ -30,14 +25,12 @@ const Contacts = () => {
     },
   });
   const handleChange = () => {
-    // console.log("");
     setVerified(false);
   };
   const onSubmit = (data) => {
     emailjs.sendForm('service_evreki4', 'template_8wo2mhq', form.current, '7REa7X66xBCG68J_r')
       .then((result) => {
         alert("Email sent");
-        console.log(result.text);
       }, (error) => {
         console.log(error.text);
       });

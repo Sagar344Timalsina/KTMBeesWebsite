@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import GetInTouch from "./Buttons/GetInTouch";
-import DisplayData from "../utils/DisplayData";
 
 const PartnerUs = (props) => {
   const { partners } = props;

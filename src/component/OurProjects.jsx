@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Accordion, Button, MediaQuery, Tabs } from "@mantine/core";
-import DisplayData from "../utils/DisplayData";
+import React, { useState } from "react";
+import { Accordion, Button, Tabs } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 import { Link } from "react-router-dom";
-import { useMediaQuery } from "@mantine/hooks";
 
 const OurProjects = (props) => {
-  const largeScreen = useMediaQuery('(min-width: 1024px)');
+  // const largeScreen = useMediaQuery('(min-width: 1024px)');
   const { projects } = props;
   const [selectedValueAccordian, setSelectedValueAccordian] =
     useState("Tourism");
   const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
   const filteredValues = projects.filter(
-    (project) => project.category == selectedValueAccordian
+    (project) => project.category === selectedValueAccordian
   );
   const filteredValuesTab = projects.filter(
-    (project) => project.category == selectedValueTab
+    (project) => project.category === selectedValueTab
   );
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
   return (
     <div
+      id="projects"
       className="h-auto bg-light_yellow flex flex-col text-center py-6 md:px-11 lg:px-36"
 
     >

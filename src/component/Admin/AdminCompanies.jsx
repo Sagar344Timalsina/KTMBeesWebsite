@@ -21,7 +21,7 @@ const AdminCompanies = () => {
 
     const { handleSubmit, control, formState: { errors }, setValue, reset } = useForm({
         defaultValues: {
-            url:"",
+            url: "",
             image: "",
         }
     })
@@ -31,7 +31,7 @@ const AdminCompanies = () => {
         setImgUrl(null);
     }
     const onSubmit = (data) => {
-        isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id); 
+        isEdit === false ? createServices(data, imgUrl, "companies") : handleUpdate(data, id);
         reset();
         fetchDatas();
         setImgUrl(null);
@@ -59,10 +59,9 @@ const AdminCompanies = () => {
     //handle update in firebase
     const handleUpdate = (data, id) => {
         UpdateData(data, id, "companies");
-      if(preimgUrl!==imgUrl)
-         deleteStorageImage(preimgUrl);
+        if (preimgUrl !== imgUrl)
+            deleteStorageImage(preimgUrl);
 
-        console.log("Inside Update ",data, id);
         fetchDatas();
     }
 
@@ -74,7 +73,6 @@ const AdminCompanies = () => {
         setImgUrl(res.image);
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
-            console.log(key);
         });
 
         setPreImgUrl(res.image);
@@ -90,18 +88,18 @@ const AdminCompanies = () => {
             <section className='text-4xl my-2 font-sans font-bold'>Companies that trusted us</section>
             <section className='bg-light_gray w-[60%] shadow-2xl'>
                 <form onSubmit={handleSubmit(onSubmit)} className='px-5 py-7 border-0 '>
-                <div className='mb-5'>
-                            <Controller
-                                control={control}
-                                name='url'
-                                rules={{
-                                    required: "Please fill up title"
-                                }}
-                                render={({ field }) => <TextInput control={control} {...field}  label="Image Url" placeholder='www.example.com' size='lg' />}
-                            >
-                            </Controller>
-                            <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
-                        </div>
+                    <div className='mb-5'>
+                        <Controller
+                            control={control}
+                            name='url'
+                            rules={{
+                                required: "Please fill up title"
+                            }}
+                            render={({ field }) => <TextInput control={control} {...field} label="Image Url" placeholder='www.example.com' size='lg' />}
+                        >
+                        </Controller>
+                        <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
+                    </div>
                     <div className='mb-5'>
                         <Controller
                             name='image'
@@ -156,10 +154,10 @@ const AdminCompanies = () => {
 
                                     display.map((ele) => (
                                         <tr key={ele.id}>
-                                            <td> 
+                                            <td>
                                                 <img className='w-24 h-24 object-contain rounded-full bg-light_gray' src={ele.image} alt="Upload" />
                                             </td>
-                                            <td> 
+                                            <td>
                                                 {ele.url}
                                             </td>
 

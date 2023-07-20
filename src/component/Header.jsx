@@ -1,9 +1,6 @@
-import { Button } from "@mantine/core";
-import React, { useEffect, useState } from "react";
-import DisplayData from "../utils/DisplayData";
+import React from "react";
 import GetInTouch from "./Buttons/GetInTouch";
 import topFrame from "../assets/images/topFrame.png";
-import Loading from "./loading/Loading";
 const Header = (props) => {
   const { display } = props;
 
@@ -19,7 +16,7 @@ const Header = (props) => {
           <div
             className="flex h-[60vh] lg:h-screen bg-center bg-cover overflow-hidden "
             key={data?.id}
-            // style={{ backgroundImage: `url(${data?.image})` }}
+          // style={{ backgroundImage: `url(${data?.image})` }}
           >
             <section className="content mt-28 md:mt-44 mx-auto z-20">
               <span className="title">

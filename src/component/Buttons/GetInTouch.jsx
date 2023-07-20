@@ -1,8 +1,5 @@
 import React from 'react'
-import Contacts from '../../Pages/Contact'
 import { Link } from 'react-router-dom'
-import { Button } from '@mantine/core'
-
 
 const GetInTouch = () => {
   return (

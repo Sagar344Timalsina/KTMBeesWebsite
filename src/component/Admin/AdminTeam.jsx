@@ -54,7 +54,6 @@ const AdminTeam = () => {
         setImageUrl(res.image);
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
-            console.log(key);
         });
         setPreImgUrl(res.image);
 

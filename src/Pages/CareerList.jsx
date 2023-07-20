@@ -1,7 +1,5 @@
 import { Text } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-// import Navbar from "./Navbar";
-// import { Footer } from "./Footer";
 import { BiTimeFive } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
 import { BsCalendarDate } from "react-icons/bs";
@@ -16,7 +14,6 @@ const CareerList = () => {
   const displayCareerList = async () => {
     const listCareer = await DisplayData("career");
     setCareerList(listCareer);
-    // console.log(listCareer, "List of Career");
   };
 
   useEffect(() => {

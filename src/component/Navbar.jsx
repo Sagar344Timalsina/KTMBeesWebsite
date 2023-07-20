@@ -8,18 +8,15 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { TbDeviceMobileMessage } from "react-icons/tb";
 import { FaFileCode } from "react-icons/fa";
 import { FaRegHandshake, FaRocket } from "react-icons/fa";
-// import { HiMiniRocketLaunch } from "react-icons/hi2";
+import { ImLocation } from "react-icons/im";
 
 import { Link } from "react-router-dom";
-import { Text } from "@mantine/core";
-import { ImLocation } from "react-icons/im";
 import { FiPhoneCall } from "react-icons/fi";
-import topFrame from "../assets/images/topFrame.png";
+import { HashLink } from "react-router-hash-link";
 
 const Navbar = (props) => {
   const [scrolled, setScrolled] = useState(false);
   const ChangeNavColor = () => {
-    // console.log(window.scrollY);
     if (window.scrollY > 30) {
       setScrolled(true);
     } else if (window.scrollY < 30) {
@@ -31,7 +28,7 @@ const Navbar = (props) => {
     window.addEventListener("scroll", ChangeNavColor);
   }, []);
 
-  const { image } = props;
+  // const { image } = props;
   const [hamActive, setHamActive] = useState(false);
   const handleHam = async () => {
     setHamActive(true);
@@ -39,7 +36,6 @@ const Navbar = (props) => {
   const closeHam = async () => {
     setHamActive(false);
   };
-  // console.log(image);
   const contact = [
     { id: 1, logo: <ImLocation />, name: "Baneshwor, Kathmandu", link: "/" },
     { id: 2, logo: <FiPhoneCall />, name: "+977-9800022222", link: "/" },
@@ -48,9 +44,9 @@ const Navbar = (props) => {
   const quickLinks = [
     { id: 1, logo: <AiFillHome />, name: "Home", link: "/" },
     { id: 2, logo: <BsFillPeopleFill />, name: "About", link: "/about" },
-    { id: 3, logo: <AiFillSetting />, name: "Projects", link: "/" },
-    { id: 4, logo: <FaFileCode />, name: "We offer", link: "/" },
-    { id: 5, logo: <FaRegHandshake />, name: "Partners", link: "/" },
+    { id: 3, logo: <AiFillSetting />, name: "Projects", link: "/#projects" },
+    { id: 4, logo: <FaFileCode />, name: "We offer", link: "/#services" },
+    { id: 5, logo: <FaRegHandshake />, name: "Partners", link: "/#startup" },
     {
       id: 6,
       logo: <TbDeviceMobileMessage />,
@@ -100,10 +96,10 @@ const Navbar = (props) => {
           <div className="flex flex-col ml-5 text-xl">
             {quickLinks.map((data) => (
               <div key={data.id}>
-                <Link className="flex items-center mb-5" to={data.link}>
+                <HashLink smooth className="flex items-center mb-5" to={data.link}>
                   <span className="mr-5">{data.logo}</span>
                   <h6>{data.name}</h6>
-                </Link>
+                </HashLink>
               </div>
             ))}
             <div className="flex-col mt-16">

@@ -3,7 +3,6 @@ import { Text, Tabs, Accordion } from "@mantine/core";
 import Navbar from "../component/Navbar";
 import { Footer } from "../component/Footer";
 import DisplayData from "../utils/DisplayData";
-import { Router } from "react-router-dom";
 import Loading from "../component/loading/Loading";
 
 const AboutUs = () => {
@@ -19,7 +18,6 @@ const AboutUs = () => {
     setDisplay(data);
     setDisplayTeams(teamsData);
     setLoading(false);
-    // console.log(displayTeams, "Our Teams");
   };
 
   useEffect(() => {

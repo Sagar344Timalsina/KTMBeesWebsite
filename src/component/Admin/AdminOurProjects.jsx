@@ -5,7 +5,6 @@ import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { deleteFirebase, deleteStorageImage } from '../../utils/Delete'
 import { FaEdit } from 'react-icons/fa';
 import { MdOutlineDeleteOutline } from 'react-icons/md'
-
 import firebaseImageUpload from '../../utils/firebaseImageUpload';
 import createServices from '../../utils/createServices';
 import DisplayData from '../../utils/DisplayData';
@@ -29,7 +28,6 @@ const AdminCompanies = () => {
     })
     const unique = [...new Set(listCategory)];
     setCategory(unique);
-    console.log(unique, "listtttt");
   };
   useEffect(() => {
     displayProjects();
@@ -51,7 +49,6 @@ const AdminCompanies = () => {
     setSmallImgUrl(null);
   }
   const onSubmit = (data) => {
-    console.log(data, imgUrl, "Hell")
     isEdit === false ? createServices(data, imgUrl, "projects") : handleUpdate(data, id);
     reset();
     fetchDatas();
@@ -84,7 +81,6 @@ const AdminCompanies = () => {
     if (preimgUrl !== imgUrl)
       deleteStorageImage(preimgUrl);
 
-    console.log("Inside Update ", data, id);
     fetchDatas();
   }
 
@@ -97,7 +93,6 @@ const AdminCompanies = () => {
     setSmallImgUrl(res.smallImage);
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
-      console.log(key);
     });
     setPreImgUrl(res.image);
 

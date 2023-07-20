@@ -58,7 +58,7 @@ const AdminTestimonial = () => {
     try {
       const fetchData = await DisplayData("testimonial");
       setTableData(fetchData);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   //handle update in firebase
@@ -78,7 +78,6 @@ const AdminTestimonial = () => {
 
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
-      console.log(key);
     });
     setPreImgUrl(res.image);
   };

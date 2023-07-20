@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PartnerUs from "../component/PartnerUs";
-import OurProcess from "../component/OurProcess";
 import Services from "../component/Services";
 import Companies from "../component/Companies";
 import Header from "../component/Header";
@@ -9,9 +8,7 @@ import { Footer } from "../component/Footer";
 import OurProjects from "../component/OurProjects";
 import ReadyCreate from "../component/ReadyCreate";
 import Loading from "../component/loading/Loading";
-// import topFrame from "../assets/images/topFrame.png";
 import Testimonial from "../component/Testimonial";
-// import { HashLink } from "react-router-hash-link";
 import DisplayData from "../utils/DisplayData";
 
 const HomePage = () => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import Bee from "../assets/images/Bee.png"
 
 const OurProcess = () => {
   return (

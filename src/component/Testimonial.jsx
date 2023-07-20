@@ -1,50 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FeedBackground from "../assets/images/backgroundFeedBack.png";
 const Feedback = (props) => {
-  const data = [
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
-    },
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happ",
-    },
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team ise true. In addition",
-    },
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happ",
-    },
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
-    },
-    {
-      image: "https://i.imgur.com/hczKIze.jpg",
-      name: "Shyam Shrestha",
-      jobPosition: "CEO",
-      description:
-        "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
-    },
-  ];
+  // const data = [
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
+  //   },
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happ",
+  //   },
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team ise true. In addition",
+  //   },
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happ",
+  //   },
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
+  //   },
+  //   {
+  //     image: "https://i.imgur.com/hczKIze.jpg",
+  //     name: "Shyam Shrestha",
+  //     jobPosition: "CEO",
+  //     description:
+  //       "Our combined experience of over 40 years’ diligent team is more than happy to help you make you diligent team is more than happy to help you make your dream come true. In addition",
+  //   },
+  // ];
   const { testimonial } = props;
   return (
     <main>
