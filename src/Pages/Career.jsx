@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
 import { Text } from "@mantine/core";
 import { BiTimeFive } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
-import { Footer } from "./Footer";
 import { useParams } from "react-router";
+// import Navbar from "../component/Navbar";
 import { getIndividualData } from "../utils/UpdateData";
+import Loading from "../component/loading/Loading";
+import { Footer } from "../component/Footer";
+import Navbar from "../component/Navbar";
 
 const Career = () => {
   const { id } = useParams();
+  const { loading, setLoading } = useState(true);
 
   const [career, setCareer] = useState({});
   const fetchData = async () => {
     const careerDetail = await getIndividualData(id, "career");
     setCareer(careerDetail);
+    setLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
+    let unsubscribe;
+    unsubscribe = fetchData().then((r) => r);
+    return () => {
+      unsubscribe = [];
+    };
   }, []);
 
   return (
@@ -43,7 +51,6 @@ const Career = () => {
             </Text>
           </div>
         </main>
-        {/* )} */}
         <Footer />
       </div>
     </>
