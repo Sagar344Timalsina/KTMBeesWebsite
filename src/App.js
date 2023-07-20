@@ -16,9 +16,10 @@ import AdminServices from "./component/Admin/AdminServices";
 import ProtectedRoute from "./ProtectedRoute";
 import AuthProvider from "./Auth";
 import AdminTeam from "./component/Admin/AdminTeam";
-import Career from "./component/Career";
-import CareerList from "./component/CareerList";
 import AdminCareer from "./component/Admin/AdminCareer";
+import AdminTestimonial from "./component/Admin/AdminTestimonial";
+import Career from "./Pages/Career";
+import CareerList from "./Pages/CareerList";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
                 <Route path="services" element={<AdminServices />} />
                 <Route path="teams" element={<AdminTeam />} />
                 <Route path="career" element={<AdminCareer />} />
+                <Route path="testimonial" element={<AdminTestimonial />} />
               </Route>
             </Route>
             <Route path="/contact" element={<Contact />} />

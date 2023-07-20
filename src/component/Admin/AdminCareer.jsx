@@ -9,6 +9,15 @@ import DisplayData from "../../utils/DisplayData";
 import { deleteFirebase } from "../../utils/Delete";
 import { DatePickerInput } from "@mantine/dates";
 import moment from "moment";
+import { RichTextEditor, Link } from '@mantine/tiptap'
+import { useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from '@tiptap/extension-underline';
+import TextAlign from '@tiptap/extension-text-align';
+import Superscript from '@tiptap/extension-superscript';
+import SubScript from '@tiptap/extension-subscript';
+import Highlight from '@tiptap/extension-highlight';
+// import { BulletListControl } from "@mantine/tiptap/lib/controls";
 import dayjs from "dayjs";
 
 const AdminCareer = () => {
@@ -33,7 +42,22 @@ const AdminCareer = () => {
     },
   });
 
+  const [desc, setdesc] = useState("");
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Underline,
+      Link,
+      Superscript,
+      SubScript,
+      Highlight,
+      TextAlign.configure({ types: ['heading', 'paragraph'] }),
+    ],
+    content: desc
+  });
   const onSubmit = (data) => {
+    console.log(desc);
+    // setdesc(data.description);
     const date = new Date(data.date);
     data.date = moment(date).format("LL");
     isEdit === false
@@ -67,7 +91,7 @@ const AdminCareer = () => {
     try {
       const fetchData = await DisplayData("career");
       setTableData(fetchData);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   useEffect(() => {
@@ -104,6 +128,7 @@ const AdminCareer = () => {
                       control={control}
                       {...field}
                       placeholder="Title"
+                      label="Title"
                       size="lg"
                     />
                   )}
@@ -123,8 +148,8 @@ const AdminCareer = () => {
                     <DatePickerInput
                       {...field}
                       minDate={new Date()}
-                      // label="Date input"
-                      placeholder="Date"
+                      label="Expiry Date"
+                      placeholder="Expiry Date"
                       valueFormat="YYYY MMM DD"
                       maw={400}
                       size="lg"
@@ -138,17 +163,11 @@ const AdminCareer = () => {
             </div>
             <div className="mb-5">
               <Controller
-                name="description"
                 control={control}
+                name={"description"}
                 rules={{ required: "Fill up the description" }}
                 render={({ field }) => (
-                  <Textarea
-                    control={control}
-                    {...field}
-                    placeholder="Description"
-                    minRows={13}
-                    size="lg"
-                  />
+                  <Textarea {...field} label="Job description" size="lg" placeholder="Description"></Textarea>
                 )}
               ></Controller>
               <p className="text-[red] px-3 font-semibold ">
@@ -216,7 +235,7 @@ const AdminCareer = () => {
             )}
           </div>
         </form>
-      </section>
+      </section >
       <section className="bg-light_gray w-[80%] shadow-2xl m-9">
         <Table
           horizontalSpacing="xl"
@@ -231,7 +250,7 @@ const AdminCareer = () => {
             <tr>
               <th>Title</th>
               <th>Description</th>
-              <th>Date</th>
+              <th>Expiry Date</th>
               <th>Job type</th>
               <th>Location</th>
               <th>Edit</th>
@@ -243,7 +262,7 @@ const AdminCareer = () => {
               <tbody key={data?.id}>
                 <tr>
                   <td>{data?.jobTitle}</td>
-                  <td>{data?.description}</td>
+                  <td ><div className="overflow-scroll h-64 w-72">{data?.description}</div></td>
                   <td>{data?.date}</td>
                   <td>{data?.jobType}</td>
                   <td>{data?.location}</td>
@@ -270,7 +289,7 @@ const AdminCareer = () => {
             ))}
         </Table>
       </section>
-    </main>
+    </main >
   );
 };
 

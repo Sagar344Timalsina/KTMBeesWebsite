@@ -1,21 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { ImLocation } from "react-icons/im";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/ai";
 
 export const Footer = () => {
   const quickLinks = [
-    { id: 1, name: "Home", link: "/" },
-    { id: 2, name: "Our Projects", link: "/" },
+    { id: 1, name: "Home", link: "/#home" },
+    { id: 2, name: "Our Projects", link: "/#projects" },
     { id: 3, name: "Services", link: "/" },
     { id: 4, name: "What we offer", link: "/" },
-    { id: 5, name: "Startup Partners", link: "/" },
+    { id: 5, name: "Startup Partners", link: "/#startup" },
   ];
   const about = [
-    { id: 1, name: "About us", link: "/" },
+    { id: 1, name: "About us", link: "/about" },
     { id: 2, name: "Our team", link: "/" },
-    { id: 3, name: "Policy", link: "/" },
+    { id: 3, name: "Policy", link: "/about" },
     { id: 4, name: "CSR", link: "/" },
   ];
   const contact = [
@@ -29,38 +29,39 @@ export const Footer = () => {
         <article className="quick-link flex flex-col mb-6">
           <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">Quick Links</div>
           {quickLinks.map((data) => (
-            <Link
+            <HashLink
               to={data.link}
               className="text-xs links mb-2 sm:text-lg"
               key={data.id}
+              smooth
             >
               {data.name}
-            </Link>
+            </HashLink>
           ))}
         </article>
         <article className="about flex flex-col mb-6">
           <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">About us</div>
           {about.map((data) => (
-            <Link
+            <HashLink
               to={data.link}
               className="text-xs links mb-1 sm:mb-2 sm:text-lg"
               key={data.id}
             >
               {data.name}
-            </Link>
+            </HashLink>
           ))}
         </article>
         <article className="contact flex flex-col mb-6">
           <div className="text-sm sm:mb-4 mb-2 sm:text-2xl">Contact</div>
           {contact.map((data) => (
             <div key={data.id}>
-              <Link
+              <HashLink
                 className="flex items-center text-xs links mb-1 sm:mb-2 sm:text-lg"
                 to={data.link}
               >
                 <span className="mr-4">{data.logo}</span>
                 <h6>{data.name}</h6>
-              </Link>
+              </HashLink>
             </div>
           ))}
         </article>

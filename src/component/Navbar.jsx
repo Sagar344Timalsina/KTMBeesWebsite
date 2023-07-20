@@ -7,7 +7,8 @@ import { AiFillSetting } from "react-icons/ai";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { TbDeviceMobileMessage } from "react-icons/tb";
 import { FaFileCode } from "react-icons/fa";
-import { FaRegHandshake } from "react-icons/fa";
+import { FaRegHandshake, FaRocket } from "react-icons/fa";
+// import { HiMiniRocketLaunch } from "react-icons/hi2";
 
 import { Link } from "react-router-dom";
 import { Text } from "@mantine/core";
@@ -55,6 +56,12 @@ const Navbar = (props) => {
       logo: <TbDeviceMobileMessage />,
       name: "Get in touch",
       link: "/contact",
+    },
+    {
+      id: 7,
+      logo: <FaRocket />,
+      name: "Vacancy",
+      link: "/careerList",
     },
   ];
 
