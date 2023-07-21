@@ -9,14 +9,7 @@ import DisplayData from "../../utils/DisplayData";
 import { deleteFirebase } from "../../utils/Delete";
 import { DatePickerInput } from "@mantine/dates";
 import moment from "moment";
-import { Link } from '@mantine/tiptap'
-import { useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Underline from '@tiptap/extension-underline';
-import TextAlign from '@tiptap/extension-text-align';
-import Superscript from '@tiptap/extension-superscript';
-import SubScript from '@tiptap/extension-subscript';
-import Highlight from '@tiptap/extension-highlight';
+import { Link } from "@mantine/tiptap";
 
 const AdminCareer = () => {
   const [tableData, setTableData] = useState([]);
@@ -40,18 +33,7 @@ const AdminCareer = () => {
   });
 
   const [desc, setdesc] = useState("");
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Underline,
-      Link,
-      Superscript,
-      SubScript,
-      Highlight,
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-    ],
-    content: desc
-  });
+
   const onSubmit = (data) => {
     console.log(desc);
     // setdesc(data.description);
@@ -81,13 +63,14 @@ const AdminCareer = () => {
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
     });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   async function fetchDatas() {
     try {
       const fetchData = await DisplayData("career");
       setTableData(fetchData);
-    } catch (error) { }
+    } catch (error) {}
   }
 
   useEffect(() => {
@@ -163,7 +146,12 @@ const AdminCareer = () => {
                 name={"description"}
                 rules={{ required: "Fill up the description" }}
                 render={({ field }) => (
-                  <Textarea {...field} label="Job description" size="lg" placeholder="Description"></Textarea>
+                  <Textarea
+                    {...field}
+                    label="Job description"
+                    size="lg"
+                    placeholder="Description"
+                  ></Textarea>
                 )}
               ></Controller>
               <p className="text-[red] px-3 font-semibold ">
@@ -231,7 +219,7 @@ const AdminCareer = () => {
             )}
           </div>
         </form>
-      </section >
+      </section>
       <section className="bg-light_gray w-[80%] shadow-2xl m-9">
         <Table
           horizontalSpacing="xl"
@@ -258,7 +246,11 @@ const AdminCareer = () => {
               <tbody key={data?.id}>
                 <tr>
                   <td>{data?.jobTitle}</td>
-                  <td ><div className="overflow-scroll h-64 w-72">{data?.description}</div></td>
+                  <td>
+                    <div className="overflow-scroll h-64 w-72">
+                      {data?.description}
+                    </div>
+                  </td>
                   <td>{data?.date}</td>
                   <td>{data?.jobType}</td>
                   <td>{data?.location}</td>
@@ -285,7 +277,7 @@ const AdminCareer = () => {
             ))}
         </Table>
       </section>
-    </main >
+    </main>
   );
 };
 

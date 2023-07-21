@@ -67,7 +67,9 @@ const AdminSidebar = () => {
               />
             </MediaQuery>
 
-            <img src="../assests/logo/bees.png" alt="Bees" className="w-44" />
+            <Link to={"/"}>
+              <img src="../assests/logo/bees.png" alt="Bees" className="w-44" />
+            </Link>
           </div>
         </Header>
       }

@@ -58,7 +58,7 @@ const AdminTestimonial = () => {
     try {
       const fetchData = await DisplayData("testimonial");
       setTableData(fetchData);
-    } catch (error) { }
+    } catch (error) {}
   }
 
   //handle update in firebase
@@ -80,6 +80,7 @@ const AdminTestimonial = () => {
       setValue(key, res[key]);
     });
     setPreImgUrl(res.image);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
   const handleDeleteButton = async (id, image) => {
     await deleteFirebase(id, "testimonial", image);

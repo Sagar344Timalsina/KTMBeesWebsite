@@ -48,13 +48,14 @@ const AdminAbout = () => {
     Object.keys(res).forEach((key) => {
       setValue(key, res[key]);
     });
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   async function fetchDatas() {
     try {
       const fetchData = await DisplayData("about");
       setTableData(fetchData);
-    } catch (error) { }
+    } catch (error) {}
   }
 
   useEffect(() => {
