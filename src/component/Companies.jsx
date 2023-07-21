@@ -39,7 +39,7 @@ const Companies = (props) => {
           {startup.map((data) => (
             <div
               key={data.id}
-              className="flex col-span-12 md:col-span-3 sm:col-span-6 justify-center "
+              className="flex col-span-12  md:col-span-6 lg:col-span-3 sm:col-span-6 justify-center "
             >
               <Link to={data.url} target="_blank">
                 <img

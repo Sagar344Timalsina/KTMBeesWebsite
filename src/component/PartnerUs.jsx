@@ -4,7 +4,7 @@ import GetInTouch from "./Buttons/GetInTouch";
 const PartnerUs = (props) => {
   const { partners } = props;
   return (
-    <main className="sm:grid sm:grid-cols-12 bg-dark_yellow p-10 sm:dynamic_x_padding">
+    <main className="sm:grid sm:grid-cols-12 bg-dark_yellow p-10 sm:dynamic_x_padding md:gap-6">
       <section className="sm:col-span-6 sm:flex justify-center items-center">
         <img src={partners.image} alt="HoneyCombImage" />
       </section>
