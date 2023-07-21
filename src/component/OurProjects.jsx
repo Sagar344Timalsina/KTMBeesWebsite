@@ -89,7 +89,7 @@ const OurProjects = (props) => {
             {unique.map((tab) => (
               <Tabs.Tab
                 value={tab.category}
-                className="text-xs -mr-4 flex sm:mr-11 h-6 font-sans p-5 sm:text-xl leading-6 hover:bg-light_yellow "
+                className="md:text-xs md:p-3 md:mr-3 sm:text-xs -mr-4 sm:p-3 flex sm:mr-5 h-6 font-sans p-5 lg:text-xl leading-6 hover:bg-light_yellow "
               >
                 {tab.category}
               </Tabs.Tab>
