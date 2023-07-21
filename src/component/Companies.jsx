@@ -24,7 +24,6 @@ const Companies = (props) => {
                   src={data.image}
                   alt="Partners"
                   className="flex justify-center object-contain"
-                  onClick={console.log(data.url)}
                 />
               </Link>
             </div>
@@ -46,7 +45,6 @@ const Companies = (props) => {
                   src={data.image}
                   alt="Partners"
                   className="flex justify-center my-4  max-w-xs max-h-20 sm:w-40 md:w-60 object-contain"
-                  onClick={console.log(data.url)}
                 />
               </Link>
             </div>

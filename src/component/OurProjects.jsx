@@ -16,7 +16,7 @@ const OurProjects = (props) => {
     (project) => project.category === selectedValueTab
   );
   const handleClick = () => {
-    console.log("first");
+    // console.log("first");
   };
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
   return (
@@ -39,12 +39,12 @@ const OurProjects = (props) => {
           onChange={(e) => setSelectedValueAccordian(e)}
         >
           {unique.map((tabValue) => (
-            <Accordion.Item value={tabValue.category}>
+            <Accordion.Item value={tabValue.category} key={tabValue?.id}>
               <Accordion.Control>{tabValue.category}</Accordion.Control>
               <Accordion.Panel>
                 <Carousel maw={320} mx="auto" withIndicators height={350}>
                   {filteredValues.map((filterData) => (
-                    <Carousel.Slide onClick={handleClick}>
+                    <Carousel.Slide onClick={handleClick} key={filterData?.id}>
                       {/* <img src={filterData.largeImage} alt="Projects" className="absolute" /> */}
                       <Link to={filterData.url} target="_blank">
                         <img
@@ -54,7 +54,7 @@ const OurProjects = (props) => {
                         />
                       </Link>
                       <div
-                        div
+                        key={filterData?.id}
                         className="site__button flex gap-3 items-center w-full mb-4 sm:w-80 mt-72 ml-5 "
                       >
                         <Button
@@ -92,6 +92,7 @@ const OurProjects = (props) => {
               <Tabs.Tab
                 value={tab.category}
                 className="md:text-sm md:p-3 md:mr-3 sm:text-xs sm:p-3 flex sm:mr-5 h-6 font-sans p-5 lg:text-xl leading-6 hover:bg-light_yellow "
+                key={tab?.id}
               >
                 {tab.category}
               </Tabs.Tab>
@@ -101,7 +102,7 @@ const OurProjects = (props) => {
           <Tabs.Panel value={selectedValueTab} pt="xs" className="">
             <Carousel mx={50} withIndicators className="h-auto">
               {filteredValuesTab.map((filterData) => (
-                <Carousel.Slide onClick={handleClick}>
+                <Carousel.Slide onClick={handleClick} key={filterData?.id}>
                   <div className="flex justify-end flex-col">
                     <img
                       src={filterData.largeImage}

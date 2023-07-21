@@ -1,6 +1,6 @@
 import React from "react";
 import FeedBackground from "../assets/images/backgroundFeedBack.png";
-const Feedback = (props) => {
+const Testimonial = (props) => {
   // const data = [
   //   {
   //     image: "https://i.imgur.com/hczKIze.jpg",
@@ -57,7 +57,10 @@ const Feedback = (props) => {
         </h1>
         <div className="gridView ">
           {testimonial?.map((data) => (
-            <div className="card bg-light_yellow h-auto w-80 2xl:w-[27rem] rounded-lg p-6 shadow-2xl">
+            <div
+              className="card bg-light_yellow h-auto w-80 2xl:w-[27rem] rounded-lg p-6 shadow-2xl"
+              key={data?.id}
+            >
               <section className="flex  items-center">
                 <img
                   alt="pic"
@@ -84,4 +87,4 @@ const Feedback = (props) => {
   );
 };
 
-export default Feedback;
+export default Testimonial;
