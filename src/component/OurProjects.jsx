@@ -34,7 +34,7 @@ const OurProjects = (props) => {
       <section className="my-5 display__accordian">
         <Accordion
           radius="md"
-          defaultValue="Tourism"
+          defaultValue="Informative"
           className="w-full "
           onChange={(e) => setSelectedValueAccordian(e)}
         >
