@@ -194,7 +194,7 @@
   }
 }
 
-@media(min-width:819px) {
+@media (min-width: 819px) {
   .dynamic__height {
     height: 400px;
   }

@@ -76,6 +76,7 @@ const AdminStartupPartner = () => {
         Object.keys(res).forEach((key) => {
             setValue(key, res[key]);
         })
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
         setPreImgUrl(res.image);
 

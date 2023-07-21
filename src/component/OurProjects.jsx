@@ -7,23 +7,25 @@ const OurProjects = (props) => {
   // const largeScreen = useMediaQuery('(min-width: 1024px)');
   const { projects } = props;
   const [selectedValueAccordian, setSelectedValueAccordian] =
-    useState("Tourism");
-  const [selectedValueTab, setSelectedValueTab] = useState("Tourism");
+    useState("Informative");
+  const [selectedValueTab, setSelectedValueTab] = useState("Informative");
   const filteredValues = projects.filter(
     (project) => project.category === selectedValueAccordian
   );
   const filteredValuesTab = projects.filter(
     (project) => project.category === selectedValueTab
   );
+  const handleClick = () => {
+    console.log("first");
+  };
   const unique = [...new Map(projects.map((m) => [m.category, m])).values()];
   return (
     <div
       id="projects"
       className="h-auto bg-light_yellow flex flex-col text-center py-6 md:px-11 lg:px-36"
-
     >
       <section className="title sm:mb-8 sm:w-2/4 mx-auto ">
-        <h1 className="sm:text-3xl font-sans font-[700] mb-2"> Our Projects</h1>
+        <h1 className="sm:text-3xl font-sans font-bold mb-2"> Our Projects</h1>
         <h6 className="text-[#475569] text-xs sm:text-xl ">
           Global clients rely on our team of committed developers to deliver
           high-quality, sector-specific web and mobile solutions.
@@ -42,7 +44,7 @@ const OurProjects = (props) => {
               <Accordion.Panel>
                 <Carousel maw={320} mx="auto" withIndicators height={350}>
                   {filteredValues.map((filterData) => (
-                    <Carousel.Slide>
+                    <Carousel.Slide onClick={handleClick}>
                       {/* <img src={filterData.largeImage} alt="Projects" className="absolute" /> */}
                       <Link to={filterData.url} target="_blank">
                         <img
@@ -99,9 +101,8 @@ const OurProjects = (props) => {
           <Tabs.Panel value={selectedValueTab} pt="xs" className="">
             <Carousel mx={50} withIndicators className="h-auto">
               {filteredValuesTab.map((filterData) => (
-                <Carousel.Slide>
+                <Carousel.Slide onClick={handleClick}>
                   <div className="flex justify-end flex-col">
-
                     <img
                       src={filterData.largeImage}
                       alt="Projects"
@@ -128,7 +129,7 @@ const OurProjects = (props) => {
           </Tabs.Panel>
         </Tabs>
       </section>
-    </div >
+    </div>
   );
 };
 

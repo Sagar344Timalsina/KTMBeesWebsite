@@ -48,7 +48,7 @@ const Hero = () => {
     try {
       const fetchData = await DisplayData("herosection");
       setTableData(fetchData);
-    } catch (error) { }
+    } catch (error) {}
   }
 
   //handle update in firebase
@@ -70,6 +70,7 @@ const Hero = () => {
       setValue(key, res[key]);
     });
     setPreImgUrl(res.image);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   //Event handling of delete button

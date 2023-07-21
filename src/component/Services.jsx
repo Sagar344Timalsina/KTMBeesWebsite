@@ -4,7 +4,10 @@ import { Text } from "@mantine/core";
 const Services = (props) => {
   const { services } = props;
   return (
-    <section id="services" className="bg-light_yellow p-10 sm:dynamic_x_padding ">
+    <section
+      id="services"
+      className="smallMobile bg-light_yellow p-10 sm:dynamic_x_padding "
+    >
       <div className="">
         <Text className="h-9 font-sans font-bold lg:text-3xl text-2xl leading-9 tracking-wider text-dark text-center">
           Services
@@ -21,7 +24,7 @@ const Services = (props) => {
           {services.map((service) => (
             <div
               span={3}
-              className="flex  flex-col item-center mx-auto sm:justify-start p-3 gap-10 sm:gap-10 h-[17.5rem] mb-6 col-span-12 md:col-span-4 sm:col-span-6"
+              className=" flex flex-col item-center mx-auto sm:justify-start p-3 gap-10 sm:gap-10 h-[17.5rem] mb-6 col-span-12 md:col-span-4 sm:col-span-6"
               key={service.id}
             >
               <div className=" items-start gap-3 h-28 z-2 w-72">
