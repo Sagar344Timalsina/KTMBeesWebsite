@@ -101,6 +101,8 @@ const AdminStartupPartner = () => {
                             </Controller>
                             <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
                         </div>
+                        <div className="mb-2 font-light text-lg">Startup partners Image</div>
+
                         <Controller
                             name='image'
                             control={control}

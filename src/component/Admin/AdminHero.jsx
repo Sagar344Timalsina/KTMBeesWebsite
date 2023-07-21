@@ -133,7 +133,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="mb-2 font-light text-gray">Background Image</div>
+            <div className="mb-2 font-light text-lg">Background Image</div>
 
             <div className="mb-5">
               <Controller

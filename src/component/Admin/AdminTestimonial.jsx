@@ -141,9 +141,9 @@ const AdminTestimonial = () => {
               </p>
             </div>
 
-            <div className="mb-2 font-light text-gray">Background Image</div>
+            <div className="mb-2 font-light text-lg">Testimonial Image</div>
 
-            <div className="mb-5">
+            <div className="">
               <Controller
                 name="image"
                 control={control}

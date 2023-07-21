@@ -98,7 +98,7 @@ const AdminTeam = () => {
                             <p className='text-[red] px-3 font-semibold '>{errors.post?.message}</p>
                         </div>
                     </div>
-                    <div className='mb-2 font-light text-gray'>Image</div>
+                    <div className='mb-2 font-light text-lg'>Team Member Image</div>
                     <div className='mb-5'>
                         <Controller
                             control={control}

@@ -122,6 +122,7 @@ const AdminCompanies = () => {
                   data={category}
                   placeholder="Select items"
                   nothingFound="Nothing found"
+                  size='lg'
                   searchable
                   creatable
                   getCreateLabel={(query) => `+ Create ${query}`}
@@ -148,7 +149,8 @@ const AdminCompanies = () => {
             </Controller>
             <p className='text-[red] px-3 font-semibold '>{errors.url?.message}</p>
           </div>
-          <div className='mb-5'>
+          <div className="mb-2 font-light text-lg">Web View Image</div>
+          <div className=''>
             <Controller
               name='largeImage'
               control={control}
@@ -181,7 +183,9 @@ const AdminCompanies = () => {
             <p className='text-[red] px-3 font-semibold '>{errors.largeImage?.message}</p>
 
           </div>
-          <div className='mb-5'>
+          <div className="mb-2 font-light text-lg">Mobile View Image</div>
+
+          <div className=''>
             <Controller
               name='smallImage'
               control={control}
@@ -227,8 +231,8 @@ const AdminCompanies = () => {
               <thead>
                 <tr>
                   <th>Category</th>
-                  <th>Large Image</th>
-                  <th>Small Image</th>
+                  <th>Web Image</th>
+                  <th>Mobile Image</th>
                   <th>Image url</th>
                   <th>Edit</th>
                   <th>Delete</th>

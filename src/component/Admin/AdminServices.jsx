@@ -85,7 +85,9 @@ const AdminServices = () => {
             <section className='bg-light_gray w-[60%] shadow-[0_5px_24px_1px_rgba(0,0,0,0.2)] rounded-lg'>
                 <form onSubmit={handleSubmit(onSubmit)} className='p-8 border-0 '>
                     <div className='flex flex-col justify-center'>
-                        <div className='mb-5'>
+                        <div className="mb-2 font-light text-lg">Services Logo</div>
+
+                        <div className=''>
                             <Controller
                                 name='image'
                                 control={control}

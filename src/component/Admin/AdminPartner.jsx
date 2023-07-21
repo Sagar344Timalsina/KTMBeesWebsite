@@ -19,7 +19,7 @@ const AdminPartner = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [id, setId] = useState();
 
-    const { handleSubmit, formState: { errors }, control,reset,setValue } = useForm({
+    const { handleSubmit, formState: { errors }, control, reset, setValue } = useForm({
         defaultValues: {
             heading: "",
             subheading: "",
@@ -27,7 +27,7 @@ const AdminPartner = () => {
             image: ""
         }
     })
-  
+
     const onSubmit = (data) => {
         isEdit === false ? createServices(data, imageUrl, "partner") : handleUpdate(data, id);
         reset();
@@ -52,33 +52,33 @@ const AdminPartner = () => {
         }
 
     }
-  //handle update in firebase
-  const handleUpdate = (data, id) => {
-    UpdateData(data, id, "partner");
-    if(preimgUrl!==imageUrl)
-    deleteStorageImage(preimgUrl);
-    fetchDatas();
-}
+    //handle update in firebase
+    const handleUpdate = (data, id) => {
+        UpdateData(data, id, "partner");
+        if (preimgUrl !== imageUrl)
+            deleteStorageImage(preimgUrl);
+        fetchDatas();
+    }
 
-//Handle edit/update function
-const handleEditButton = async (id) => {
-    setId(id);
-    setIsEdit(true);
-    const res = await getIndividualData(id,"partner");
-    setImageUrl(res.image);
-    Object.keys(res).forEach((key) => {
-        setValue(key, res[key]);   
-    });
+    //Handle edit/update function
+    const handleEditButton = async (id) => {
+        setId(id);
+        setIsEdit(true);
+        const res = await getIndividualData(id, "partner");
+        setImageUrl(res.image);
+        Object.keys(res).forEach((key) => {
+            setValue(key, res[key]);
+        });
 
-   
-    setPreImgUrl(res.image);
-}
+
+        setPreImgUrl(res.image);
+    }
 
     useEffect(() => {
-       fetchDatas();
+        fetchDatas();
     }, []);
 
-    
+
     return (
         <main className='flex items-center justify-center flex-col' >
             <section className='text-4xl my-6 font-sans font-bold'>Partner Section</section>
@@ -121,6 +121,8 @@ const handleEditButton = async (id) => {
                             </Controller>
                         </div>
                         <p className='text-[red] px-3 font-[600] '>{errors.description?.message}</p>
+                        <div className="mb-2 font-light text-lg">Partners Image</div>
+
                         <div>
                             <Controller
                                 name='image'
@@ -133,7 +135,7 @@ const handleEditButton = async (id) => {
                                             onDrop={async (setImage) => {
                                                 const url = await firebaseImageUpload(setImage[0]);
                                                 setImageUrl(url);
-                                                setValue("image",url)
+                                                setValue("image", url)
                                             }}
                                             onReject={(field) => console.log('rejected files', field)}
                                             accept={IMAGE_MIME_TYPE}
@@ -159,8 +161,8 @@ const handleEditButton = async (id) => {
 
                         </div>
                         {isEdit !== true ? <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>CREATE</Button>
-                        : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
-              
+                            : <Button type='submit' color='yellow' className='bg-yellow font-sans w-[20%] rounded-3xl'>UPDATE</Button>}
+
                     </div>
                 </form>
             </section>
@@ -183,7 +185,7 @@ const handleEditButton = async (id) => {
                                 <td >{data.subheading}</td>
                                 <td>{data.description}</td>
                                 <td ><img src={data.image} alt="Partners" className='w-24 h-24 rounded-full object-contain'></img></td>
-                                <td ><Button className='bg-yellow font-sans text-black'  onClick={() => handleEditButton(data.id)}><FaEdit />Update</Button></td>
+                                <td ><Button className='bg-yellow font-sans text-black' onClick={() => handleEditButton(data.id)}><FaEdit />Update</Button></td>
                                 <td ><Button className='bg-red font-sans text-black' onClick={() => handleDeleteButton(data.id, data.image)}><MdOutlineDeleteOutline />Delete</Button></td>
                             </tr>
                         ))}

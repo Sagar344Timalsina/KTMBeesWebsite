@@ -86,7 +86,7 @@ const AdminSidebar = () => {
                 component={Link}
                 variant="link"
                 to={nav.to}
-                className="navbar px-3 font-sans py-3 hover:bg-yellow transition-all hover:text-white hover:rounded-lg cursor-pointer "
+                className="navbar px-3 font-sans py-3 hover:bg-yellow focus:bg-yellow focus:rounded-lg transition-all hover:text-white hover:rounded-lg cursor-pointer "
               >
                 {nav.text}
               </Text>
